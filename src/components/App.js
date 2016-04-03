@@ -3,6 +3,8 @@ import { Router, Route, browserHistory } from 'react-router';
 import Root from 'components/Root';
 import Callback from 'components/Callback';
 import Accounts from 'components/Accounts';
+import 'sweetalert/dist/sweetalert.css';
+import 'sweetalert/dist/sweetalert.min.js';
 
 export default class App extends React.Component {
   render() {

@@ -1,7 +1,11 @@
 // From: https://gist.github.com/Fluidbyte/2973986
 import currencyCodes from 'lib/currency-codes.json';
 
-export function intToAmount(amount = 0, currency = 'GBP') {
+export function intToAmount(amount, currency = 'GBP') {
+  if (amount === undefined || amount === null || amount === false) {
+    return false;
+  }
+
   const currencySymbol = currencyCodes[currency].symbol;
   let addition = false;
 
