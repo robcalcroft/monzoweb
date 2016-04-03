@@ -74,8 +74,8 @@ export default class Accounts extends React.Component {
         })
       });
     })
-    .fail(err => swal('Error', `${err.responseJSON.message} try logging out and in again`
-      || 'Internal error, contact https://github.com/robcalcroft/mondoweb/issues, if this keeps happening', 'error'));
+    .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
+      || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
   }
 
   // Updates the state with the account name (only first account supported atm)
@@ -93,8 +93,8 @@ export default class Accounts extends React.Component {
         })
       });
     })
-    .fail(err => swal('Error', `${err.responseJSON.message} try logging out and in again`
-      || 'Internal error, contact https://github.com/robcalcroft/mondoweb/issues, if this keeps happening', 'error'));
+    .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
+      || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
   }
 
   // Params is a query string starting with '&'
@@ -112,8 +112,8 @@ export default class Accounts extends React.Component {
         })
       });
     })
-    .fail(err => swal('Error', `${err.responseJSON.message} try logging out and in again`
-      || 'Internal error, contact https://github.com/robcalcroft/mondoweb/issues, if this keeps happening', 'error'));
+    .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
+      || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
   }
 
   transactionSelect(event) {
@@ -171,8 +171,8 @@ export default class Accounts extends React.Component {
         }
       });
     })
-    .fail(err => swal('Error', `${err.responseJSON.message} try logging out and in again`
-      || 'Internal error, contact https://github.com/robcalcroft/mondoweb/issues, if this keeps happening', 'error'));
+    .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
+      || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
   }
 
   transactionSearch(event) {
