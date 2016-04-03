@@ -1,9 +1,12 @@
 import React from 'react';
+import moment from 'moment';
 import './style.scss';
 
 export default class Overview extends React.Component {
   render() {
-    const { props: { loading, empty, data: { lat, long, zoom, logo, merchant, address, amount, tags, online, notes } } } = this;
+    const { props: { loading, empty, data: {
+      lat, long, zoom, logo, merchant, address, amount, tags, online, notes, created
+    } } } = this;
     let tagKey = 0;
 
     return empty ? (
@@ -35,6 +38,7 @@ export default class Overview extends React.Component {
               <div key={tagKey++} className='chip' style={{marginRight: '2px'}}>{tag}</div>
             ))}
           </div>
+          <p className='grey-text text-lighten-1 center'>{moment(created).format('dddd MMMM Do YYYY [at] h:mma')}</p>
         </li>
       </ul>
     );

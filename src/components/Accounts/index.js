@@ -166,7 +166,8 @@ export default class Accounts extends React.Component {
             tags: transaction.merchant ? transaction.merchant.metadata.suggested_tags.split(' ') : [],
             amount: intToAmount(transaction.amount, transaction.currency),
             online: transaction.merchant ? transaction.merchant.online : false,
-            notes: transaction.notes
+            notes: transaction.notes,
+            created: transaction.created
           }
         }
       });

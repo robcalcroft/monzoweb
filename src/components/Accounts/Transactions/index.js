@@ -13,22 +13,7 @@ export default class Transactions extends React.Component {
             <h5>No transactions found</h5>
           </li>
         ) : (
-          transactions.map(transaction => {
-            let description;
-
-            // Description
-            if (transaction.is_load) {
-              description = transaction.description;
-            } else if (transaction.merchant) {
-              if (transaction.merchant.atm) {
-                description = transaction.description;
-              } else {
-                description = transaction.merchant.address.city
-                  || transaction.merchant.address.short_formatted;
-              }
-            }
-
-            return (
+          transactions.map(transaction => (
               <Transaction
                 key={btoa(transaction.id)}
                 id={btoa(transaction.id)}
@@ -37,9 +22,9 @@ export default class Transactions extends React.Component {
                 logo={transaction.merchant ? transaction.merchant.logo : ''}
                 amount={intToAmount(transaction.amount, transaction.currency)}
                 merchant={transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Mondo' : ''}
-                description={description}
-              />);
-          }).reverse()
+                created={transaction.created}
+              />
+          )).reverse()
         )}
       </ul>
     );
