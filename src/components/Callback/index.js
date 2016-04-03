@@ -49,30 +49,32 @@ export default class Callback extends React.Component {
       });
     }
 
-    fetch(`/token?code=${code.code}`)
-    .then(response => {
-      if (!response.ok) {
-        return this.setState({
-          component: COMP_AJAX_ERROR
-        });
-      }
+    $.getJSON(`/token?code=${code.code}`)
+      .done(response => {
+        if (!response.ok) {
+          return this.setState({
+            component: COMP_AJAX_ERROR
+          });
+        }
 
-      let body = response.json();
+        let body = response.json();
 
-      // if (body.access_token && body.refresh_token) {
-      //   Promise.all([
-      //     localForage.setItem('mondo_access_token', body.access_token),
-      //     localForage.setItem('mondo_refresh_token', body.refresh_token),
-      //     localForage.setItem('mondo_account_id', body.account_id)
-      //   ]).then(() => {
-      //     window.location.href = '/accounts';
-      //   });
-      // }
-      localStorage.setItem('mondo_access_token', body.access_token);
-      localStorage.setItem('mondo_refresh_token', body.refresh_token);
-      localStorage.setItem('mondo_account_id', body.account_id);
-      window.location.href = '/accounts';
-    });
+        // if (body.access_token && body.refresh_token) {
+        //   Promise.all([
+        //     localForage.setItem('mondo_access_token', body.access_token),
+        //     localForage.setItem('mondo_refresh_token', body.refresh_token),
+        //     localForage.setItem('mondo_account_id', body.account_id)
+        //   ]).then(() => {
+        //     window.location.href = '/accounts';
+        //   });
+        // }
+        localStorage.setItem('mondo_access_token', body.access_token);
+        localStorage.setItem('mondo_refresh_token', body.refresh_token);
+        localStorage.setItem('mondo_account_id', body.account_id);
+        window.location.href = '/accounts';
+      })
+      .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
+        || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
   }
 
   render() {
