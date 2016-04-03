@@ -17,7 +17,10 @@ export default class Container extends React.Component {
         <div className='nav-wrapper container--fluid'>
           <img src={require('assets/logo_horz_darkbg.png')} className='nav--logo' alt='Mondo logo' />
           <ul className='right hide-on-med-and-down'>{links}</ul>
-          <ul id='slide-out' className='side-nav'>{links}</ul>
+          <ul id='slide-out' className='side-nav'>
+            <img src={require('assets/logo_horz_darkbg.png')} className='nav--logo--menu center' alt='Mondo logo' />
+            {links}
+          </ul>
           <a href='#' data-activates='slide-out' className='button-collapse right'>
             <span className='nav--mobile-menu'>Menu</span>
           </a>

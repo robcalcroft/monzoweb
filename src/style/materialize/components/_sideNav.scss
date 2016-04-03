@@ -31,10 +31,10 @@
     float: none;
     padding: 0 $sidenav-padding-right;
     line-height: $sidenav-item-height;
-    &:hover, &.active { background-color: #ddd; }
+    &:hover, &.active { background-color: $secondary-color; }
   }
   a {
-    color: #444;
+    color: white;
     display: block;
     font-size: 1rem;
     height: $sidenav-item-height;
