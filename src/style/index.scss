@@ -1,0 +1,61 @@
+@import 'materialize/materialize.scss';
+
+html {
+  font-family: 'Source Sans Pro', sans-serif;
+  height: 100vh;
+}
+
+* {
+  outline: none;
+}
+
+.primary-text {
+  color: $primary-color;
+}
+
+.primary-light {
+  background-color: $primary-color-light;
+}
+
+.primary-light-text {
+  color: $primary-color-light;
+}
+
+.secondary-color {
+  background-color: $secondary-color;
+}
+
+.secondary-color-text {
+  color: $secondary-color;
+}
+
+// Same as .collection css
+.border-box {
+  background-color: white;
+  padding: 7.5%;
+  margin: 0.5rem 0 1rem 0;
+  border-radius: 2px;
+  border: 1px solid $collection-border-color;
+  @media (max-width: 992px) {
+    padding: 1% 2.5%;
+  }
+}
+
+.nav--mobile-menu {
+  @extend .rounded;
+  border: 1px solid white;
+  padding: 7px 17px;
+  margin-right: 9px;
+}
+
+.rounded {
+  border-radius: 10% !important;
+}
+
+.fadein {
+    animation: fadein .25s;
+}
+@keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

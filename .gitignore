@@ -1,0 +1,16 @@
+# OS Files
+.DS_Store
+.Thumbs_DB
+
+# Logs
+*.log
+
+# Caches
+.npm
+node_modules
+
+# Distribution code
+dist
+
+# Sensitive files
+.env

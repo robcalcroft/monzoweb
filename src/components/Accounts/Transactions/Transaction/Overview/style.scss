@@ -1,0 +1,12 @@
+.transaction--overview--map {
+  height: auto;
+  width: 100%;
+}
+
+.transaction--overview--logo {
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  left: calc(50% - 21px); // Sorry opera mini :s
+  bottom: -10px;
+}
