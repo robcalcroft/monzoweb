@@ -59,15 +59,19 @@ export default class Callback extends React.Component {
 
       let body = response.json();
 
-      if (body.access_token && body.refresh_token) {
-        Promise.all([
-          localForage.setItem('mondo_access_token', body.access_token),
-          localForage.setItem('mondo_refresh_token', body.refresh_token),
-          localForage.setItem('mondo_account_id', body.account_id)
-        ]).then(() => {
-          window.location.href = '/accounts';
-        });
-      }
+      // if (body.access_token && body.refresh_token) {
+      //   Promise.all([
+      //     localForage.setItem('mondo_access_token', body.access_token),
+      //     localForage.setItem('mondo_refresh_token', body.refresh_token),
+      //     localForage.setItem('mondo_account_id', body.account_id)
+      //   ]).then(() => {
+      //     window.location.href = '/accounts';
+      //   });
+      // }
+      localStorage.setItem('mondo_access_token', body.access_token);
+      localStorage.setItem('mondo_refresh_token', body.refresh_token);
+      localStorage.setItem('mondo_account_id', body.account_id);
+      window.location.href = '/accounts';
     });
   }
 
