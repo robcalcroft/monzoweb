@@ -214,6 +214,11 @@ export default class Accounts extends React.Component {
   render() {
     const { account, transactionOverview, ui } = this.state;
 
+    if (!localStorage.mondo_access_token) {
+      window.location.href = '/';
+      return false;
+    }
+
     return (
       <Container>
         <Overview
