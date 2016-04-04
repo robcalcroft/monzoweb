@@ -1,5 +1,6 @@
 import React from 'react';
 import Nav from 'components/Nav';
+import { once } from 'lib/utils';
 import './style.scss';
 
 const logout = () => {
@@ -16,6 +17,24 @@ const links = (
 );
 
 export default class Container extends React.Component {
+
+  constructor() {
+    super();
+
+    this.initSideMenu = once(this.initSideMenu);
+  }
+
+  componentDidMount() {
+    this.initSideMenu();
+  }
+
+  initSideMenu() {
+    $('.button-collapse').sideNav({
+      edge: 'right',
+      closeOnClick: true
+    });
+  }
+
   render() {
     return (
       <nav>
