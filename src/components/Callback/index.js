@@ -50,31 +50,28 @@ export default class Callback extends React.Component {
     }
 
     $.getJSON(`/token?code=${code.code}`)
-      .done(response => {
-        if (!response.ok) {
-          return this.setState({
-            component: COMP_AJAX_ERROR
-          });
-        }
-
-        let body = response.json();
+      .done(body => {
 
         // if (body.access_token && body.refresh_token) {
         //   Promise.all([
         //     localForage.setItem('mondo_access_token', body.access_token),
-        //     localForage.setItem('mondo_refresh_token', body.refresh_token),
-        //     localForage.setItem('mondo_account_id', body.account_id)
+        //     localForage.setItem('mondo_refresh_token', body.refresh_token)
         //   ]).then(() => {
         //     window.location.href = '/accounts';
         //   });
         // }
         localStorage.setItem('mondo_access_token', body.access_token);
         localStorage.setItem('mondo_refresh_token', body.refresh_token);
-        localStorage.setItem('mondo_account_id', body.account_id);
         window.location.href = '/accounts';
       })
-      .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
-        || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
+      .fail(err => {
+        swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
+          || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error');
+
+        return this.setState({
+          component: COMP_AJAX_ERROR
+        });
+      });
   }
 
   render() {

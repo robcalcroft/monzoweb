@@ -41,6 +41,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "dotenv": "^2.0.0",
     "express": "^4.13.4",
     "jquery": "^2.2.2",
     "json-loader": "^0.5.4",

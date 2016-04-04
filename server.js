@@ -2,6 +2,9 @@ import express from 'express';
 import morgan from 'morgan';
 import request from 'request';
 import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.load();
 
 let app = express();
 

@@ -25,6 +25,7 @@ export default class Accounts extends React.Component {
         data: {}
       },
       account: {
+        id: undefined,
         name: '',
         transactions: [],
         filterActive: false,
@@ -39,9 +40,10 @@ export default class Accounts extends React.Component {
   componentWillMount() {
 
     // Retrieve inital data
-    this.retrieveAccount();
-    this.retrieveBalance();
-    this.retrieveTransactions();
+    this.retrieveAccount().then(() => {
+      this.retrieveBalance();
+      this.retrieveTransactions();
+    });
   }
 
   componentDidMount() {
@@ -58,16 +60,13 @@ export default class Accounts extends React.Component {
   // Updates the state with the latest balance
   retrieveBalance() {
     $.ajax({
-      url: `https://api.getmondo.co.uk/balance?account_id=${localStorage.mondo_account_id}`,
+      url: `https://api.getmondo.co.uk/balance?account_id=${this.state.account.id}`,
       headers: {
         'Authorization': `Bearer ${localStorage.mondo_access_token}`
       }
     })
     .done(account => {
-      const { currency} = account;
-      let { balance, spend_today: spentToday } = account;
-      balance = balance.toString();
-      spentToday = spentToday.toString();
+      const { currency, balance, spend_today: spentToday} = account;
       this.setState({
         account: Object.assign({}, this.state.account, {
           balance, spentToday, currency
@@ -80,27 +79,31 @@ export default class Accounts extends React.Component {
 
   // Updates the state with the account name (only first account supported atm)
   retrieveAccount() {
-    $.ajax({
-      url: 'https://api.getmondo.co.uk/accounts',
-      headers: {
-        'Authorization': `Bearer ${localStorage.mondo_access_token}`
-      }
-    })
-    .done(response => {
-      this.setState({
-        account: Object.assign({}, this.state.account, {
-          name: response.accounts[0].description
-        })
-      });
-    })
-    .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
-      || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
+    return new Promise(resolve => {
+      $.ajax({
+        url: 'https://api.getmondo.co.uk/accounts',
+        headers: {
+          'Authorization': `Bearer ${localStorage.mondo_access_token}`
+        }
+      })
+      .done(response => {
+        this.setState({
+          account: Object.assign({}, this.state.account, {
+            name: response.accounts[0].description,
+            id: response.accounts[0].id
+          })
+        });
+        resolve();
+      })
+      .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
+        || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
+    });
   }
 
   // Params is a query string starting with '&'
   retrieveTransactions(params = '') {
     $.ajax({
-      url: `https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${localStorage.mondo_account_id}${params}`,
+      url: `https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${this.state.account.id}${params}`,
       headers: {
         'Authorization': `Bearer ${localStorage.mondo_access_token}`
       }
