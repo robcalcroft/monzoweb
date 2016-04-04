@@ -2,11 +2,16 @@ import React from 'react';
 import Nav from 'components/Nav';
 import './style.scss';
 
+const logout = () => {
+  localStorage.clear();
+  window.location.href = '/';
+};
+
 const links = (
   <div>
     <li><a href='http://github.com/robcalcroft/mondoweb'>About</a></li>
     <li><a href='http://getmondo.co.uk'>Help</a></li>
-    <li><a href='#'>Logout</a></li>
+    <li><a onClick={logout} href='#'>Logout</a></li>
   </div>
 );
 
