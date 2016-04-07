@@ -3,7 +3,7 @@ import Container from 'components/Container';
 import Overview from 'components/Accounts/Overview';
 import Transactions from 'components/Accounts/Transactions';
 import TransactionOverview from 'components/Accounts/Transactions/Transaction/Overview';
-import { intToAmount } from 'lib/utils';
+import { intToAmount, once } from 'lib/utils';
 import localForage from 'localforage';
 
 export default class Accounts extends React.Component {
