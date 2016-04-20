@@ -28,7 +28,7 @@ app.get('/token', (req, res) => {
       grant_type: 'authorization_code',
       client_id: process.env.MONDO_CLIENT_ID,
       client_secret: process.env.MONDO_CLIENT_SECRET,
-      redirect_uri: 'http://localhost:8000/callback',
+      redirect_uri: process.env.MONDO_REDIRECT_URI,
       code: req.query.code
     }
   }, (err, response, body) => {
