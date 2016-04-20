@@ -13,4 +13,6 @@ In the repo folder, run `npm run build:prod` then use something like [PM2](https
 ###For development
 In the repo folder run `npm run build:dev` in a tab, then run `npm run start:dev` in another tab
 
+---
+
 *Only the owner of the Mondo OAuth credentials can sign in using their Mondo account to any OAuth app. This is a constraint from Mondo whilst it is still in beta.
