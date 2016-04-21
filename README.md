@@ -5,7 +5,7 @@ Check your Mondo account from your browser
 - Install Node.js & NPM
 - Clone the repo
 - Run `npm install`
-- Create a `.env` file using [`.env-sample`](https://github.com/robcalcroft/mondoweb/blob/master/.env-sample) and insert your [Mondo OAuth credentials](https://developers.getmondo.co.uk/) where the `***`'s are
+- Create a `.env` file using [`.env-sample`](https://github.com/robcalcroft/mondoweb/blob/master/.env-sample) and insert your [Mondo OAuth credentials](https://developers.getmondo.co.uk/) where the `***`'s are. For the redirect URI, it should look like: `http://<HOST>:<PORT>/callback`
 
 ###For personal use of the application* OR production
 In the repo folder, run `npm run build:prod` then use something like [PM2](https://github.com/Unitech/pm2) or you can use `npm run start:dev` (don't use this for actual production).
