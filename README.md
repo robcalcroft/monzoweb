@@ -16,3 +16,6 @@ In the repo folder run `npm run build:dev` in a tab, then run `npm run start:dev
 ---
 
 *Only the owner of the Mondo OAuth credentials can sign in using their Mondo account to any OAuth app. This is a constraint from Mondo whilst it is still in beta.
+
+##Contributions
+I use [Airbnb's code style](https://github.com/airbnb/javascript) for this project, would be great if any PRs followed those guidelines. Also I'm using [eslint](http://eslint.org/) to lint my JavaScript.
