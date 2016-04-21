@@ -1,6 +1,9 @@
 import path from 'path';
 import webpack from 'webpack';
+import dotenv from 'dotenv';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+
+dotenv.load();
 
 export default {
   stats: {
@@ -47,6 +50,9 @@ export default {
     //new webpack.optimize.DedupePlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html')
+    }),
+    new webpack.DefinePlugin({
+      MONDO_CLIENT_ID: JSON.stringify(process.env.MONDO_CLIENT_ID)
     })
   ].concat(process.env.NODE_ENV==='production' ? [
     new webpack.optimize.OccurenceOrderPlugin(),
