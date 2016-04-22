@@ -215,21 +215,21 @@ export default class Accounts extends React.Component {
           balance={account.balance}
           spentToday={account.spentToday}
         />
-        <div className='row'>
-          <div className='col s12 m12 l3'>
-            <div className='border-box'>
-              <input onKeyUp={this.transactionSearch.bind(this)} placeholder='Search' autoFocus type='text' />
-              <div className='grey-text text-lighten-1'>You can search by location, merchant, category or notes</div>
+        <div className="row">
+          <div className="col s12 m12 l3">
+            <div className="border-box">
+              <input onKeyUp={this.transactionSearch.bind(this)} placeholder="Search" autoFocus type="text" />
+              <div className="grey-text text-lighten-1">You can search by location, merchant, category or notes</div>
             </div>
           </div>
-          <div className='col s12 m6 l5'>
+          <div className="col s12 m6 l5">
             <Transactions
               transactionSelect={this.transactionSelect.bind(this)}
               transactions={account.filterActive ? account.filteredTransactions : account.transactions}
               active={ui.selectedTransaction}
             />
           </div>
-          <div className='col s12 m6 l4'>
+          <div className="col s12 m6 l4">
             <TransactionOverview
               empty={transactionOverview.empty}
               loading={transactionOverview.loading}

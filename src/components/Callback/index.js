@@ -6,22 +6,22 @@ import localForage from 'localforage';
 
 const COMP_LOADING = (
   <div>
-    <div className='progress' style={{marginTop: '5vh'}}>
-        <div className='indeterminate'></div>
+    <div className="progress" style={{marginTop: '5vh'}}>
+        <div className="indeterminate"></div>
     </div>
-    <h5 className='center'>Please wait while we authenticate your details</h5>
+    <h5 className="center">Please wait while we authenticate your details</h5>
   </div>
 );
 
 const COMP_NO_CODE = (
-  <div className='card-panel red lighten-3' style={{marginTop: '5vh'}}>
+  <div className="card-panel red lighten-3" style={{marginTop: '5vh'}}>
     No authorization code found. Make sure the URL has something like 'code=12345678910' in it.
   </div>
 );
 
 const COMP_AJAX_ERROR = (
-  <div className='card-panel red lighten-3' style={{marginTop: '5vh'}}>
-    Internal error - looks like that authorisation code isn't working. If this keeps happening <a href='https://github.com/robcalcroft/mondoweb/issues'>let me know</a>.
+  <div className="card-panel red lighten-3" style={{marginTop: '5vh'}}>
+    Internal error - looks like that authorisation code isn't working. If this keeps happening <a href="https://github.com/robcalcroft/mondoweb/issues">let me know</a>.
   </div>
 );
 

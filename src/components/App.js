@@ -10,9 +10,9 @@ export default class App extends React.Component {
   render() {
     return (
       <Router history={browserHistory}>
-        <Route path='/' component={Root}/>
-        <Route path='/callback' component={Callback} />
-        <Route path='/accounts' component={Accounts} />
+        <Route path="/" component={Root}/>
+        <Route path="/callback" component={Callback} />
+        <Route path="/accounts" component={Accounts} />
       </Router>
     );
   }
