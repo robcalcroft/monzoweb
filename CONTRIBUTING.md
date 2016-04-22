@@ -1,7 +1,7 @@
 #Contributing
 
 ##Code style
-- I use [Airbnb's code style](https://github.com/airbnb/javascript) for this project - (not all project code conforms yet)
+- I use [Airbnb's code style](https://github.com/airbnb/javascript) for this project - not all project code conforms yet
 - I'm using [eslint](http://eslint.org/) to lint my JavaScript
 
 ##Tests
