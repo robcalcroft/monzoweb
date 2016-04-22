@@ -52,9 +52,10 @@ export default {
       template: path.resolve(__dirname, 'src/index.html')
     }),
     new webpack.DefinePlugin({
-      MONDO_CLIENT_ID: JSON.stringify(process.env.MONDO_CLIENT_ID)
+      MONDO_CLIENT_ID: JSON.stringify(process.env.MONDO_CLIENT_ID),
+      MONDO_REDIRECT_URI: JSON.stringify(process.env.MONDO_REDIRECT_URI)
     })
-  ].concat(process.env.NODE_ENV==='production' ? [
+  ].concat(process.env.NODE_ENV === 'production' ? [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: true,
