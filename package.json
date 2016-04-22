@@ -1,6 +1,6 @@
 {
   "name": "mondoweb",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Check your Mondo account from your browser",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
