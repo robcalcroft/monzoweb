@@ -34,7 +34,7 @@ export default class Overview extends React.Component {
           <h3 className="center">{amount}</h3>
           {notes ? <p className="grey-text text-lighten-1 center">{notes}</p> : ''}
           <div className="center">
-            {tags.map(tag => (
+            {tags.filter(tag => tag !== '').map(tag => (
               <div key={tagKey++} className="chip" style={{marginRight: '2px'}}>{tag}</div>
             ))}
           </div>
