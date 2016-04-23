@@ -12,7 +12,9 @@ const links = (
   <div>
     <li><a href="http://github.com/robcalcroft/mondoweb">About</a></li>
     <li><a href="http://getmondo.co.uk">Help</a></li>
-    <li><a onClick={logout} href="#">Logout</a></li>
+    {localStorage.mondo_access_token ? (
+      <li><a onClick={logout} href="#">Logout</a></li>
+    ) : ''}
   </div>
 );
 
