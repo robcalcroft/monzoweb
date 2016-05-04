@@ -31,7 +31,7 @@
     "exports-loader": "^0.6.3",
     "file-loader": "^0.8.5",
     "html-webpack-plugin": "^2.15.0",
-    "image-webpack-loader": "^1.6.3",
+    "image-webpack-loader": "1.6.3",
     "imports-loader": "^0.6.5",
     "node-sass": "3.4.2",
     "sass-loader": "^3.2.0",
