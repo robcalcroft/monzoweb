@@ -25,7 +25,7 @@ export default class Overview extends React.Component {
             {online ? (
               <div style={{height: '35px'}}></div>
             ) : (
-              <img className="transaction--overview--map" src={`http://maps.googleapis.com/maps/api/staticmap?size=640x200&zoom=16&markers=${lat},${long}&scale=1`} />
+              <img className="transaction--overview--map" src={`https://maps.googleapis.com/maps/api/staticmap?size=640x200&zoom=16&markers=${lat},${long}&scale=1`} />
             )}
             <img src={logo || require('assets/shopping-bag.svg')} className="transaction--overview--logo rounded" />
           </div>
