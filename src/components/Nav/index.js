@@ -10,6 +10,11 @@ const logout = () => {
 
 const links = (
   <div>
+    {localStorage.mondo_access_token ? (
+      <li className={window.location.pathname === '/accounts' ? 'active' : ''}>
+        <a href="/accounts">Accounts</a>
+      </li>
+    ) : ''}
     <li><a href="http://github.com/robcalcroft/mondoweb">About</a></li>
     <li><a href="http://getmondo.co.uk">Help</a></li>
     {localStorage.mondo_access_token ? (
