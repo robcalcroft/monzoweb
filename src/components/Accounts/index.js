@@ -163,7 +163,8 @@ export default class Accounts extends React.Component {
             amount: intToAmount(transaction.amount, transaction.currency),
             online: transaction.merchant ? transaction.merchant.online : false,
             notes: transaction.notes,
-            created: transaction.created
+            created: transaction.created,
+            declined: transaction.decline_reason || false
           }
         }
       });

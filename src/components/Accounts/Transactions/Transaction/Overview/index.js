@@ -5,7 +5,7 @@ import './style.scss';
 export default class Overview extends React.Component {
   render() {
     const { props: { loading, empty, data: {
-      lat, long, zoom, logo, merchant, address, amount, tags, online, notes, created
+      lat, long, zoom, logo, merchant, address, amount, tags, online, notes, created, declined
     } } } = this;
     let tagKey = 0;
 
@@ -31,7 +31,7 @@ export default class Overview extends React.Component {
           </div>
           <h5 className="center">{merchant}</h5>
           <div className="center"><a href={`http://maps.google.com/?ll=${lat},${long}`} target="_blank">{address}</a></div>
-          <h3 className="center">{amount}</h3>
+          <h3 className="center">{declined ? 'Declined' : amount}</h3>
           {notes ? <p className="grey-text text-lighten-1 center">{notes}</p> : ''}
           <div className="center">
             {tags.filter(tag => tag !== '').map(tag => (

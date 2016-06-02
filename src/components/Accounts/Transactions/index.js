@@ -23,6 +23,7 @@ export default class Transactions extends React.Component {
                 amount={intToAmount(transaction.amount, transaction.currency)}
                 merchant={transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Mondo' : ''}
                 created={transaction.created}
+                declinedReason={transaction.decline_reason}
               />
           )).reverse()
         )}
