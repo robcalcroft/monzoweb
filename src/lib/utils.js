@@ -21,7 +21,8 @@ export function intToAmount(amount, currency = 'GBP') {
 
   // Format it with decimal places
   let formattedAmount = amount.length > 2 ?
-    `${amount.substr(0, amount.length - 2)}.${amount.substr(-2)}` : amount;
+    `${amount.substr(0, amount.length - 2)}.${amount.substr(-2)}` :
+    amount.length === 2 ? `0.${amount}` : `0.0${amount}`;
 
   return `${addition ? '+ ' : ''}${currencySymbol}${formattedAmount}`;
 }
