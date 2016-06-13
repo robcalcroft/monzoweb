@@ -164,7 +164,10 @@ export default class Accounts extends React.Component {
             online: transaction.merchant ? transaction.merchant.online : false,
             notes: transaction.notes,
             created: transaction.created,
-            declined: transaction.decline_reason || false
+            declined: transaction.decline_reason || false,
+            localAmount: transaction.local_currency !== this.state.account.currency ? (
+              intToAmount(transaction.local_amount, transaction.local_currency)
+            ) : false
           }
         }
       });
@@ -232,6 +235,7 @@ export default class Accounts extends React.Component {
               transactionSelect={this.transactionSelect}
               transactions={account.filterActive ? account.filteredTransactions : account.transactions}
               active={ui.selectedTransaction}
+              accountCurrency={this.state.account.currency}
             />
           </div>
           <div className="col s12 m6 l4">

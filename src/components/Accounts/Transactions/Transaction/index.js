@@ -3,7 +3,7 @@ import moment from 'moment';
 
 export default class Transaction extends React.Component {
   render() {
-    const { props: { amount, logo, merchant, id, transactionSelect, active, created, declinedReason } } = this;
+    const { props: { amount, logo, merchant, id, transactionSelect, active, created, declinedReason, localAmount } } = this;
 
     // This will change when I see more reasons!
     const formattedDeclinedReason = declinedReason === 'INSUFFICIENT_FUNDS' ? `Declined, you didn't have ${amount}` : false;
@@ -17,7 +17,7 @@ export default class Transaction extends React.Component {
       >
         <div className="col s10">
           <img src={logo || require('assets/shopping-bag.svg')} alt={merchant} className="rounded circle" />
-          <span className="title primary-text">{merchant}</span>
+          <span className="title primary-text">{merchant}{`${localAmount ? ' 🌎' : ''}`}</span>
           {
             formattedDeclinedReason ? (
               <p>{formattedDeclinedReason}</p>

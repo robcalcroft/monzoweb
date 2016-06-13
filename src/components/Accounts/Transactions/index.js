@@ -4,7 +4,7 @@ import { intToAmount } from 'lib/utils';
 
 export default class Transactions extends React.Component {
   render() {
-    const { props: { transactions, transactionSelect, active } } = this;
+    const { props: { transactions, transactionSelect, active, accountCurrency } } = this;
 
     return (
       <ul className="collection with-header" style={{maxHeight: '70vh', overflowY: 'scroll'}}>
@@ -21,6 +21,7 @@ export default class Transactions extends React.Component {
                 transactionSelect={transactionSelect}
                 logo={transaction.merchant ? transaction.merchant.logo : ''}
                 amount={intToAmount(transaction.amount, transaction.currency)}
+                localAmount={transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false}
                 merchant={transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Mondo' : ''}
                 created={transaction.created}
                 declinedReason={transaction.decline_reason}
