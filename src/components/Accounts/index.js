@@ -167,7 +167,8 @@ export default class Accounts extends React.Component {
             declined: transaction.decline_reason || false,
             localAmount: transaction.local_currency !== this.state.account.currency ? (
               intToAmount(transaction.local_amount, transaction.local_currency)
-            ) : false
+            ) : false,
+            counterParty: transaction.counterparty ? transaction.counterparty.name : false
           }
         }
       });
