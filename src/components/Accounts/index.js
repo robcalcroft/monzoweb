@@ -159,7 +159,7 @@ export default class Accounts extends React.Component {
             logo: transaction.merchant ? transaction.merchant.logo : false,
             merchant: transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Mondo' : '',
             address: transaction.merchant ? transaction.merchant.address.short_formatted : 'In the clouds',
-            tags: transaction.merchant ? transaction.merchant.metadata.suggested_tags.split(' ') : [],
+            tags: transaction.merchant ? transaction.merchant.metadata.suggested_tags ? transaction.merchant.metadata.suggested_tags.split(' ') :[] : [],
             amount: intToAmount(transaction.amount, transaction.currency),
             online: transaction.merchant ? transaction.merchant.online : false,
             notes: transaction.notes,
