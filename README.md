@@ -1,5 +1,5 @@
 # mondoweb
-Check your Mondo account from your browser
+Check your Mondo account from your browser. A fork of [robcalcroft](https://github.com/robcalcroft)'s Mondo web app for me to add features I like.
 
 ##Install
 - Install Node.js & NPM
