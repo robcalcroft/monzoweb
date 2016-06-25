@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import './style.scss';
 
 export default class Transaction extends React.Component {
   render() {
@@ -14,7 +15,8 @@ export default class Transaction extends React.Component {
         created,
         declinedReason,
         localAmount,
-        counterParty
+        counterParty,
+        emoji
       }
     } = this;
 
@@ -29,7 +31,15 @@ export default class Transaction extends React.Component {
         onClick={transactionSelect}
       >
         <div className="col s10">
-          <img src={logo || require('assets/shopping-bag.svg')} alt={merchant} className="rounded circle" />
+          {logo ?
+            <img src={logo} alt={merchant} className="rounded circle" />
+          :
+            <div>{emoji ?
+              <div className="rounded circle emoji">{emoji}</div>
+            :
+              <img src={require('assets/shopping-bag.svg')} alt={merchant} className="rounded circle" />
+            }</div>
+          }
           <span className="title primary-text">{counterParty || merchant}{`${localAmount ? ' 🌎' : ''}`}</span>
           {
             formattedDeclinedReason ? (

@@ -20,6 +20,7 @@ export default class Transactions extends React.Component {
                 active={btoa(transaction.id) === active ? true : false}
                 transactionSelect={transactionSelect}
                 logo={transaction.merchant ? transaction.merchant.logo : ''}
+                emoji={transaction.merchant ? transaction.merchant.emoji : ''}
                 amount={intToAmount(transaction.amount, transaction.currency)}
                 localAmount={transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false}
                 merchant={transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Mondo' : ''}

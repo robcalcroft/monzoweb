@@ -157,6 +157,7 @@ export default class Accounts extends React.Component {
             long: transaction.merchant ? transaction.merchant.address.longitude : '0.7332003',
             zoom: transaction.merchant ? transaction.merchant.address.zoom_level : '4.6',
             logo: transaction.merchant ? transaction.merchant.logo : false,
+            emoji: transaction.merchant ? transaction.merchant.emoji: false,
             merchant: transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Mondo' : '',
             address: transaction.merchant ? transaction.merchant.address.short_formatted : 'In the clouds',
             tags: transaction.merchant ? transaction.merchant.metadata.suggested_tags ? transaction.merchant.metadata.suggested_tags.split(' ') :[] : [],
