@@ -1,3 +1,11 @@
+###v1.2.0
+Bug fixes and improvements
+
+- Added peer to peer transfers to to interface - instead of a p2p transaction show as 'Mondo', it will now show the other party's name. [#22](https://github.com/robcalcroft/mondoweb/issues/22)
+- Fixed issues where a lack of suggested tags would cause the JS to crash. [#23](https://github.com/robcalcroft/mondoweb/issues/23)
+- When an AJAX error fails due to lack of or expiry of credentials and a refresh token cannot be used cached credentials are destroyed to force the application to logout upon reload. [#25](https://github.com/robcalcroft/mondoweb/issues/25)
+- When your Mondo access token for the client expires mondoweb will now attempt to get you back on your feet using Mondo's refresh token to get you another fresh access token. [#27](https://github.com/robcalcroft/mondoweb/issues/27)
+
 ###v1.1.0
 Bug fixes and improvements
 
