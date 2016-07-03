@@ -42,6 +42,10 @@ export default class Accounts extends React.Component {
   }
 
   componentWillMount() {
+    this.initialLoad();
+  }
+
+  initialLoad() {
 
     // Retrieve inital data
     this.retrieveAccount().then(() => {
@@ -110,6 +114,23 @@ export default class Accounts extends React.Component {
   }
 
   ajaxFail(err) {
+    if (err.responseJSON.code === 'unauthorized.bad_access_token' && localStorage.mondo_refresh_token) {
+      $.getJSON(`/token?refresh_token=${localStorage.mondo_refresh_token}&grant_type=refresh_token`)
+        .done(credentials => {
+          localStorage.mondo_access_token = credentials.access_token;
+          localStorage.mondo_refresh_token = credentials.refresh_token;
+          this.initialLoad();
+        })
+        .fail(err => {
+          localStorage.clear();
+          this.showErrorMessage();
+        });
+    } else {
+      this.showErrorMessage(err);
+    }
+  }
+
+  showErrorMessage(err) {
     swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
       || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error');
   }

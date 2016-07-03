@@ -16,7 +16,7 @@ app.use(express.static(path.resolve(path.resolve('.'), 'dist')));
 
 // Route to get our token
 app.get('/token', (req, res) => {
-  if (!req.query.code) {
+  if (!req.query.code && !req.query.grant_type) {
     return res.status(401).json({
       message: 'No authorisation code provided'
     });
@@ -25,11 +25,12 @@ app.get('/token', (req, res) => {
   request.post({
     url: 'https://api.getmondo.co.uk/oauth2/token',
     form: {
-      grant_type: 'authorization_code',
+      grant_type: req.query.grant_type || 'authorization_code',
       client_id: process.env.MONDO_CLIENT_ID,
       client_secret: process.env.MONDO_CLIENT_SECRET,
       redirect_uri: process.env.MONDO_REDIRECT_URI,
-      code: req.query.code
+      [req.query.grant_type === 'refresh_token' ? 'refresh_token' : 'code']:
+        req.query.grant_type === 'refresh_token' ? req.query.refresh_token : req.query.code
     }
   }, (err, response, body) => {
     if (!err && response.statusCode === 200) {
