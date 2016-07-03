@@ -66,8 +66,7 @@ export default class Accounts extends React.Component {
         })
       });
     })
-    .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
-      || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
+    .fail(err => this.ajaxFail(err));
   }
 
   // Updates the state with the account name (only first account supported atm)
@@ -88,8 +87,7 @@ export default class Accounts extends React.Component {
         });
         resolve();
       })
-      .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
-        || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
+      .fail(err => this.ajaxFail(err));
     });
   }
 
@@ -108,8 +106,12 @@ export default class Accounts extends React.Component {
         })
       });
     })
-    .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
-      || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
+    .fail(err => this.ajaxFail(err));
+  }
+
+  ajaxFail(err) {
+    swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
+      || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error');
   }
 
   transactionSelect(event) {
@@ -173,8 +175,7 @@ export default class Accounts extends React.Component {
         }
       });
     })
-    .fail(err => swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
-      || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error'));
+    .fail(err => this.ajaxFail(err));
   }
 
   transactionSearch(event) {
