@@ -49,7 +49,7 @@ export default class Overview extends React.Component {
               <img className="transaction--overview--map" src={`https://maps.googleapis.com/maps/api/staticmap?size=640x200&zoom=16&markers=${lat},${long}&scale=1`} />
             )}
             {logo ?
-              <img src={logo} alt={merchant} className="rounded circle" />
+              <img src={logo} alt={merchant} className="transaction--overview--logo rounded" />
             :
               <div>{emoji ?
                 <div className="rounded circle emoji">{emoji}</div>
