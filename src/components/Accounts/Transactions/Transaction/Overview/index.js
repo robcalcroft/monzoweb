@@ -54,7 +54,7 @@ export default class Overview extends React.Component {
               <div>{emoji ? (
                 <div className="rounded circle emoji">{emoji}</div>
               ) : (
-                <img src={require('assets/shopping-bag.svg')} alt={merchant} className="rounded circle" />
+                <img src={require('assets/shopping-bag.svg')} alt={merchant} className="transaction--overview--logo rounded" />
               )}</div>
             )}
           </div>
