@@ -1,14 +1,20 @@
 import React from 'react';
 import Nav from 'components/Nav';
 import Container from 'components/Container';
-import { intToAmount } from 'lib/utils';
+import moment from 'moment';
+import { intToAmount, ajaxFail } from 'lib/utils';
+import './style.scss';
 
 export default class SpendingMap extends React.Component {
+
+  componentDidMount() {
+    this.getAccount();
+  }
 
   createMap() {
     return new google.maps.Map(document.getElementById('spending-map'), {
       center: new google.maps.LatLng(51.360878899999996, -0.6569385999999999),
-      zoom: 5
+      zoom: 6
     });
   }
 
@@ -20,11 +26,13 @@ export default class SpendingMap extends React.Component {
       }
     })
     .done(response => this.getTransactions(response.accounts[0].id))
-    .fail(console.log);
+    .fail(err => ajaxFail(err, this.getAccount.bind(this)));
   }
 
   getTransactions(accountId) {
     const map = this.createMap();
+    const infoWindow = new google.maps.InfoWindow();
+
     $.ajax({
       url: `https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${accountId}`,
       headers: {
@@ -37,22 +45,35 @@ export default class SpendingMap extends React.Component {
         const merchant = transaction.merchant;
         const position = new google.maps.LatLng(merchant.address.latitude, merchant.address.longitude);
 
-        new google.maps.Marker({
-          //icon: merchant.logo,
-          title: `${merchant.name} (${intToAmount(transaction.local_amount)})`,
+        // Create the marker for the transaction
+        const marker = new google.maps.Marker({
+          animation: google.maps.Animation.DROP,
           position, map
         });
+
+        // Open set content and open info window
+        marker.addListener('click', () => {
+          infoWindow.setContent(`
+            <p class='info-window'><b>${intToAmount(transaction.local_amount).replace('+', 'Refund of ')} at ${merchant.name.substr(0, 40)}</b></p>
+            <p class='info-window'>${moment(transaction.created).format('dddd MMMM Do YYYY [at] h:mma')}</p>
+          `);
+          infoWindow.open(map, marker);
+        });
       }))
-    .fail(console.log);
+    .fail(err => ajaxFail(err, this.getAccount.bind(this)));
   }
 
   render() {
+    if (!localStorage.mondo_access_token) {
+      window.location.href = '/';
+      return false;
+    }
+
     return (
       <div id="mondoweb">
         <Nav />
-        <script src={`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`}></script>
-        <script>{this.getAccount()}</script>
-        <div id="spending-map" style={{width: '100vw', height: '100vh'}}></div>
+        <div id="side-note">Some locations may be from online purchases which have escaped the checks</div>
+        <div id="spending-map"></div>
       </div>
     );
   }

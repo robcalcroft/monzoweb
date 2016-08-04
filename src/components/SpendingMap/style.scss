@@ -1,0 +1,21 @@
+#spending-map {
+  width: 100vw;
+  height: 91.2vh
+}
+
+#side-note {
+  position: absolute;
+  z-index: 1;
+  padding: 5px;
+  right: 0;
+  background-color: rgba(20,35,60,.8);
+  color: white;
+  border-bottom-left-radius: 5px;
+  @media screen and (max-width: 600px) {
+    border-bottom-left-radius: 0;
+  }
+}
+
+p.info-window {
+  margin: 0;
+}

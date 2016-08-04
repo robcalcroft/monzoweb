@@ -49,12 +49,12 @@ export default {
   plugins: [
     //new webpack.optimize.DedupePlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.html')
+      template: path.resolve(__dirname, 'src/index.ejs'),
+      GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
     }),
     new webpack.DefinePlugin({
       MONDO_CLIENT_ID: JSON.stringify(process.env.MONDO_CLIENT_ID),
-      MONDO_REDIRECT_URI: JSON.stringify(process.env.MONDO_REDIRECT_URI),
-      GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY)
+      MONDO_REDIRECT_URI: JSON.stringify(process.env.MONDO_REDIRECT_URI)
     })
   ].concat(process.env.NODE_ENV === 'production' ? [
     new webpack.optimize.OccurenceOrderPlugin(),

@@ -15,6 +15,11 @@ const links = (
         <a href="/accounts">Accounts</a>
       </li>
     ) : ''}
+    {localStorage.mondo_access_token ? (
+      <li className={window.location.pathname === '/map' ? 'active' : ''}>
+        <a href="/map">Map</a>
+      </li>
+    ) : ''}
     <li><a href="http://github.com/robcalcroft/mondoweb">About</a></li>
     <li><a href="http://getmondo.co.uk">Help</a></li>
     {localStorage.mondo_access_token ? (

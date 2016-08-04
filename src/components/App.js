@@ -14,7 +14,7 @@ export default class App extends React.Component {
         <Route path="/" component={Root}/>
         <Route path="/callback" component={Callback} />
         <Route path="/accounts" component={Accounts} />
-        <Route path="/spending-map" component={SpendingMap} />
+        <Route path="/map" component={SpendingMap} />
       </Router>
     );
   }
