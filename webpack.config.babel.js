@@ -49,7 +49,8 @@ export default {
   plugins: [
     //new webpack.optimize.DedupePlugin(),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.html')
+      template: path.resolve(__dirname, 'src/index.ejs'),
+      GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
     }),
     new webpack.DefinePlugin({
       MONDO_CLIENT_ID: JSON.stringify(process.env.MONDO_CLIENT_ID),
