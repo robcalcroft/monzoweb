@@ -1,3 +1,9 @@
+###v1.3.0
+The map is here!
+
+- Added interactive map which displays all your physical* transactions. Additional functionality for this feature is actively requested! [#9](https://github.com/robcalcroft/mondoweb/issues/9)
+- Refactored some stuff [#29](https://github.com/robcalcroft/mondoweb/issues/29)
+
 ###v1.2.0
 Bug fixes and improvements
 
