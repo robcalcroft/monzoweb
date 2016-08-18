@@ -2,7 +2,7 @@ import React from 'react';
 import Nav from 'components/Nav';
 import Container from 'components/Container';
 import moment from 'moment';
-import { intToAmount, ajaxFail } from 'lib/utils';
+import { intToAmount, ajaxFail, checkStatus } from 'lib/utils';
 import './style.scss';
 
 export default class SpendingMap extends React.Component {
@@ -19,27 +19,29 @@ export default class SpendingMap extends React.Component {
   }
 
   getAccount() {
-    $.ajax({
-      url: 'https://api.getmondo.co.uk/accounts',
+    fetch('https://api.getmondo.co.uk/accounts', {
       headers: {
         'Authorization': `Bearer ${localStorage.mondo_access_token}`
       }
     })
-    .done(response => this.getTransactions(response.accounts[0].id))
-    .fail(err => ajaxFail(err, this.getAccount.bind(this)));
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(response => this.getTransactions(response.accounts[0].id))
+    .catch(error => ajaxFail(error, this.getAccount.bind(this)));
   }
 
   getTransactions(accountId) {
     const map = this.createMap();
     const infoWindow = new google.maps.InfoWindow();
 
-    $.ajax({
-      url: `https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${accountId}`,
+    fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${accountId}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.mondo_access_token}`
       }
     })
-    .done(account => account.transactions
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(account => account.transactions
       .filter(transaction => !!transaction.merchant && !transaction.merchant.online)
       .map(transaction => {
         const merchant = transaction.merchant;
@@ -60,7 +62,7 @@ export default class SpendingMap extends React.Component {
           infoWindow.open(map, marker);
         });
       }))
-    .fail(err => ajaxFail(err, this.getAccount.bind(this)));
+    .catch(error => ajaxFail(error, this.getAccount.bind(this)));
   }
 
   render() {

@@ -1,6 +1,8 @@
 import React from 'react';
 import Container from 'components/Container';
 import localForage from 'localforage';
+import { checkStatus, showErrorMessage } from 'lib/utils';
+import 'whatwg-fetch';
 
 // Component states
 
@@ -49,8 +51,10 @@ export default class Callback extends React.Component {
       });
     }
 
-    $.getJSON(`/token?code=${code.code}`)
-      .done(body => {
+    fetch(`/token?code=${code.code}`)
+      .then(checkStatus)
+      .then(response => response.json())
+      .then(body => {
 
         // if (body.access_token && body.refresh_token) {
         //   Promise.all([
@@ -64,9 +68,8 @@ export default class Callback extends React.Component {
         localStorage.setItem('mondo_refresh_token', body.refresh_token);
         window.location.href = '/accounts';
       })
-      .fail(err => {
-        swal('Error', err.responseJSON ? `${err.responseJSON.message} try logging out and in again` : false
-          || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error');
+      .catch(error => {
+        showErrorMessage(error);
 
         return this.setState({
           component: COMP_AJAX_ERROR
