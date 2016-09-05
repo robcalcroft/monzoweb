@@ -59,7 +59,7 @@ export default class Accounts extends React.Component {
   retrieveBalance() {
     fetch(`https://api.getmondo.co.uk/balance?account_id=${this.state.account.id}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.mondo_access_token}`
+        'Authorization': `Bearer ${localStorage.monzo_access_token}`
       }
     })
     .then(checkStatus)
@@ -80,7 +80,7 @@ export default class Accounts extends React.Component {
     return new Promise(resolve => {
       fetch('https://api.getmondo.co.uk/accounts', {
         headers: {
-          'Authorization': `Bearer ${localStorage.mondo_access_token}`
+          'Authorization': `Bearer ${localStorage.monzo_access_token}`
         }
       })
       .then(checkStatus)
@@ -102,7 +102,7 @@ export default class Accounts extends React.Component {
   retrieveTransactions(params = '') {
     fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${this.state.account.id}${params}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.mondo_access_token}`
+        'Authorization': `Bearer ${localStorage.monzo_access_token}`
       }
     })
     .then(checkStatus)
@@ -144,7 +144,7 @@ export default class Accounts extends React.Component {
 
     fetch(`https://api.getmondo.co.uk/transactions/${transactionId}?expand[]=merchant`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.mondo_access_token}`
+        'Authorization': `Bearer ${localStorage.monzo_access_token}`
       }
     })
     .then(checkStatus)
@@ -163,7 +163,7 @@ export default class Accounts extends React.Component {
             long: transaction.merchant ? transaction.merchant.address.longitude : '0.7332003',
             zoom: transaction.merchant ? transaction.merchant.address.zoom_level : '4.6',
             logo: transaction.merchant ? transaction.merchant.logo : false,
-            merchant: transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Mondo' : '',
+            merchant: transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Monzo' : '',
             address: transaction.merchant ? transaction.merchant.address.short_formatted : 'In the clouds',
             tags: transaction.merchant ? transaction.merchant.metadata.suggested_tags ? transaction.merchant.metadata.suggested_tags.split(' ') :[] : [],
             amount: intToAmount(transaction.amount, transaction.currency),
@@ -217,7 +217,7 @@ export default class Accounts extends React.Component {
   render() {
     const { account, transactionOverview, ui } = this.state;
 
-    if (!localStorage.mondo_access_token) {
+    if (!localStorage.monzo_access_token) {
       window.location.href = '/';
       return false;
     }

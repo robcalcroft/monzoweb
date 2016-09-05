@@ -21,7 +21,7 @@ export default class SpendingMap extends React.Component {
   getAccount() {
     fetch('https://api.getmondo.co.uk/accounts', {
       headers: {
-        'Authorization': `Bearer ${localStorage.mondo_access_token}`
+        'Authorization': `Bearer ${localStorage.monzo_access_token}`
       }
     })
     .then(checkStatus)
@@ -36,7 +36,7 @@ export default class SpendingMap extends React.Component {
 
     fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${accountId}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.mondo_access_token}`
+        'Authorization': `Bearer ${localStorage.monzo_access_token}`
       }
     })
     .then(checkStatus)
@@ -66,13 +66,13 @@ export default class SpendingMap extends React.Component {
   }
 
   render() {
-    if (!localStorage.mondo_access_token) {
+    if (!localStorage.monzo_access_token) {
       window.location.href = '/';
       return false;
     }
 
     return (
-      <div id="mondoweb">
+      <div id="monzoweb">
         <Nav />
         <div id="side-note">Some locations may be from online purchases which have escaped the checks</div>
         <div id="spending-map"></div>

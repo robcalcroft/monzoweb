@@ -3,4 +3,4 @@ import { render } from 'react-dom';
 import App from 'components/App';
 import './style/index.scss';
 
-render(<App />, document.getElementById('mondoweb'));
+render(<App />, document.getElementById('monzoweb'));

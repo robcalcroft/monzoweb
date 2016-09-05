@@ -43,13 +43,13 @@ export function once(func) {
 // Asks for a reissued token if the current access token has expired
 export function ajaxFail(error = {}, callback) {
   const responseJSON = error.response.json();
-  if (responseJSON && responseJSON.code === 'unauthorized.bad_access_token' && localStorage.mondo_refresh_token) {
-    fetch(`/token?refresh_token=${localStorage.mondo_refresh_token}&grant_type=refresh_token`)
+  if (responseJSON && responseJSON.code === 'unauthorized.bad_access_token' && localStorage.monzo_refresh_token) {
+    fetch(`/token?refresh_token=${localStorage.monzo_refresh_token}&grant_type=refresh_token`)
       .then(checkStatus)
       .then(response => response.json())
       .then(credentials => {
-        localStorage.mondo_access_token = credentials.access_token;
-        localStorage.mondo_refresh_token = credentials.refresh_token;
+        localStorage.monzo_access_token = credentials.access_token;
+        localStorage.monzo_refresh_token = credentials.refresh_token;
         if (typeof callback === 'function') {
           return callback(credentials);
         }

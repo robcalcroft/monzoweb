@@ -54,8 +54,8 @@ export default {
       GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
     }),
     new webpack.DefinePlugin({
-      MONDO_CLIENT_ID: JSON.stringify(process.env.MONDO_CLIENT_ID),
-      MONDO_REDIRECT_URI: JSON.stringify(process.env.MONDO_REDIRECT_URI)
+      MONZO_CLIENT_ID: JSON.stringify(process.env.MONZO_CLIENT_ID),
+      MONZO_REDIRECT_URI: JSON.stringify(process.env.MONZO_REDIRECT_URI)
     })
   ].concat(process.env.NODE_ENV === 'production' ? [
     new webpack.optimize.OccurenceOrderPlugin(),

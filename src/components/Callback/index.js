@@ -23,7 +23,7 @@ const COMP_NO_CODE = (
 
 const COMP_AJAX_ERROR = (
   <div className="card-panel red lighten-3" style={{marginTop: '5vh'}}>
-    Internal error - looks like that authorisation code isn't working. If this keeps happening <a href="https://github.com/robcalcroft/mondoweb/issues">let me know</a>.
+    Internal error - looks like that authorisation code isn't working. If this keeps happening <a href="https://github.com/robcalcroft/monzoweb/issues">let me know</a>.
   </div>
 );
 
@@ -58,14 +58,14 @@ export default class Callback extends React.Component {
 
         // if (body.access_token && body.refresh_token) {
         //   Promise.all([
-        //     localForage.setItem('mondo_access_token', body.access_token),
-        //     localForage.setItem('mondo_refresh_token', body.refresh_token)
+        //     localForage.setItem('monzo_access_token', body.access_token),
+        //     localForage.setItem('monzo_refresh_token', body.refresh_token)
         //   ]).then(() => {
         //     window.location.href = '/accounts';
         //   });
         // }
-        localStorage.setItem('mondo_access_token', body.access_token);
-        localStorage.setItem('mondo_refresh_token', body.refresh_token);
+        localStorage.setItem('monzo_access_token', body.access_token);
+        localStorage.setItem('monzo_refresh_token', body.refresh_token);
         window.location.href = '/accounts';
       })
       .catch(error => {
