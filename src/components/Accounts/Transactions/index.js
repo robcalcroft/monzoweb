@@ -22,7 +22,7 @@ export default class Transactions extends React.Component {
                 logo={transaction.merchant ? transaction.merchant.logo : ''}
                 amount={intToAmount(transaction.amount, transaction.currency)}
                 localAmount={transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false}
-                merchant={transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Mondo' : ''}
+                merchant={transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Monzo' : ''}
                 created={transaction.created}
                 declinedReason={transaction.decline_reason}
                 counterParty={transaction.counterparty ? transaction.counterparty.name : false}

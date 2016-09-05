@@ -26,9 +26,9 @@ app.get('/token', (req, res) => {
     url: 'https://api.getmondo.co.uk/oauth2/token',
     form: {
       grant_type: req.query.grant_type || 'authorization_code',
-      client_id: process.env.MONDO_CLIENT_ID,
-      client_secret: process.env.MONDO_CLIENT_SECRET,
-      redirect_uri: process.env.MONDO_REDIRECT_URI,
+      client_id: process.env.MONZO_CLIENT_ID,
+      client_secret: process.env.MONZO_CLIENT_SECRET,
+      redirect_uri: process.env.MONZO_REDIRECT_URI,
       [req.query.grant_type === 'refresh_token' ? 'refresh_token' : 'code']:
         req.query.grant_type === 'refresh_token' ? req.query.refresh_token : req.query.code
     }
@@ -49,5 +49,5 @@ app.use('*', (req, res) => {
 });
 
 app.listen(process.env.PORT || 8000, () => {
-  console.log(`Mondoweb server running on port ${process.env.PORT || 8000}`);
+  console.log(`Monzoweb server running on port ${process.env.PORT || 8000}`);
 });

@@ -3,8 +3,9 @@ import Container from 'components/Container';
 import Overview from 'components/Accounts/Overview';
 import Transactions from 'components/Accounts/Transactions';
 import TransactionOverview from 'components/Accounts/Transactions/Transaction/Overview';
-import { intToAmount, once, ajaxFail } from 'lib/utils';
+import { intToAmount, once, ajaxFail, checkStatus } from 'lib/utils';
 import localForage from 'localforage';
+import 'whatwg-fetch';
 
 export default class Accounts extends React.Component {
 
@@ -56,13 +57,14 @@ export default class Accounts extends React.Component {
 
   // Updates the state with the latest balance
   retrieveBalance() {
-    $.ajax({
-      url: `https://api.getmondo.co.uk/balance?account_id=${this.state.account.id}`,
+    fetch(`https://api.getmondo.co.uk/balance?account_id=${this.state.account.id}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.mondo_access_token}`
+        'Authorization': `Bearer ${localStorage.monzo_access_token}`
       }
     })
-    .done(account => {
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(account => {
       const { currency, balance, spend_today: spentToday} = account;
       this.setState({
         account: Object.assign({}, this.state.account, {
@@ -70,19 +72,20 @@ export default class Accounts extends React.Component {
         })
       });
     })
-    .fail(err => ajaxFail(err, this.initialLoad.bind(this)));
+    .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
   }
 
   // Updates the state with the account name (only first account supported atm)
   retrieveAccount() {
     return new Promise(resolve => {
-      $.ajax({
-        url: 'https://api.getmondo.co.uk/accounts',
+      fetch('https://api.getmondo.co.uk/accounts', {
         headers: {
-          'Authorization': `Bearer ${localStorage.mondo_access_token}`
+          'Authorization': `Bearer ${localStorage.monzo_access_token}`
         }
       })
-      .done(response => {
+      .then(checkStatus)
+      .then(response => response.json())
+      .then(response => {
         this.setState({
           account: Object.assign({}, this.state.account, {
             name: response.accounts[0].description,
@@ -91,26 +94,27 @@ export default class Accounts extends React.Component {
         });
         resolve();
       })
-      .fail(err => ajaxFail(err, this.initialLoad.bind(this)));
+      .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
     });
   }
 
   // Params is a query string starting with '&'
   retrieveTransactions(params = '') {
-    $.ajax({
-      url: `https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${this.state.account.id}${params}`,
+    fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${this.state.account.id}${params}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.mondo_access_token}`
+        'Authorization': `Bearer ${localStorage.monzo_access_token}`
       }
     })
-    .done(account => {
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(account => {
       this.setState({
         account: Object.assign({}, this.state.account, {
           transactions: account.transactions
         })
       });
     })
-    .fail(err => ajaxFail(err, this.initialLoad.bind(this)));
+    .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
   }
 
   transactionSelect(event) {
@@ -138,13 +142,14 @@ export default class Accounts extends React.Component {
       }
     });
 
-    $.ajax({
-      url: `https://api.getmondo.co.uk/transactions/${transactionId}?expand[]=merchant`,
+    fetch(`https://api.getmondo.co.uk/transactions/${transactionId}?expand[]=merchant`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.mondo_access_token}`
+        'Authorization': `Bearer ${localStorage.monzo_access_token}`
       }
     })
-    .done(result => {
+    .then(checkStatus)
+    .then(response => response.json())
+    .then(result => {
       const transaction = result.transaction;
       this.setState({
         ui: {
@@ -158,7 +163,7 @@ export default class Accounts extends React.Component {
             long: transaction.merchant ? transaction.merchant.address.longitude : '0.7332003',
             zoom: transaction.merchant ? transaction.merchant.address.zoom_level : '4.6',
             logo: transaction.merchant ? transaction.merchant.logo : false,
-            merchant: transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Mondo' : '',
+            merchant: transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Monzo' : '',
             address: transaction.merchant ? transaction.merchant.address.short_formatted : 'In the clouds',
             tags: transaction.merchant ? transaction.merchant.metadata.suggested_tags ? transaction.merchant.metadata.suggested_tags.split(' ') :[] : [],
             amount: intToAmount(transaction.amount, transaction.currency),
@@ -174,7 +179,7 @@ export default class Accounts extends React.Component {
         }
       });
     })
-    .fail(err => ajaxFail(err, this.initialLoad.bind(this)));
+    .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
   }
 
   transactionSearch(event) {
@@ -212,7 +217,7 @@ export default class Accounts extends React.Component {
   render() {
     const { account, transactionOverview, ui } = this.state;
 
-    if (!localStorage.mondo_access_token) {
+    if (!localStorage.monzo_access_token) {
       window.location.href = '/';
       return false;
     }
