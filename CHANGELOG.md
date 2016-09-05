@@ -1,3 +1,9 @@
+###v1.3.1
+Some new internals and a fresh re-branding
+
+- Migrated jQuery AJAX to use a Fetch polyfill, native support is [slowly getting there](http://caniuse.com/#search=fetch), jQuery is still loaded in for Materialize to use but I'm planning to try and gut the JS for Materialize [#28](https://github.com/robcalcroft/monzoweb/issues/28)
+- Re-branded the UI and internals after [Mondo's re-branding to Monzo](https://monzo.com/blog/2016/08/25/monzo/) [#31](https://github.com/robcalcroft/monzoweb/issues/31)
+
 ###v1.3.0
 The map is here!
 
