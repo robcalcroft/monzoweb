@@ -65,6 +65,8 @@ export function ajaxFail(error = {}, callback) {
 
 // Show the sweet alert popup
 export function showErrorMessage(error = {}) {
+  //Clear Local Storage to solve invalid key issue
+  localStorage.clear();
   swal('Error', error.response && error.response.json() ? `${error.response.json().message} try logging out and in again` : false
     || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error');
 }
