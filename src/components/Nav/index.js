@@ -16,6 +16,11 @@ const links = (
       </li>
     ) : ''}
     {localStorage.monzo_access_token ? (
+      <li className={window.location.pathname === '/analytics' ? 'active' : ''}>
+        <a href="/analytics">Analytics</a>
+      </li>
+    ) : ''}
+    {localStorage.monzo_access_token ? (
       <li className={window.location.pathname === '/map' ? 'active' : ''}>
         <a href="/map">Map</a>
       </li>
