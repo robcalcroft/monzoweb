@@ -103,36 +103,45 @@ export default class Analytics extends React.Component {
 
         analytics[id] = { 
           visitCount: count, 
-          avgSpent: totalAmount / count
+          avgSpent: totalAmount / count,
+          name: transactions[i].merchant.name
         };
       }
     }
 
-    
- 
+    let maxCountKey = [];
+    let maxCount = 0;
+
     for (var k in analytics) {
       if (analytics.hasOwnProperty(k)) {
         averageSpend.push(analytics[k].avgSpent);
         overallAverage += analytics[k].avgSpent;
+        if(maxCount < analytics[k].visitCount) {
+          maxCount =analytics[k].visitCount; 
+          maxCountKey = k;
+        }
       }
     }
 
     let total = Math.round(overallAverage / Object.keys(analytics).length);
     let max = Math.round(Math.min.apply(0, averageSpend));
     let min = Math.round(Math.max.apply(0, averageSpend)); 
-    
+
     return { 
       overallAverage: currency ? intToAmount(total, currency) : total,
       lowestAverage: currency ? intToAmount(min, currency) : min, 
       highestAverage: currency ? intToAmount(max, currency) : max, 
       analytics: analytics,
       leastSpent: currency ? intToAmount(leastSpent, currency) :mostSpent,
-      mostSpent: currency ? intToAmount(mostSpent, currency) :mostSpent
+      mostSpent: currency ? intToAmount(mostSpent, currency) :mostSpent,
+      maxCount: `${analytics[maxCountKey].name} (${maxCount} visits)`
     };
   }
 
   render() {
-    const {overallAverage, lowestAverage, highestAverage,analytics, leastSpent, mostSpent} = this.state.account.analytics;
+
+    const {overallAverage, lowestAverage, highestAverage,analytics, leastSpent, mostSpent, maxCount} = this.state.account.analytics;
+
 
     if (!localStorage.monzo_access_token) {
       window.location.href = '/';
@@ -167,6 +176,11 @@ export default class Analytics extends React.Component {
             <div className="border-box">
               <h5 className="center">Least Spent</h5>
               <h3 className="center">{leastSpent}</h3></div>
+          </div>
+          <div className="col s12 m12 l4">
+            <div className="border-box">
+              <h5 className="center">Most Visited</h5>
+              <h4 className="center">{maxCount}</h4></div>
           </div>
         </div>
       </Container>
