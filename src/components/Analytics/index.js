@@ -139,7 +139,9 @@ export default class Analytics extends React.Component {
   }
 
   render() {
+
     const {overallAverage, lowestAverage, highestAverage,analytics, leastSpent, mostSpent, maxCount} = this.state.account.analytics;
+
 
     if (!localStorage.monzo_access_token) {
       window.location.href = '/';
