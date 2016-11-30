@@ -76,36 +76,38 @@ export default class Analytics extends React.Component {
 
   calculateAnalytics(transactions) {
     //Calculate Avg Spend and Previous Visits
-    
+    transactions = transactions.filter(t => t.amount != 0);
     let averageSpend = [];
     let analytics = {};
     let averages = [];
     let overallAverage = 0;
-    let mostSpent = 0;
-    let leastSpent = 0;
-    let currency = transactions.length > 0 ? transactions[0].currency : "";
+    let mostSpent = Infinity;
+    let leastSpent = -Infinity;
+    let currency = transactions.length > 0 ? transactions[0].currency: "";
 
     for (let i = 0; i < transactions.length; ++i) {
-      let id = transactions[i].merchant ? transactions[i].merchant.group_id: false;
+      let id = transactions[i].merchant ? transactions[i].merchant.group_id : false;
 
-     
+
       if (id) {
-        //Lowest and Highest spend 
+        //Lowest and Highest spend
         let amount = transactions[i].amount;
-        if (mostSpent > amount)
+
+        if (mostSpent > amount) 
           mostSpent = amount
 
-        if (leastSpent < amount)
+        if (leastSpent < amount) 
           leastSpent = amount
 
-        let count = ((analytics[id] && analytics[id].visitCount) || 0) + 1;        
+        let count = ((analytics[id] && analytics[id].visitCount) || 0) + 1;
         let totalAmount = ((analytics[id] && analytics[id].totalAmount) || 0) + amount;
 
-        analytics[id] = { 
-          visitCount: count, 
+        analytics[id] = {
+          visitCount: count,
           avgSpent: totalAmount / count,
           name: transactions[i].merchant.name
         };
+
       }
     }
 
@@ -116,8 +118,8 @@ export default class Analytics extends React.Component {
       if (analytics.hasOwnProperty(k)) {
         averageSpend.push(analytics[k].avgSpent);
         overallAverage += analytics[k].avgSpent;
-        if(maxCount < analytics[k].visitCount) {
-          maxCount =analytics[k].visitCount; 
+        if (maxCount < analytics[k].visitCount) {
+          maxCount = analytics[k].visitCount;
           maxCountKey = k;
         }
       }
@@ -125,22 +127,23 @@ export default class Analytics extends React.Component {
 
     let total = Math.round(overallAverage / Object.keys(analytics).length);
     let max = Math.round(Math.min.apply(0, averageSpend));
-    let min = Math.round(Math.max.apply(0, averageSpend)); 
+    let min = Math.round(Math.max.apply(0, averageSpend));
 
-    return { 
+    return {
       overallAverage: currency ? intToAmount(total, currency) : total,
-      lowestAverage: currency ? intToAmount(min, currency) : min, 
-      highestAverage: currency ? intToAmount(max, currency) : max, 
-      analytics: analytics,
-      leastSpent: currency ? intToAmount(leastSpent, currency) :mostSpent,
+      lowestAverage: currency ?  intToAmount(min, currency) : min,
+      highestAverage: currency ? intToAmount(max, currency) : max,
+      analytics: analytics, 
+      leastSpent: currency ? intToAmount(leastSpent, currency) :leastSpent,
       mostSpent: currency ? intToAmount(mostSpent, currency) :mostSpent,
       maxCount: `${analytics[maxCountKey].name} (${maxCount} visits)`
     };
+
   }
 
   render() {
 
-    const {overallAverage, lowestAverage, highestAverage,analytics, leastSpent, mostSpent, maxCount} = this.state.account.analytics;
+   const {overallAverage, lowestAverage, highestAverage,analytics, leastSpent, mostSpent, maxCount} = this.state.account.analytics;
 
 
     if (!localStorage.monzo_access_token) {
