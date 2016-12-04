@@ -55,7 +55,8 @@ export default {
     }),
     new webpack.DefinePlugin({
       MONZO_CLIENT_ID: JSON.stringify(process.env.MONZO_CLIENT_ID),
-      MONZO_REDIRECT_URI: JSON.stringify(process.env.MONZO_REDIRECT_URI)
+      MONZO_REDIRECT_URI: JSON.stringify(process.env.MONZO_REDIRECT_URI),
+      GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY)
     })
   ].concat(process.env.NODE_ENV === 'production' ? [
     new webpack.optimize.OccurenceOrderPlugin(),
