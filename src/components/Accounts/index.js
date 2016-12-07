@@ -174,7 +174,9 @@ export default class Accounts extends React.Component {
             localAmount: transaction.local_currency !== this.state.account.currency ? (
               intToAmount(transaction.local_amount, transaction.local_currency)
             ) : false,
-            counterParty: transaction.counterparty ? transaction.counterparty.name : false
+            counterParty: transaction.counterparty ? transaction.counterparty.name : false,
+            emoji: transaction.merchant ? transaction.merchant.metadata.emoji : '',
+            category: transaction.merchant ?  transaction.merchant.metadata.category : ''
           }
         }
       });
@@ -224,19 +226,19 @@ export default class Accounts extends React.Component {
 
     return (
       <Container>
-        <Overview
-          name={account.name}
-          balance={account.balance}
-          spentToday={account.spentToday}
-        />
         <div className="row">
-          <div className="col s12 m12 l3">
+          <div className="col s12 m12 l2">
+            <Overview
+              name={account.name}
+              balance={account.balance}
+              spentToday={account.spentToday}
+            />
+          </div>
+          <div className="col s12 m6 l5">
             <div className="border-box">
               <input onKeyUp={this.transactionSearch} placeholder="Search" autoFocus type="text" />
               <div className="grey-text text-lighten-1">You can search by location, merchant, category or notes</div>
             </div>
-          </div>
-          <div className="col s12 m6 l5">
             <Transactions
               transactionSelect={this.transactionSelect}
               transactions={account.filterActive ? account.filteredTransactions : account.transactions}

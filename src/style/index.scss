@@ -36,8 +36,7 @@ html {
 // Same as .collection css
 .border-box {
   background-color: white;
-  padding: 7.5%;
-  margin: 0.5rem 0 1rem 0;
+  padding: 1em;
   border-radius: 2px;
   border: 1px solid $collection-border-color;
   @media (max-width: 992px) {

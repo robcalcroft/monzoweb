@@ -50,7 +50,7 @@ export default class Container extends React.Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper container--fluid">
+        <div className="wrapper">
           <img src={require('assets/logo.svg')} className="nav--logo" alt="Monzo logo" />
           <ul className="right hide-on-med-and-down">{links}</ul>
           <ul id="slide-out" className="side-nav">

@@ -6,9 +6,9 @@ export default class Container extends React.Component {
   render() {
     const { props: { nav, children } } = this;
     return (
-      <div className="container--outer">
+      <div>
         {nav === false ? '' : <Nav />}
-        <div className="container--fluid">
+        <div className="wrapper wrapper--main">
           {children}
         </div>
       </div>

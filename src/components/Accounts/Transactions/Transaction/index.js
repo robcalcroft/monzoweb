@@ -40,7 +40,7 @@ export default class Transaction extends React.Component {
           }
         </div>
         <div className="col s2">
-          <p className={`secondary-content secondary-color-text ${amount.includes('+') ? 'green-text' : ''}`}>
+          <p className={`secondary-content ${amount.includes('+') ? 'green-text' : 'black-text'}`} style={{fontSize: '1.5em'}}>
             {!formattedDeclinedReason ? amount : ''}
           </p>
         </div>
