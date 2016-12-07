@@ -39,8 +39,7 @@ export default class Callback extends React.Component {
   componentDidMount() {
     const queryString = window.location.search.replace('?', '').split('&').map(string => {
       let query = {};
-      const queryString = string.split(/^[A-Za-z0-9]+=/);
-      query[queryString[0]] = queryString[1];
+      query[string.split('=')[0]] = string.split('=')[1];
       return query;
     });
 
