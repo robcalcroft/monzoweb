@@ -22,7 +22,8 @@ export default class Overview extends React.Component {
           created,
           declined,
           localAmount,
-          counterParty
+          counterParty,
+          category
         }
       }
     } = this;
@@ -32,14 +33,19 @@ export default class Overview extends React.Component {
     return empty ? (
       <h4 className="center grey-text text-lighten-2">No transaction selected</h4>
     ) : loading ? (
-      <div style={{marginTop: '1.5vh'}}>
-        <div className="progress">
-          <div className="indeterminate"></div>
+      <div className="card fadein" style={{margin: 0}}>
+        <div className="transaction--overview">
+          <div className="transaction--overview--map" />
         </div>
-        <h5 className="center">Loading...</h5>
+        <div className="card-content">
+          <h5>Loading...</h5>
+          <div className="progress">
+            <div className="indeterminate"></div>
+          </div>
+        </div>
       </div>
     ) : (
-      <div className="card fadein">
+      <div className="card fadein" style={{margin: 0}}>
         <div className="transaction--overview">
           {online ? (
             <div className="transaction--overview--map" />
@@ -55,8 +61,9 @@ export default class Overview extends React.Component {
           <div className="grey-text text-lighten-1">{moment(created).format('dddd MMMM Do YYYY [at] h:mma')}</div>
           {declined && <div className="red-text">Declined as you don't have sufficient funds on your card</div>}
           {localAmount && <div className="grey-text text-lighten-1">Local cost was {localAmount}</div>}
-          {notes && <div className="grey-text text-lighten-1">{notes}</div>}
-          <div style={{marginTop:'20px'}}>
+          {notes && <div className="black-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{notes}</div>}
+          {category && <div className={`category category--${category}`}>{category}</div>}
+          <div style={{marginTop:'10px'}}>
             {tags.filter(tag => tag !== '').map(tag => (
               <div key={tagKey++} className="chip" style={{marginRight: '2px'}}>{tag}</div>
             ))}

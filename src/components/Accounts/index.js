@@ -175,8 +175,7 @@ export default class Accounts extends React.Component {
               intToAmount(transaction.local_amount, transaction.local_currency)
             ) : false,
             counterParty: transaction.counterparty ? transaction.counterparty.name : false,
-            emoji: transaction.merchant ? transaction.merchant.metadata.emoji : '',
-            category: transaction.merchant ?  transaction.merchant.metadata.category : ''
+            category: transaction.category
           }
         }
       });
@@ -234,7 +233,7 @@ export default class Accounts extends React.Component {
               spentToday={account.spentToday}
             />
           </div>
-          <div className="col s12 m6 l5">
+          <div className="col s12 m6 l6">
             <div className="border-box">
               <input onKeyUp={this.transactionSearch} placeholder="Search" autoFocus type="text" />
               <div className="grey-text text-lighten-1">You can search by location, merchant, category or notes</div>
