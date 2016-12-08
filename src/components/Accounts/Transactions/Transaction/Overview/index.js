@@ -14,6 +14,7 @@ export default class Overview extends React.Component {
           zoom,
           logo,
           merchant,
+          breakdown,
           address,
           amount,
           tags,
@@ -59,6 +60,7 @@ export default class Overview extends React.Component {
               <div key={tagKey++} className="chip" style={{marginRight: '2px'}}>{tag}</div>
             ))}
           </div>
+          {breakdown ? <p className="grey-text text-lighten-1 center">You've been here {breakdown.visitCount} times, you usually spend {breakdown.avgSpend}</p>: ''}
           <p className="grey-text text-lighten-1 center">{moment(created).format('dddd MMMM Do YYYY [at] h:mma')}</p>
         </li>
       </ul>

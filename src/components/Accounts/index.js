@@ -33,6 +33,7 @@ export default class Accounts extends React.Component {
         id: undefined,
         name: '',
         transactions: [],
+        analytics: [],
         filterActive: false,
         filteredTransactions: [],
         balance: '',
@@ -47,7 +48,7 @@ export default class Accounts extends React.Component {
   }
 
   initialLoad() {
-
+    
     // Retrieve inital data
     this.retrieveAccount().then(() => {
       this.retrieveBalance();
@@ -110,11 +111,34 @@ export default class Accounts extends React.Component {
     .then(account => {
       this.setState({
         account: Object.assign({}, this.state.account, {
-          transactions: account.transactions
+          transactions: account.transactions,
+          analytics: this.processTransactions(account.transactions)
         })
       });
     })
     .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
+  }
+
+  processTransactions(transactions){
+      //Calculate Avg Spend and Previous Visits
+      let analytics = {};
+
+      for (let i = 0; i < transactions.length; ++i) {
+        let id = transactions[i].merchant ?  transactions[i].merchant.group_id : false;
+
+        if(id){
+          let totalAmount = ((analytics[id] && analytics[id].totalAmount) || 0) + transactions[i].amount;
+          let count = ((analytics[id] && analytics[id].visitCount) || 0) + 1;
+
+          analytics[id] = {
+            visitCount: count,
+            totalAmount: totalAmount,
+            avgSpend: intToAmount(Math.floor(totalAmount / count), transactions[i].currency)
+          };
+        }
+      }
+      
+      return analytics;
   }
 
   transactionSelect(event) {
@@ -145,7 +169,7 @@ export default class Accounts extends React.Component {
     fetch(`https://api.getmondo.co.uk/transactions/${transactionId}?expand[]=merchant`, {
       headers: {
         'Authorization': `Bearer ${localStorage.monzo_access_token}`
-      }
+      } 
     })
     .then(checkStatus)
     .then(response => response.json())
@@ -164,6 +188,7 @@ export default class Accounts extends React.Component {
             zoom: transaction.merchant ? transaction.merchant.address.zoom_level : '4.6',
             logo: transaction.merchant ? transaction.merchant.logo : false,
             merchant: transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Monzo' : '',
+            breakdown: this.state.account.analytics[transaction.merchant ? transaction.merchant.group_id : false] || false,
             address: transaction.merchant ? transaction.merchant.address.short_formatted : 'In the clouds',
             tags: transaction.merchant ? transaction.merchant.metadata.suggested_tags ? transaction.merchant.metadata.suggested_tags.split(' ') :[] : [],
             amount: intToAmount(transaction.amount, transaction.currency),
