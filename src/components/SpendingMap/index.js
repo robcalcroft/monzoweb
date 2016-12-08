@@ -56,8 +56,8 @@ export default class SpendingMap extends React.Component {
         // Open set content and open info window
         marker.addListener('click', () => {
           infoWindow.setContent(`
-            <p class='info-window'><b>${intToAmount(transaction.local_amount).replace('+', 'Refund of ')} at ${merchant.name.substr(0, 40)}</b></p>
-            <p class='info-window'>${moment(transaction.created).format('dddd MMMM Do YYYY [at] h:mma')}</p>
+            <p className='info-window'><b>${intToAmount(transaction.local_amount).replace('+', 'Refund of ')} at ${merchant.name.substr(0, 40)}</b></p>
+            <p className='info-window'>${moment(transaction.created).format('dddd MMMM Do YYYY [at] h:mma')}</p>
           `);
           infoWindow.open(map, marker);
         });
