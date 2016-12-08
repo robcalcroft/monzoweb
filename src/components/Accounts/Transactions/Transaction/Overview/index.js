@@ -22,7 +22,8 @@ export default class Overview extends React.Component {
           created,
           declined,
           localAmount,
-          counterParty
+          counterParty,
+          category
         }
       }
     } = this;
@@ -54,6 +55,7 @@ export default class Overview extends React.Component {
           <h3 className="center">{declined ? 'Declined' : amount}</h3>
           {localAmount ? <p className="grey-text text-lighten-1 center">Local cost was {localAmount}</p> : ''}
           {notes ? <p className="grey-text text-lighten-1 center">{notes}</p> : ''}
+          {category ? <p className={`category category--${category} center`}>{category}</p> : ''}
           <div className="center">
             {tags.filter(tag => tag !== '').map(tag => (
               <div key={tagKey++} className="chip" style={{marginRight: '2px'}}>{tag}</div>

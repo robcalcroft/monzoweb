@@ -174,7 +174,9 @@ export default class Accounts extends React.Component {
             localAmount: transaction.local_currency !== this.state.account.currency ? (
               intToAmount(transaction.local_amount, transaction.local_currency)
             ) : false,
-            counterParty: transaction.counterparty ? transaction.counterparty.name : false
+            counterParty: transaction.counterparty ? transaction.counterparty.name : false,
+            emoji: transaction.merchant ? transaction.merchant.metadata.emoji : '',
+            category: transaction.category
           }
         }
       });

@@ -10,3 +10,29 @@
   left: calc(50% - 21px); // Sorry opera mini :s
   bottom: -10px;
 }
+
+.category {
+  text-transform: capitalize;
+  font-size: 1.25em;
+}
+
+.category::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 0.5em;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.category--transport { color: #1b7693; }
+.category--groceries { color: #f5ba46; }
+.category--eating-out { color: #d84d5b; }
+.category--cash { color: #96bba6; }
+.category--bills { color: #4eb7d9; }
+.category--entertainent { color: #e88248; }
+.category--shopping { color: #f09695; }
+.category--holidays { color: #B882FD; }
+.category--general { color: #979797; }
+.category--expenses { color: #e0b782; }
