@@ -42,12 +42,13 @@
   border-radius: 50%;
 }
 
+.category--mondo { display: none; }
 .category--transport { color: #1b7693; }
 .category--groceries { color: #f5ba46; }
-.category--eating-out { color: #d84d5b; }
+.category--eating_out { color: #d84d5b; }
 .category--cash { color: #96bba6; }
 .category--bills { color: #4eb7d9; }
-.category--entertainent { color: #e88248; }
+.category--entertainment { color: #e88248; }
 .category--shopping { color: #f09695; }
 .category--holidays { color: #B882FD; }
 .category--general { color: #979797; }
