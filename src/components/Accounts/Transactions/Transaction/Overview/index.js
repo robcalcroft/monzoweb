@@ -30,29 +30,45 @@ export default class Overview extends React.Component {
 
     let tagKey = 0;
 
-    return empty ? (
-      <h4 className="center grey-text text-lighten-2">No transaction selected</h4>
-    ) : loading ? (
-      <div className="card fadein" style={{margin: 0}}>
-        <div className="transaction--overview">
-          <div className="transaction--overview--map" />
-        </div>
-        <div className="card-content">
-          <h5>Loading...</h5>
-          <div className="progress">
-            <div className="indeterminate"></div>
+    if (empty) {
+      return <h4 className="center grey-text text-lighten-2">No transaction selected</h4>;
+    }
+
+    if (loading) {
+      return (
+        <div className="card fadein" style={{margin: 0}}>
+          <div className="transaction--overview">
+            <div className="transaction--overview--map" />
+          </div>
+          <div className="card-content">
+            <h5>Loading...</h5>
+            <div className="progress">
+              <div className="indeterminate"></div>
+            </div>
           </div>
         </div>
-      </div>
+      );
+    }
+
+    let logoImage;
+
+    if (logo) {
+      logoImage = logo;
+    } else {
+      logoImage = require(`assets/${category}.svg`);
+    }
+
+    const Map = (online || (!lat || !long)) ? (
+      <div className="transaction--overview--map" />
     ) : (
+      <div className="transaction--overview--map" style={{backgroundImage: `url('https://maps.googleapis.com/maps/api/staticmap?size=640x320&zoom=16&markers=${lat},${long}&scale=1&key=${GOOGLE_MAPS_API_KEY}')`}} />
+    );
+
+    return (
       <div className="card fadein" style={{margin: 0}}>
         <div className="transaction--overview">
-          {online ? (
-            <div className="transaction--overview--map" />
-          ) : (
-            <div className="transaction--overview--map" style={{backgroundImage: `url('https://maps.googleapis.com/maps/api/staticmap?size=640x320&zoom=16&markers=${lat},${long}&scale=1&key=${GOOGLE_MAPS_API_KEY}')`}} />
-          )}
-          <img src={logo || require('assets/shopping-bag.svg')} className="transaction--overview--logo rounded" />
+          {Map}
+          <img src={logoImage} className={`transaction--overview--logo rounded ${!logo && 'category--'+category+'-bg'}`} />
           <span className={`transaction--amount ${amount.includes('+') ? 'green-text' : 'black-text'}`}>{amount}</span>
         </div>
         <div className="card-content">

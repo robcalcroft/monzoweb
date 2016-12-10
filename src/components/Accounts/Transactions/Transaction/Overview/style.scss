@@ -15,7 +15,7 @@
   position: absolute;
   height: 100px;
   width: 100px;
-  padding: 4px;
+  padding: 5px;
   left: 15px;
   bottom: -25px;
   background: white;
@@ -43,13 +43,27 @@
 }
 
 .category--mondo { display: none; }
+.category--mondo-bg { background-color: #14233c; }
+.category--monzo { display: none; }
+.category--monzo-bg { background-color: #14233c; }
+
 .category--transport { color: #1b7693; }
+.category--transport-bg { background-color: #1b7693; }
 .category--groceries { color: #f5ba46; }
+.category--groceries-bg { background-color: #f5ba46; }
 .category--eating_out { color: #d84d5b; }
+.category--eating_out-bg { background-color: #d84d5b; }
 .category--cash { color: #96bba6; }
+.category--cash-bg { background-color: #96bba6; }
 .category--bills { color: #4eb7d9; }
+.category--bills-bg { background-color: #4eb7d9; }
 .category--entertainment { color: #e88248; }
+.category--entertainment-bg { background-color: #e88248; }
 .category--shopping { color: #f09695; }
+.category--shopping-bg { background-color: #f09695; }
 .category--holidays { color: #B882FD; }
+.category--holidays-bg { background-color: #B882FD; }
 .category--general { color: #979797; }
+.category--general-bg { background-color: #979797; }
 .category--expenses { color: #e0b782; }
+.category--expenses-bg { background-color: #e0b782; }

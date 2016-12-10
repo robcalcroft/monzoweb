@@ -26,6 +26,7 @@ export default class Transactions extends React.Component {
                 created={transaction.created}
                 declinedReason={transaction.decline_reason}
                 counterParty={transaction.counterparty ? transaction.counterparty.name : false}
+                category={transaction.category ? transaction.category : 'general'}
               />
           )).reverse()
         )}

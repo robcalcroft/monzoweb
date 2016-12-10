@@ -159,8 +159,8 @@ export default class Accounts extends React.Component {
           empty: false,
           loading: false,
           data: {
-            lat: transaction.merchant ? transaction.merchant.address.latitude : '50.1477307',
-            long: transaction.merchant ? transaction.merchant.address.longitude : '0.7332003',
+            lat: transaction.merchant ? transaction.merchant.address.latitude : '',
+            long: transaction.merchant ? transaction.merchant.address.longitude : '',
             zoom: transaction.merchant ? transaction.merchant.address.zoom_level : '4.6',
             logo: transaction.merchant ? transaction.merchant.logo : false,
             merchant: transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Monzo' : '',

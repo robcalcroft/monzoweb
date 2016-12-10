@@ -14,12 +14,21 @@ export default class Transaction extends React.Component {
         created,
         declinedReason,
         localAmount,
-        counterParty
+        counterParty,
+        category
       }
     } = this;
 
     // This will change when I see more reasons!
     const formattedDeclinedReason = declinedReason === 'INSUFFICIENT_FUNDS' ? `Declined, you didn't have ${amount}` : false;
+
+    let logoImage;
+
+    if (logo) {
+      logoImage = logo;
+    } else {
+      logoImage = require(`assets/${category}.svg`);
+    }
 
     return (
       <a
@@ -29,7 +38,7 @@ export default class Transaction extends React.Component {
         onClick={transactionSelect}
       >
         <div className="col s10">
-          <img src={logo || require('assets/shopping-bag.svg')} alt={merchant} className="rounded circle" />
+          <img src={logoImage} alt={merchant} className={`${!logo && 'category--'+category+'-bg'} rounded circle`} />
           <span className="title primary-text">{counterParty || merchant}{`${localAmount ? ' 🌎' : ''}`}</span>
           {
             formattedDeclinedReason ? (
