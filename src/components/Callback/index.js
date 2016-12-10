@@ -1,6 +1,5 @@
 import React from 'react';
 import Container from 'components/Container';
-import localForage from 'localforage';
 import { checkStatus, showErrorMessage } from 'lib/utils';
 import 'whatwg-fetch';
 
@@ -55,15 +54,6 @@ export default class Callback extends React.Component {
       .then(checkStatus)
       .then(response => response.json())
       .then(body => {
-
-        // if (body.access_token && body.refresh_token) {
-        //   Promise.all([
-        //     localForage.setItem('monzo_access_token', body.access_token),
-        //     localForage.setItem('monzo_refresh_token', body.refresh_token)
-        //   ]).then(() => {
-        //     window.location.href = '/accounts';
-        //   });
-        // }
         localStorage.setItem('monzo_access_token', body.access_token);
         localStorage.setItem('monzo_refresh_token', body.refresh_token);
         window.location.href = '/accounts';
