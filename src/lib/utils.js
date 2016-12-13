@@ -2,6 +2,10 @@
 import currencyCodes from 'lib/currency-codes.json';
 import 'whatwg-fetch';
 
+export function isEmpty(obj) {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
+}
+
 export function intToAmount(amount, currency = 'GBP') {
   if (amount === undefined || amount === null || amount === false) {
     return false;
