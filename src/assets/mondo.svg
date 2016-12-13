@@ -1,62 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="0 0 70 69.999999"
-   height="70"
-   width="70"
-   xml:space="preserve"
-   version="1.1"
-   id="svg2"
-   inkscape:version="0.91 r"
-   sodipodi:docname="monzo.svg"><sodipodi:namedview
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1"
-     objecttolerance="10"
-     gridtolerance="10"
-     guidetolerance="10"
-     inkscape:pageopacity="0"
-     inkscape:pageshadow="2"
-     inkscape:window-width="3066"
-     inkscape:window-height="1694"
-     id="namedview10896"
-     showgrid="false"
-     inkscape:zoom="1.2101935"
-     inkscape:cx="-18.162919"
-     inkscape:cy="97.505066"
-     inkscape:window-x="130"
-     inkscape:window-y="48"
-     inkscape:window-maximized="0"
-     inkscape:current-layer="g12" /><metadata
-     id="metadata8"><rdf:RDF><cc:Work
-         rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
-     id="defs6" /><g
-     transform="matrix(1.25,0,0,-1.25,0,69.999998)"
-     id="g10"><g
-       transform="scale(0.1,0.1)"
-       id="g12"><g
-         id="g11438"
-         transform="matrix(0.36648643,0,0,0.36648643,-13.189144,-111.27712)"><path
-           inkscape:connector-curvature="0"
-           d="m 1345.7228,843.22146 c 0,-13.40076 -5.3251,-26.25434 -14.8029,-35.73209 L 1104.5972,581.16664 c -12.7315,-12.73145 -34.5058,-3.71293 -34.5058,14.29479 l 0,507.13277 272.4852,270.9609 3.1462,0 0,-530.33364"
-           style="fill:#e83860;fill-opacity:1;fill-rule:nonzero;stroke:none"
-           id="path14" /><path
-           inkscape:connector-curvature="0"
-           d="m 1165.1131,1554.1599 c -7.8949,7.8949 -20.6898,7.8949 -28.5847,0 L 800,1217.6364 l -4.67536,0 0,-379.82801 4.67536,-9.97606 270.0914,270.09137 275.6314,275.6314 -180.6097,180.6048"
-           style="fill:#dfc586;fill-opacity:1;fill-rule:nonzero;stroke:none"
-           id="path16" /><path
-           inkscape:connector-curvature="0"
-           d="m 254.2772,843.22146 c 0,-13.40076 5.32464,-26.25434 14.80141,-35.73209 L 495.39792,581.16664 c 12.73633,-12.73145 34.51072,-3.71293 34.51072,14.29479 l 0,507.13277 -272.4901,270.9609 -3.14134,0 0,-530.33364"
-           style="fill:#327787;fill-opacity:1;fill-rule:nonzero;stroke:none"
-           id="path18" /><path
-           inkscape:connector-curvature="0"
-           d="m 463.47159,1554.1599 c -7.89486,7.8949 -20.69275,7.8949 -28.58762,0 L 254.2772,1373.5551 529.90864,1097.9237 800,827.83233 l 0,389.80407 -336.52841,336.5235"
-           style="fill:#8abb9c;fill-opacity:1;fill-rule:nonzero;stroke:none"
-           id="path20" /></g></g></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="180px" viewBox="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #14233C;">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>monzo-huge@3x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-Category-assets-spotlight" transform="translate(-3254.000000, -309.000000)">
+            <g id="Monzo-116px" transform="translate(3255.000000, 310.000000)">
+                <g id="Layer_1_13_">
+                    <g id="Group">
+                        <g transform="translate(24.800000, 30.450000)" id="Page-1">
+                            <g>
+                                <g id="Group-9">
+                                    <path d="M130.312656,86.2628433 C130.312656,87.8675056 129.676887,89.4063876 128.545548,90.5408151 L101.52386,117.636266 C100.003412,119.160864 97.403731,118.08094 97.403731,115.925227 L97.403731,55.2108045 L129.937417,22.7713662 L130.312656,22.7713662 L130.312656,86.2628433 Z" id="Fill-1" fill="#E64B5F"></path>
+                                    <path d="M108.749099,1.1489832 C107.806691,0.204002862 106.278371,0.204002862 105.335963,1.1489832 L65.1561782,41.4384491 L64.5983807,41.4384491 L64.5983807,86.9110231 L65.1561782,88.1055925 L97.4038434,55.7698991 L130.312769,22.7715165 L108.749099,1.1489832 Z" id="Fill-3" fill="#EBD19F"></path>
+                                    <path d="M1.45189006e-07,86.2628433 C1.45189006e-07,87.8675056 0.635769285,89.4063876 1.76710847,90.5408151 L28.7887964,117.636266 C30.3092443,119.160864 32.9089253,118.08094 32.9089253,115.925227 L32.9089253,55.2108045 L0.375238889,22.7713662 L1.45189006e-07,22.7713662 L1.45189006e-07,86.2628433 Z" id="Fill-5" fill="#1E788C"></path>
+                                    <path d="M24.9767306,1.1489832 C24.0343228,0.204002862 22.5060028,0.204002862 21.563595,1.1489832 L-7.48275861e-05,22.7715165 L32.9088503,55.7702749 L65.1565156,88.1055925 L65.1565156,41.4384491 L24.9767306,1.1489832 Z" id="Fill-7" fill="#9ABDA9"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

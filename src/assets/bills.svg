@@ -1,64 +1,23 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="70"
-   height="70"
-   viewBox="0 0 70.000001 70.000001"
-   id="svg6780"
-   version="1.1"
-   inkscape:version="0.91 r"
-   sodipodi:docname="bills.svg">
-  <defs
-     id="defs6782" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="776.44967"
-     inkscape:cy="-588.11616"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     units="px"
-     inkscape:window-width="3070"
-     inkscape:window-height="1752"
-     inkscape:window-x="130"
-     inkscape:window-y="48"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata6785">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(0,-982.36216)">
-    <path
-       style="fill:#ffffff"
-       d="m 31.380404,1041.5586 c -1.64567,-0.9001 -3.36033,-2.8193 -3.36033,-3.7609 0,-0.3322 3.0243,-0.604 6.72066,-0.604 3.69637,0 6.70991,0.252 6.69692,0.56 -0.0418,0.9879 -1.79419,2.9036 -3.47421,3.7985 -2.02262,1.0772 -4.62068,1.0797 -6.58304,0.01 z m -4.10707,-7.3519 c 0,-1.3939 0.49777,-1.4935 7.4674,-1.4935 6.96956,0 7.46741,0.1 7.46741,1.4935 0,1.3939 -0.49785,1.4935 -7.46741,1.4935 -6.96963,0 -7.4674,-0.1 -7.4674,-1.4935 z m -0.37338,-3.7337 c -1.06522,-1.7235 0.83957,-2.2402 8.25821,-2.2402 7.29887,0 7.79672,0.095 7.79672,1.4934 0,1.3982 -0.49785,1.4935 -7.79672,1.4935 -4.39233,0 -7.99826,-0.326 -8.25821,-0.7467 z m -3.68718,-10.0348 c -4.86479,-8.9246 -5.60152,-15.0222 -2.52107,-20.86499 9.74818,-14.6447 30.04369,-4.4667 30.4609,8.22259 0.0134,3.1239 -0.67886,5.2285 -3.7455,11.3878 l -3.76193,7.5557 -8.49881,0 -8.49888,0 z"
-       id="path4160-3-9-7"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cssccccssssscssscsccscccs" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="180px" viewBox="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #50B9DC;">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>cat-bills-huge@3x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-Category-assets-spotlight" transform="translate(-2635.000000, -310.000000)" fill="#FFFFFF">
+            <g id="Category-Icon_Bills-116px" transform="translate(2635.000000, 310.000000)">
+                <g id="Layer_1_13_">
+                    <g id="Group">
+                        <g transform="translate(55.800000, 37.200000)" id="Shape">
+                            <path d="M34.1,0 C15.5,0 0.465,14.725 0.465,32.86 C0.465,49.755 12.4,60.295 14.725,69.13 C15.19,70.68 17.05,72.85 18.6,72.85 L32.55,72.85 L37.2,72.85 L49.6,72.85 C51.305,72.85 53.165,70.68 53.475,69.13 C55.8,60.295 67.735,49.755 67.735,32.86 C67.735,14.725 52.7,0 34.1,0 L34.1,0 Z"></path>
+                            <path d="M48.05,75.95 L19.995,75.95 C18.29,75.95 17.05,77.5 17.05,79.05 C17.05,80.6 18.29,82.15 19.995,82.15 L48.05,82.15 C49.755,82.15 51.15,80.6 51.15,79.05 C51.15,77.5 49.755,75.95 48.05,75.95 L48.05,75.95 Z"></path>
+                            <path d="M46.655,85.25 L20.925,85.25 C19.22,85.25 17.98,86.49 17.98,88.195 C17.98,89.745 19.995,91.45 21.7,91.45 L46.5,91.45 C48.205,91.45 49.6,89.745 49.6,88.195 C49.6,86.49 48.205,85.25 46.655,85.25 L46.655,85.25 Z"></path>
+                            <path d="M33.48,105.4 C39.99,105.4 45.57,99.975 48.05,94.55 L18.6,94.55 C21.08,99.975 26.97,105.4 33.48,105.4 L33.48,105.4 Z"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

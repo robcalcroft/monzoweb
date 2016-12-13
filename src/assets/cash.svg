@@ -1,64 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="70"
-   height="70"
-   viewBox="0 0 70.000001 70.000001"
-   id="svg6198"
-   version="1.1"
-   inkscape:version="0.91 r"
-   sodipodi:docname="cash.svg">
-  <defs
-     id="defs6200" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="116.45105"
-     inkscape:cy="483.01727"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     units="px"
-     inkscape:window-width="3070"
-     inkscape:window-height="1752"
-     inkscape:window-x="130"
-     inkscape:window-y="48"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata6203">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(0,-982.36216)">
-    <path
-       style="fill:#ffffff"
-       d="m 14.911265,1021.3938 0,-20.9683 -1.9531,-0.88994 c -1.4115,-0.64315 -1.9531,-1.5011 -1.9531,-3.09415 0,-4.04473 0.2028,-4.07925 23.9663,-4.07925 l 22.0914,0 1.1632,1.77533 c 1.4146,2.15893 0.8005,5.03473 -1.2115,5.67332 -1.4019,0.44489 -1.4782,1.55549 -1.4782,21.51029 l 0,21.0411 -20.3125,0 -20.3125,0 z m 37.1094,-2.8491 c 0,-18.71388 -0.1069,-20.32236 -1.3672,-20.56506 -1.2722,-0.245 -1.3672,1.07142 -1.3672,18.93466 l 0,19.1979 -14.0625,0 -14.0625,0 0,-19.1407 c 0,-18.61975 -0.042,-19.14059 -1.5625,-19.14059 -1.5232,0 -1.5625,0.52084 -1.5625,20.71839 l 0,20.7183 16.9922,-0.2105 16.9922,-0.2106 z m -4.4778,-2.1591 -0.2097,-18.16406 -12.3047,-0.21515 -12.3047,-0.21516 0,18.37917 0,18.3793 12.5144,0 12.5144,0 z m -18.3445,11.3644 c -0.2002,-0.5172 0.1947,-1.738 0.8776,-2.7129 1.6366,-2.3367 1.5675,-3.5012 -0.2357,-3.9728 -1.2688,-0.3318 -1.4202,-0.9236 -1.0725,-4.1927 0.5485,-5.16 1.9114,-6.5407 6.456,-6.5407 4.0408,0 6.25,1.6097 6.25,4.5537 0,2.2749 -3.0998,2.3519 -3.6909,0.092 -0.3118,-1.1925 -0.9451,-1.5436 -2.4658,-1.3672 -2.8658,0.3324 -2.9416,3.8618 -0.097,4.5332 2.1056,0.4971 3.2193,3.126 1.3244,3.126 -1.4698,0 -2.34,3.2582 -1.0956,4.102 0.521,0.3532 2.0624,0.4802 3.4253,0.2822 2.464,-0.3579 3.9818,1.0432 2.946,2.7193 -0.6636,1.0737 -12.1849,0.506 -12.6214,-0.6219 z"
-       id="path4160-3-3"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccssscsssccccssscccssscccscccccccccccscsscssscscc" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="180px" viewBox="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #9ABBA8;">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>cat-cash-huge@3x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-Category-assets-spotlight" transform="translate(-2325.000000, -310.000000)" fill="#FFFFFF">
+            <g id="Category-Icon_Cash-116px" transform="translate(2325.000000, 310.000000)">
+                <g id="Layer_1_1_">
+                    <g id="Group">
+                        <g transform="translate(41.850000, 40.300000)" id="Shape">
+                            <path d="M96.1,7.905 C96.1,3.565 92.535,0 88.195,0 L7.905,0 C3.565,0 0,3.565 0,7.905 C0,11.935 3.875,15.19 7.75,15.5 L7.75,99.2 L88.35,99.2 L88.35,15.5 C92.38,15.19 96.1,11.935 96.1,7.905 L96.1,7.905 Z M72.85,83.7 L23.25,83.7 L23.25,10.85 L72.85,10.85 L72.85,83.7 L72.85,83.7 Z M13.95,10.85 L20.15,10.85 L20.15,86.8 L75.95,86.8 L75.95,10.85 L82.15,10.85 L82.15,93 L13.95,93 L13.95,10.85 L13.95,10.85 Z"></path>
+                            <path d="M41.075,59.675 C41.075,63.395 38.13,66.34 35.34,68.2 L38.44,73.005 C40.455,71.455 42.47,70.99 44.33,70.99 C46.655,70.99 47.895,71.455 49.445,72.075 C50.84,72.54 52.39,73.005 55.025,73.005 C57.66,73.005 60.605,72.075 62.93,69.75 L59.83,64.635 C57.97,66.65 56.73,66.805 55.335,66.805 C53.94,66.805 52.7,66.495 51.305,66.185 C49.91,65.875 48.67,65.565 47.275,65.565 C46.345,65.565 45.415,65.72 43.865,66.805 L43.71,66.65 C46.035,64.79 47.895,62.775 47.895,59.52 C47.895,58.435 47.74,57.35 47.43,56.42 L52.855,56.42 L52.855,52.08 L46.035,52.08 C44.02,48.36 43.865,47.12 43.865,45.57 C43.865,42.78 45.88,40.92 48.825,40.92 C54.095,40.92 54.25,45.725 54.405,47.74 L61.38,47.74 C61.38,39.525 56.73,35.03 48.98,35.03 C40.455,35.03 35.96,39.835 35.96,45.26 C35.96,48.205 37.2,50.995 38.285,52.235 L35.03,52.235 L35.03,56.575 L40.145,56.575 C40.61,57.35 41.075,58.435 41.075,59.675 L41.075,59.675 Z"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

@@ -1,64 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="70"
-   height="70"
-   viewBox="0 0 70.000001 70.000001"
-   id="svg9108"
-   version="1.1"
-   inkscape:version="0.91 r"
-   sodipodi:docname="general.svg">
-  <defs
-     id="defs9110" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-339.28571"
-     inkscape:cy="520"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     units="px"
-     inkscape:window-width="3070"
-     inkscape:window-height="1752"
-     inkscape:window-x="130"
-     inkscape:window-y="48"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata9113">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(0,-982.36216)">
-    <path
-       style="fill:#ffffff"
-       d="m 14.137493,1039.1696 c -0.5278,-0.8451 -1.6746,-2.9202 -2.5486,-4.6113 l -1.5889002,-3.0749 2.5327002,-4.6077 2.5328,-4.6078 5.2766,0 5.2767,0 2.542,4.7789 2.542,4.7789 -2.5889,4.4271 -2.5888,4.4272 -5.214,0.013 c -4.6749,0.012 -5.3131,-0.1458 -6.1736,-1.5234 z m 22.6554,1.217 c 0,-0.1758 2.6545,-4.3459 5.8988,-9.2668 l 5.899,-8.9473 5.699,8.7547 c 3.1344,4.815 5.7041,8.9851 5.7103,9.2668 0.01,0.2817 -5.2128,0.5122 -11.5979,0.5122 -6.3851,0 -11.6092,-0.1439 -11.6092,-0.3196 z m -21.0252,-27.764 c -3.5341,-1.7494 -4.9249,-4.1945 -4.9249,-8.658 0,-7.72493 7.396,-12.26245 14.2284,-8.72927 4.9996,2.58543 6.6654,10.48027 3.1041,14.71257 -3.604,4.2831 -7.4731,5.1172 -12.4076,2.6747 z m 23.2252,-8.4784 0.1901,-9.28494 8.707,0.0236 c 4.7888,0.013 8.9374,0.0338 9.2191,0.0463 0.2817,0.0125 0.4545,4.09448 0.384,9.07121 l -0.128,9.0485 -9.2812,0.1901 -9.2812,0.1901 0.1902,-9.2849 z"
-       id="path4160-3-9-1"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccccccccsccsscscsssssssccsscccccc" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="180px" viewBox="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #CCCCCC;">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>cat-general-huge@2x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-Category-assets-spotlight" transform="translate(-2945.000000, -310.000000)" fill="#FFFFFF">
+            <g id="Category-Icon_Other-116px" transform="translate(2979.100000, 345.650000)">
+                <g id="Group" transform="translate(0.000000, 0.000000)">
+                    <g>
+                        <path d="M46.3326,22.76175 C46.3326,35.01605 36.39865,44.95 24.1428,44.95 C11.88695,44.95 1.95455,35.01605 1.95455,22.76175 C1.95455,10.50745 11.8885,0 24.1428,0 C36.3971,0 46.3326,10.5059 46.3326,22.76175 L46.3326,22.76175 Z" id="Shape"></path>
+                        <rect id="Rectangle-path" x="66.65" y="1.55" width="41.85" height="41.85"></rect>
+                        <polygon id="Shape" points="61.5846 105.2636 88.1423 64.46295 114.7 105.2636"></polygon>
+                        <polygon id="Shape" points="12.4806 105.4 0.81685 85.19885 12.4806 65.1 35.80655 65.1 47.4703 85.19885 35.80655 105.4"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

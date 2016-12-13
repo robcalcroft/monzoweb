@@ -45,7 +45,6 @@
     "express": "^4.13.4",
     "jquery": "^2.2.2",
     "json-loader": "^0.5.4",
-    "localforage": "^1.4.0",
     "materialize-css": "^0.97.6",
     "moment": "^2.12.0",
     "morgan": "^1.7.0",

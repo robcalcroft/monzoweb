@@ -4,7 +4,6 @@ import Overview from 'components/Accounts/Overview';
 import Transactions from 'components/Accounts/Transactions';
 import TransactionOverview from 'components/Accounts/Transactions/Transaction/Overview';
 import { intToAmount, once, ajaxFail, checkStatus } from 'lib/utils';
-import localForage from 'localforage';
 import 'whatwg-fetch';
 
 export default class Accounts extends React.Component {
