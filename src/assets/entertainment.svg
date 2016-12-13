@@ -1,64 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="70"
-   height="70"
-   viewBox="0 0 70.000001 70.000001"
-   id="svg7362"
-   version="1.1"
-   inkscape:version="0.91 r"
-   sodipodi:docname="entertainment.svg">
-  <defs
-     id="defs7364" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="-86.938672"
-     inkscape:cy="20.028242"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     units="px"
-     inkscape:window-width="3070"
-     inkscape:window-height="1752"
-     inkscape:window-x="130"
-     inkscape:window-y="48"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata7367">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(0,-982.36216)">
-    <path
-       style="fill:#ffffff"
-       d="m 27.657086,1041.4145 c -7.25528,-2.4125 -12.036409,-6.6663 -15.298242,-13.6109 -4.5929095,-9.7787 -2.3591465,-21.1023 5.658726,-28.68526 5.373232,-5.0818 10.746097,-6.9978 18.469204,-6.5864 9.801026,0.5222 17.108917,5.3949 21.386459,14.25986 1.77874,3.6863 2.095579,5.2648 2.124864,10.5866 0.02943,5.3102 -0.267172,6.8981 -1.963502,10.5185 -2.357306,5.0311 -6.685177,9.4258 -11.869528,12.053 -4.534559,2.2977 -13.797784,3.0308 -18.507981,1.4646 z m 13.579765,-10.0391 c 2.901362,-1.4801 4.875606,-3.8009 6.561267,-7.7127 1.560868,-3.6224 0.09021,-4.0786 -13.107597,-4.0656 -6.296597,0.01 -11.918165,0.3087 -12.492389,0.6721 -0.892534,0.565 -0.863102,1.1346 0.202494,3.9248 2.87708,7.5336 11.615454,10.8652 18.836225,7.1814 z m -14.315572,-21.3651 c 0,-1.3381 -0.445605,-1.8927 -1.658877,-2.065 -2.001838,-0.2843 -2.954046,1.6103 -1.618335,3.2197 1.378609,1.6612 3.277212,0.9922 3.277212,-1.1547 z m 19.866796,-0.7257 c 0,-2.414 -2.946025,-3.0455 -3.663363,-0.7854 -0.644126,2.0296 0.153931,3.1249 2.077184,2.8509 1.14109,-0.1626 1.586179,-0.7422 1.586179,-2.0655 z"
-       id="path4160-3-9"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="sssssccsssccsssscssssss" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="180px" viewBox="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #EB824B;">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>cat-entertainment-huge@3x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-Category-assets-spotlight" transform="translate(-2015.000000, -310.000000)" fill="#FFFFFF">
+            <g id="Category-Icon_Entertainment-116px" transform="translate(2015.000000, 310.000000)">
+                <g id="Layer_1_2_">
+                    <g id="Group">
+                        <path d="M89.9,37.2 C60.76,37.2 37.2,60.76 37.2,89.9 C37.2,119.04 60.76,142.6 89.9,142.6 C119.04,142.6 142.6,119.04 142.6,89.9 C142.6,60.76 119.04,37.2 89.9,37.2 L89.9,37.2 Z M69.13,68.51 C72.23,68.51 74.71,70.99 74.71,74.09 C74.71,77.19 72.23,79.67 69.13,79.67 C66.03,79.67 63.55,77.19 63.55,74.09 C63.55,70.99 66.03,68.51 69.13,68.51 L69.13,68.51 Z M89.435,123.535 C73.47,123.535 60.605,110.67 60.605,94.705 L118.265,94.705 C118.265,110.67 105.4,123.535 89.435,123.535 L89.435,123.535 Z M110.67,78.585 C107.57,78.585 105.09,76.105 105.09,73.005 C105.09,69.905 107.57,67.425 110.67,67.425 C113.77,67.425 116.25,69.905 116.25,73.005 C116.25,76.105 113.77,78.585 110.67,78.585 L110.67,78.585 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

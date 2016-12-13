@@ -1,64 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="70"
-   height="70"
-   viewBox="0 0 70.000001 70.000001"
-   id="svg9690"
-   version="1.1"
-   inkscape:version="0.91 r"
-   sodipodi:docname="expenses.svg">
-  <defs
-     id="defs9692" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="81.261621"
-     inkscape:cy="-55.121933"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     units="px"
-     inkscape:window-width="3070"
-     inkscape:window-height="1752"
-     inkscape:window-x="130"
-     inkscape:window-y="48"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata9695">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(0,-982.36216)">
-    <path
-       style="fill:#ffffff"
-       d="m 13.125015,1022.3672 c 0,-19.338 0.052,-20.0085 1.5625,-20.4037 1.3391,-0.3502 1.5625,-1.0656 1.5625,-5.00496 l 0,-4.59638 18.75,0 18.74997,0 0,16.67584 c 0,15.6835 0.093,16.7599 1.5625,18.0898 1.33812,1.211 1.5625,2.4062 1.5625,8.3242 l 0,6.9102 -21.87497,0 -21.875,0 z m 38.28122,-13.2082 0,-14.45309 -16.21092,2e-5 -16.2109,1e-5 -0.1357,3.5157 c -0.121,3.13516 0.073,3.56796 1.7865,3.99816 1.0572,0.2653 2.9634,0.2742 4.2359,0.019 2.394,-0.4788 4.7284,1.371 21.7671,17.2487 2.4076,2.2435 4.46529,4.0892 4.57271,4.1015 0.10742,0.012 0.19531,-6.4814 0.19531,-14.4307 z m -12.10932,-1.9531 c -0.9175,-1.4845 0.2559,-1.9521 4.222,-1.6824 2.7676,0.1882 3.9811,0.6049 3.9811,1.3672 0,1.3014 -7.4175,1.5865 -8.2031,0.3152 z m -4.5574,-5.2083 c -1.3988,-1.3989 0.025,-1.8229 6.1199,-1.8229 5.3818,0 6.6406,0.2221 6.6406,1.1718 0,0.942 -1.2009,1.1719 -6.1198,1.1719 -3.3659,0 -6.3542,-0.2344 -6.6407,-0.5208 z"
-       id="path4160-3-2"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="scscccssscccscccccccsccccsscsssss" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="180px" viewBox="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #E1B982;">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>cat-expenses-huge@3x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-Category-assets-spotlight" transform="translate(-1705.000000, -310.000000)" fill="#FFFFFF">
+            <g id="Category-Icon_Exspenses-116px" transform="translate(1705.000000, 310.000000)">
+                <g id="Layer_1_4_">
+                    <g id="Group">
+                        <g transform="translate(46.500000, 40.300000)">
+                            <path d="M80.6,68.2 L80.6,0 L6.2,0 L6.2,20.15 L0,20.15 L0,99.2 L86.645,99.2 L86.8,73.47 L80.6,68.2 L80.6,68.2 Z M10.85,20.15 L10.85,4.65 L75.95,4.65 L75.95,63.55 L27.9,20.15 L10.85,20.15 L10.85,20.15 Z" id="Shape"></path>
+                            <rect id="Rectangle-path" x="51.15" y="26.35" width="17.05" height="4.65"></rect>
+                            <rect id="Rectangle-path" x="41.85" y="15.5" width="26.35" height="4.65"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>

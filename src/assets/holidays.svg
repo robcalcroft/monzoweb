@@ -1,64 +1,22 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="70"
-   height="70"
-   viewBox="0 0 70.000002 70.000001"
-   id="svg8526"
-   version="1.1"
-   inkscape:version="0.91 r"
-   sodipodi:docname="holidays.svg">
-  <defs
-     id="defs8528" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="-339.28571"
-     inkscape:cy="520"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     units="px"
-     inkscape:window-width="3070"
-     inkscape:window-height="1752"
-     inkscape:window-x="130"
-     inkscape:window-y="48"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata8531">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(0,-982.36216)">
-    <path
-       style="fill:#ffffff"
-       d="m 11.124102,1036.268 c -0.9484,-0.9484 -1.1241,-3.4042 -1.1241,-15.7132 0,-13.6915 0.085,-14.6346 1.3837,-15.3295 0.7611,-0.4074 2.2097,-0.7406 3.2192,-0.7406 l 1.8355,0 0,16.4538 0,16.4537 -2.095,0 c -1.1523,0 -2.6009,-0.5059 -3.2193,-1.1242 z m 8.1758,-15.3295 0,-16.4538 3.9346,0 3.9346,0 0,-3.5769 0,-3.5769 7.435,0 c 8.1886,0 8.3034,0.0651 8.3034,4.7085 l 0,2.4453 3.9346,0 3.9346,0 0,16.4538 0,16.4537 -15.7384,0 -15.7384,0 z m 20.7461,-18.5999 0,-2.1462 -5.0077,0 -5.0076,0 0,2.1462 0,2.1461 5.0076,0 5.0077,0 z m 13.439,18.6005 0.2045,-16.4544 2.104,0 c 3.9829,0 4.3993,1.7233 4.1482,17.1696 -0.2048,12.602 -0.335,13.7917 -1.6114,14.7238 -0.7638,0.5578 -2.2124,1.0144 -3.2193,1.0147 l -1.8305,6e-4 z"
-       id="path4160-3-56"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cscscccscccccccsscccccccccccccccccccsssscc" />
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="180px" viewBox="0 0 180 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #B982FF;">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>cat-holidays-huge@3x</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="-Category-assets-spotlight" transform="translate(-1085.000000, -310.000000)" fill="#FFFFFF">
+            <g id="Category-Icon_Holiday-116px" transform="translate(1085.000000, 310.000000)">
+                <g id="Layer_1_5_">
+                    <g id="Group">
+                        <g transform="translate(27.900000, 40.300000)" id="Shape">
+                            <path d="M0,27.9 L0,89.59 C0,94.86 4.34,99.2 9.61,99.2 L15.5,99.2 L15.5,18.6 L9.3,18.6 C4.03,18.6 0,22.63 0,27.9 L0,27.9 Z"></path>
+                            <path d="M124,27.9 L124,89.59 C124,94.86 119.66,99.2 114.39,99.2 L108.5,99.2 L108.5,18.6 L114.7,18.6 C119.97,18.6 124,22.63 124,27.9 L124,27.9 Z"></path>
+                            <path d="M82.15,4.65 C82.15,2.325 79.825,0 77.5,0 L46.5,0 C44.175,0 41.85,2.325 41.85,4.65 L41.85,18.6 L23.25,18.6 L23.405,99.2 L100.595,99.2 L100.75,18.6 L82.15,18.6 L82.15,4.65 L82.15,4.65 Z M74.4,18.6 L49.6,18.6 L49.6,7.75 L74.4,7.75 L74.4,18.6 L74.4,18.6 Z"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
 </svg>
