@@ -1,8 +1,8 @@
 import React from 'react';
 import Container from 'components/Container';
-import Overview from 'components/Accounts/Overview';
-import Transactions from 'components/Accounts/Transactions';
-import TransactionOverview from 'components/Accounts/Transactions/Transaction/Overview';
+import AccountInfo from 'components/AccountInfo';
+import TransactionList from 'components/TransactionList';
+import TransactionSummary from 'components/TransactionSummary';
 import { once, ajaxFail, checkStatus } from 'lib/utils';
 import 'whatwg-fetch';
 
@@ -166,7 +166,7 @@ export default class Accounts extends React.Component {
       <Container>
         <div className="row">
           <div className="col s12 m12 l2">
-            <Overview
+            <AccountInfo
               name={name}
               balance={balance}
               spentToday={spentToday}
@@ -177,7 +177,7 @@ export default class Accounts extends React.Component {
               <input onKeyUp={this.transactionSearch} placeholder="Search" autoFocus type="text" />
               <div className="grey-text text-lighten-1">You can search by location, merchant, category or notes</div>
             </div>
-            <Transactions
+            <TransactionList
               transactionSelect={this.transactionSelect}
               transactions={currentTransactions}
               active={active}
@@ -185,7 +185,7 @@ export default class Accounts extends React.Component {
             />
           </div>
           <div className="col s12 m6 l4">
-            <TransactionOverview
+            <TransactionSummary
               transaction={selectedTransaction}
               accountCurrency={currency}
               />

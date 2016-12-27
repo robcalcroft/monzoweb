@@ -1,7 +1,7 @@
 import React from 'react';
-import Transaction from 'components/Accounts/Transactions/Transaction';
+import Transaction from 'components/Transaction';
 
-export default class Transactions extends React.Component {
+export default class TransactionList extends React.Component {
   render() {
     const { transactions, transactionSelect, active, accountCurrency } = this.props;
 

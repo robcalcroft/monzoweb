@@ -5,7 +5,7 @@ import moment from 'moment';
 import { intToAmount, ajaxFail, checkStatus } from 'lib/utils';
 import './style.scss';
 
-export default class SpendingMap extends React.Component {
+export default class Map extends React.Component {
 
   componentDidMount() {
     this.getAccount();

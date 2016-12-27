@@ -4,7 +4,7 @@ import CategoryIcon from 'components/CategoryIcon';
 import { isEmpty, intToAmount } from 'lib/utils';
 import './style.scss';
 
-export default class Overview extends React.Component {
+export default class TransactionSummary extends React.Component {
   render() {
     if (isEmpty(this.props.transaction)) {
       return <h4 className="center grey-text text-lighten-2">No transaction selected</h4>;
