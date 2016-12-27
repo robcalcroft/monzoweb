@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import CategoryIcon from 'components/CategoryIcon';
 
 export default class Transaction extends React.Component {
   render() {
@@ -22,14 +23,6 @@ export default class Transaction extends React.Component {
     // This will change when I see more reasons!
     const formattedDeclinedReason = declinedReason === 'INSUFFICIENT_FUNDS' ? `Declined, you didn't have ${amount}` : false;
 
-    let logoImage;
-
-    if (logo) {
-      logoImage = logo;
-    } else {
-      logoImage = require(`assets/${category}.svg`);
-    }
-
     return (
       <a
         href="#"
@@ -38,7 +31,9 @@ export default class Transaction extends React.Component {
         onClick={transactionSelect}
       >
         <div className="col s10">
-          <img src={logoImage} alt={merchant} className={`${!logo && 'category--'+category+'-bg'} rounded circle`} />
+          <div className="rounded circle">
+            {logo ? <img src={logo} alt={counterParty || merchant} width="100%" /> : <CategoryIcon category={category} />}
+          </div>
           <span className="title primary-text">{counterParty || merchant}{`${localAmount ? ' 🌎' : ''}`}</span>
           {
             formattedDeclinedReason ? (

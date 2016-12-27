@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import CategoryIcon from 'components/CategoryIcon';
 import './style.scss';
 
 export default class Overview extends React.Component {
@@ -50,14 +51,6 @@ export default class Overview extends React.Component {
       );
     }
 
-    let logoImage;
-
-    if (logo) {
-      logoImage = logo;
-    } else {
-      logoImage = require(`assets/${category}.svg`);
-    }
-
     const Map = (online || (!lat || !long)) ? (
       <div className="transaction--overview--map" />
     ) : (
@@ -68,7 +61,9 @@ export default class Overview extends React.Component {
       <div className="card fadein" style={{margin: 0}}>
         <div className="transaction--overview">
           {Map}
-          <img src={logoImage} className={`transaction--overview--logo rounded ${!logo && 'category--'+category+'-bg'}`} />
+          <div className="transaction--overview--logo">
+            {logo ? <img src={logo} alt={counterParty || merchant} width="100%" /> : <CategoryIcon category={category} />}
+          </div>
           <span className={`transaction--amount ${amount.includes('+') ? 'green-text' : 'black-text'}`}>{amount}</span>
         </div>
         <div className="card-content">
