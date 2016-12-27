@@ -18,6 +18,7 @@ export default class Transactions extends React.Component {
                 transaction={transaction}
                 active={active}
                 transactionSelect={transactionSelect}
+                accountCurrency={accountCurrency}
               />
           ))
         )}

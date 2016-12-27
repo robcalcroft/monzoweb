@@ -10,7 +10,10 @@ export default class Overview extends React.Component {
       return <h4 className="center grey-text text-lighten-2">No transaction selected</h4>;
     }
 
-    const { transaction } = this.props;
+    const {
+      transaction,
+      accountCurrency
+    } = this.props;
     const {
       category,
       notes,
@@ -23,7 +26,7 @@ export default class Overview extends React.Component {
     const amount = intToAmount(transaction.amount, transaction.currency);
     const counterParty = transaction.counterparty ? transaction.counterparty.name : '';
 
-    // TODO: add local amount back in
+    const localAmount = transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false;
 
     const formattedDeclinedReason = (decline_reason === 'INSUFFICIENT_FUNDS') ? `Declined, you didn't have ${amount}` : false;
 
@@ -52,7 +55,7 @@ export default class Overview extends React.Component {
           <span className={`transaction--amount ${amount.includes('+') ? 'green-text' : 'black-text'}`}>{amount}</span>
         </div>
         <div className="card-content">
-          <h5>{counterParty || title}</h5>
+          <h5>{counterParty || title}{localAmount ? ' 🌎' : ''}</h5>
           <div className="grey-text text-lighten-1">{moment(created).format('dddd MMMM Do YYYY [at] h:mma')}</div>
           {address && <div><a href={`http://maps.google.com/?ll=${lat},${lon}`} target="_blank">{address.short_formatted}</a></div>}
           {notes && <div className="black-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{notes}</div>}

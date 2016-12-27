@@ -117,7 +117,6 @@ export default class Accounts extends React.Component {
       }));
     }
 
-    // TODO Move to search all trans (fetch) when pagination is implemented
     let transactions = this.state.transactions;
 
     // Search merchant name, address category and notes
@@ -186,7 +185,10 @@ export default class Accounts extends React.Component {
             />
           </div>
           <div className="col s12 m6 l4">
-            <TransactionOverview transaction={selectedTransaction} />
+            <TransactionOverview
+              transaction={selectedTransaction}
+              accountCurrency={currency}
+              />
           </div>
         </div>
       </Container>

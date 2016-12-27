@@ -22,7 +22,8 @@ export default class Transaction extends React.Component {
     const {
       transactionSelect,
       transaction,
-      active
+      active,
+      accountCurrency
     } = this.props;
 
     const {
@@ -37,7 +38,7 @@ export default class Transaction extends React.Component {
     const amount = intToAmount(transaction.amount, transaction.currency);
     const counterParty = transaction.counterparty ? transaction.counterparty.name : '';
 
-    // TODO: add local amount back in
+    const localAmount = transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false;
 
     // This will change when I see more reasons!
     const formattedDeclinedReason = (decline_reason === 'INSUFFICIENT_FUNDS') ? `Declined, you didn't have ${amount}` : false;
@@ -48,7 +49,7 @@ export default class Transaction extends React.Component {
           <div className="rounded circle">
             {merchant && merchant.logo ? <img src={merchant.logo} alt={counterParty || title} width="100%" /> : <CategoryIcon category={category} />}
           </div>
-          <span className="title primary-text">{counterParty || title}</span>
+          <span className="title primary-text">{counterParty || title}{localAmount ? ' 🌎' : ''}</span>
           {formattedDeclinedReason ? (
             <p>{formattedDeclinedReason}</p>
           ) : (
