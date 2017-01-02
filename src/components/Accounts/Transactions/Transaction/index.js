@@ -1,29 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 import CategoryIcon from 'components/CategoryIcon';
+import DeclineReason from 'components/Accounts/Transactions/Transaction/DeclineReason';
 
 export default class Transaction extends React.Component {
-
-
-  static getTextualDecline(declinedReason){
-    if(!declinedReason) return false;
-
-    switch(declinedReason){
-      case 'INSUFFICIENT_FUNDS':
-        return 'Declined, you had insufficient funds.';
-      case 'CARD_INACTIVE':
-        return 'Declined, card inactive.';
-      case 'CARD_BLOCKED':
-        return 'Declined, card blocked.';
-      case 'PIN_RETRY_COUNT_EXCEEDED':
-        return 'Declined, PIN retry count exceeded.';
-      case 'INVALID_CVC':
-        return 'Declined, invalid CVC code used';
-      default:
-        return 'Declined, unknown \''+ declinedReason + '\'';
-    }
-
-  }
 
   render() {
     const {
@@ -42,7 +22,7 @@ export default class Transaction extends React.Component {
       }
     } = this;
 
-    const formattedDeclinedReason = Transaction.getTextualDecline(declinedReason);
+    const formattedDeclinedReason = DeclineReason.getTranslation(declinedReason);
 
     return (
       <a

@@ -1,8 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import CategoryIcon from 'components/CategoryIcon';
+import DeclineReason from 'components/Accounts/Transactions/Transaction/DeclineReason';
 import './style.scss';
-import Transaction from "components/Accounts/Transactions/Transaction";
 
 export default class Overview extends React.Component {
   render() {
@@ -71,7 +71,7 @@ export default class Overview extends React.Component {
           <h5>{counterParty || merchant}</h5>
           <div><a href={`http://maps.google.com/?ll=${lat},${long}`} target="_blank">{address}</a></div>
           <div className="grey-text text-lighten-1">{moment(created).format('dddd MMMM Do YYYY [at] h:mma')}</div>
-          {declined && <div className="red-text">{ Transaction.getTextualDecline(declined) }</div>}
+          {declined && <div className="red-text">{ DeclineReason.getTranslation(declined) }</div>}
           {localAmount && <div className="grey-text text-lighten-1">Local cost was {localAmount}</div>}
           {notes && <div className="black-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{notes}</div>}
           {category && <div className={`category category--${category}`}>{category}</div>}
