@@ -6,22 +6,22 @@ export default class Transaction extends React.Component {
 
 
   static getTextualDecline(declinedReason){
-	if(!declinedReason) return false;
+    if(!declinedReason) return false;
 
-	switch(declinedReason){
-		case 'INSUFFICIENT_FUNDS':
-			return 'Declined, you had insufficient funds.';
-		case 'CARD_INACTIVE':
-			return 'Declined, card inactive.';
-		case 'CARD_BLOCKED':
-			return 'Declined, card blocked.';
-		case 'PIN_RETRY_COUNT_EXCEEDED':
-			return 'Declined, PIN retry count exceeded.';
-		case 'INVALID_CVC':
-			return 'Declined, invalid CVC code used';
-		default:
-			return 'Declined, unknown \''+ declinedReason + '\'';
-	}
+    switch(declinedReason){
+      case 'INSUFFICIENT_FUNDS':
+        return 'Declined, you had insufficient funds.';
+      case 'CARD_INACTIVE':
+        return 'Declined, card inactive.';
+      case 'CARD_BLOCKED':
+        return 'Declined, card blocked.';
+      case 'PIN_RETRY_COUNT_EXCEEDED':
+        return 'Declined, PIN retry count exceeded.';
+      case 'INVALID_CVC':
+        return 'Declined, invalid CVC code used';
+      default:
+        return 'Declined, unknown \''+ declinedReason + '\'';
+    }
 
   }
 
