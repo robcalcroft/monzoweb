@@ -1,7 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import CategoryIcon from 'components/CategoryIcon';
-import DeclineReason from 'components/Accounts/Transactions/Transaction/DeclineReason';
+import { getDeclineTranslation } from 'lib/utils';
+
 
 export default class Transaction extends React.Component {
 
@@ -22,7 +23,7 @@ export default class Transaction extends React.Component {
       }
     } = this;
 
-    const formattedDeclinedReason = DeclineReason.getTranslation(declinedReason);
+    const formattedDeclinedReason = getDeclineTranslation(declinedReason);
 
     return (
       <a
