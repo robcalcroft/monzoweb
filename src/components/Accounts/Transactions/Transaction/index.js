@@ -1,8 +1,11 @@
 import React from 'react';
 import moment from 'moment';
 import CategoryIcon from 'components/CategoryIcon';
+import { getDeclineTranslation } from 'lib/utils';
+
 
 export default class Transaction extends React.Component {
+
   render() {
     const {
       props: {
@@ -20,8 +23,7 @@ export default class Transaction extends React.Component {
       }
     } = this;
 
-    // This will change when I see more reasons!
-    const formattedDeclinedReason = declinedReason === 'INSUFFICIENT_FUNDS' ? `Declined, you didn't have ${amount}` : false;
+    const formattedDeclinedReason = getDeclineTranslation(declinedReason);
 
     return (
       <a
