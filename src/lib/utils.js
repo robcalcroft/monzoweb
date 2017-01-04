@@ -79,6 +79,7 @@ export function checkStatus(response) {
   throw error;
 }
 
+// Convert a Transaction decline code e.g. INSUFFICIENT_FUNDS into a human readable string.
 export function getDeclineTranslation(declinedCode) {
   if (!declinedCode) return false;
 
@@ -94,6 +95,6 @@ export function getDeclineTranslation(declinedCode) {
     case 'INVALID_CVC':
       return 'Declined, invalid CVC code used';
     default:
-      return 'Declined, unknown \'' + declinedCode + '\'';
+      return `Declined, unknown code: ${declinedCode}`;
   }
 }
