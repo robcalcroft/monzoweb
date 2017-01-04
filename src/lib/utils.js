@@ -81,7 +81,10 @@ export function checkStatus(response) {
 
 // Convert a Transaction decline code e.g. INSUFFICIENT_FUNDS into a human readable string.
 export function getDeclineTranslation(declinedCode) {
-  if (!declinedCode) return false;
+
+  if (!declinedCode){
+    return false;
+  }
 
   switch (declinedCode) {
     case 'INSUFFICIENT_FUNDS':
