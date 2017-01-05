@@ -52,7 +52,6 @@ app.get('/token', (req, res) => {
 
 // Send everything else to react-router
 app.get('*', (req, res) => {
-  console.log(path.join(__dirname, 'src/index.html'));
   res.sendFile(path.join(__dirname, 'src/index.html'));
 });
 
