@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import CategoryIcon from 'components/CategoryIcon';
-import { isEmpty, intToAmount } from 'lib/utils';
+import { getDeclineTranslation, isEmpty, intToAmount } from 'lib/utils';
 import './style.scss';
 
 export default class TransactionSummary extends React.Component {
@@ -12,23 +12,21 @@ export default class TransactionSummary extends React.Component {
 
     const {
       transaction,
+      transaction: {
+        category,
+        notes,
+        merchant,
+        created,
+        decline_reason
+      },
       accountCurrency
     } = this.props;
-    const {
-      category,
-      notes,
-      merchant,
-      created,
-      decline_reason
-    } = transaction;
 
     const title = transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Monzo' : '';
     const amount = intToAmount(transaction.amount, transaction.currency);
     const counterParty = transaction.counterparty ? transaction.counterparty.name : '';
 
     const localAmount = transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false;
-
-    const formattedDeclinedReason = (decline_reason === 'INSUFFICIENT_FUNDS') ? `Declined, you didn't have ${amount}` : false;
 
     const address =  merchant && merchant.address;
     const lat =  merchant && merchant.address.latitude;
@@ -59,7 +57,7 @@ export default class TransactionSummary extends React.Component {
           <div className="grey-text text-lighten-1">{moment(created).format('dddd MMMM Do YYYY [at] h:mma')}</div>
           {address && <div><a href={`http://maps.google.com/?ll=${lat},${lon}`} target="_blank">{address.short_formatted}</a></div>}
           {notes && <div className="black-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{notes}</div>}
-          {formattedDeclinedReason && <div className="red-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{formattedDeclinedReason}</div>}
+          {decline_reason && <div className="red-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{getDeclineTranslation(decline_reason)}</div>}
           {category && <div className={`category category--${category}`}>{category}</div>}
           {tags && (
           <div style={{marginTop:'10px'}}>

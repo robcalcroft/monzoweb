@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import CategoryIcon from 'components/CategoryIcon';
-import { intToAmount } from 'lib/utils';
+import { getDeclineTranslation, intToAmount } from 'lib/utils';
 
 export default class Transaction extends React.Component {
   constructor() {
@@ -22,26 +22,22 @@ export default class Transaction extends React.Component {
     const {
       transactionSelect,
       transaction,
+      transaction: {
+        id,
+        category,
+        merchant,
+        created,
+        decline_reason
+      },
       active,
       accountCurrency
     } = this.props;
-
-    const {
-      id,
-      category,
-      merchant,
-      created,
-      decline_reason
-    } = transaction;
 
     const title = transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Monzo' : '';
     const amount = intToAmount(transaction.amount, transaction.currency);
     const counterParty = transaction.counterparty ? transaction.counterparty.name : '';
 
     const localAmount = transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false;
-
-    // This will change when I see more reasons!
-    const formattedDeclinedReason = (decline_reason === 'INSUFFICIENT_FUNDS') ? `Declined, you didn't have ${amount}` : false;
 
     return (
       <a href="#" className={`collection-item avatar row ${active === id ? 'active' : ''}`} onClick={this.handleClick}>
@@ -50,8 +46,8 @@ export default class Transaction extends React.Component {
             {merchant && merchant.logo ? <img src={merchant.logo} alt={counterParty || title} width="100%" /> : <CategoryIcon category={category} />}
           </div>
           <span className="title primary-text">{counterParty || title}{localAmount ? ' 🌎' : ''}</span>
-          {formattedDeclinedReason ? (
-            <p>{formattedDeclinedReason}</p>
+          {decline_reason ? (
+            <p>{getDeclineTranslation(decline_reason)}</p>
           ) : (
             <p className="grey-text text-lighten-1">{moment(created).fromNow()}</p>
           )}
