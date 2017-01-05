@@ -1,8 +1,8 @@
 import React from 'react';
 import Nav from 'components/Nav';
-import Container from 'components/Container';
 import moment from 'moment';
 import { intToAmount, ajaxFail, checkStatus } from 'lib/utils';
+import { browserHistory } from 'react-router';
 import './style.scss';
 
 export default class Map extends React.Component {
@@ -70,14 +70,8 @@ export default class Map extends React.Component {
   }
 
   render() {
-    if (!localStorage.monzo_access_token) {
-      window.location.href = '/';
-      return false;
-    }
-
     return (
-      <div id="monzoweb">
-        <Nav />
+      <div>
         <div id="side-note">Some locations may be from online purchases which have escaped the checks</div>
         <div id="spending-map"></div>
       </div>

@@ -1,8 +1,8 @@
 import React from 'react';
-import Container from 'components/Container';
 import AccountInfo from 'components/AccountInfo';
 import TransactionList from 'components/TransactionList';
 import TransactionSummary from 'components/TransactionSummary';
+import { browserHistory } from 'react-router';
 import { once, ajaxFail, checkStatus } from 'lib/utils';
 import 'whatwg-fetch';
 
@@ -147,7 +147,7 @@ export default class Accounts extends React.Component {
     } = this.state;
 
     if (!localStorage.monzo_access_token) {
-      window.location.href = '/';
+      browserHistory.push('/');
       return false;
     }
 
@@ -163,35 +163,33 @@ export default class Accounts extends React.Component {
     }
 
     return (
-      <Container>
-        <div className="row">
-          <div className="col s12 m12 l2">
-            <AccountInfo
-              name={name}
-              balance={balance}
-              spentToday={spentToday}
-            />
-          </div>
-          <div className="col s12 m6 l6">
-            <div className="border-box">
-              <input onKeyUp={this.transactionSearch} placeholder="Search" autoFocus type="text" />
-              <div className="grey-text text-lighten-1">You can search by location, merchant, category or notes</div>
-            </div>
-            <TransactionList
-              transactionSelect={this.transactionSelect}
-              transactions={currentTransactions}
-              active={active}
-              accountCurrency={currency}
-            />
-          </div>
-          <div className="col s12 m6 l4">
-            <TransactionSummary
-              transaction={selectedTransaction}
-              accountCurrency={currency}
-              />
-          </div>
+      <div className="row">
+        <div className="col s12 m12 l2">
+          <AccountInfo
+            name={name}
+            balance={balance}
+            spentToday={spentToday}
+          />
         </div>
-      </Container>
+        <div className="col s12 m6 l6">
+          <div className="border-box">
+            <input onKeyUp={this.transactionSearch} placeholder="Search" autoFocus type="text" />
+            <div className="grey-text text-lighten-1">You can search by location, merchant, category or notes</div>
+          </div>
+          <TransactionList
+            transactionSelect={this.transactionSelect}
+            transactions={currentTransactions}
+            active={active}
+            accountCurrency={currency}
+          />
+        </div>
+        <div className="col s12 m6 l4">
+          <TransactionSummary
+            transaction={selectedTransaction}
+            accountCurrency={currency}
+            />
+        </div>
+      </div>
     );
   }
 }

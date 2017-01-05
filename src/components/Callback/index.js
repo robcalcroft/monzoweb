@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from 'components/Container';
 import { checkStatus, showErrorMessage } from 'lib/utils';
 import 'whatwg-fetch';
 
@@ -56,7 +55,8 @@ export default class Callback extends React.Component {
       .then(body => {
         localStorage.setItem('monzo_access_token', body.access_token);
         localStorage.setItem('monzo_refresh_token', body.refresh_token);
-        window.location.href = '/accounts';
+
+        window.location.href = '/';
       })
       .catch(error => {
         showErrorMessage(error);
@@ -69,9 +69,9 @@ export default class Callback extends React.Component {
 
   render() {
     return (
-      <Container nav={false}>
+      <div>
         {this.state.component}
-      </Container>
+      </div>
     );
   }
 }
