@@ -1,21 +1,23 @@
-import path from 'path';
-import webpack from 'webpack';
-import dotenv from 'dotenv';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+require('dotenv').load();
 
-dotenv.load();
+const path = require('path');
+const webpack = require('webpack');
 
-export default {
+module.exports = {
+  devtool: 'cheap-module-source-map',
   stats: {
     colors: true
   },
   entry: [
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client',
     path.resolve(__dirname, 'src/index.js'),
     'whatwg-fetch'
   ],
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/static/'
   },
   resolve: {
     modulesDirectories: [
@@ -48,16 +50,13 @@ export default {
     ]
   },
   plugins: [
-    //new webpack.optimize.DedupePlugin(),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.ejs'),
-      GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
-    }),
     new webpack.DefinePlugin({
       MONZO_CLIENT_ID: JSON.stringify(process.env.MONZO_CLIENT_ID),
       MONZO_REDIRECT_URI: JSON.stringify(process.env.MONZO_REDIRECT_URI),
       GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY)
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ].concat(process.env.NODE_ENV === 'production' ? [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({

@@ -1,18 +1,25 @@
-import express from 'express';
-import morgan from 'morgan';
-import request from 'request';
-import path from 'path';
-import dotenv from 'dotenv';
-
-dotenv.load();
+require('dotenv').load();
+const express = require('express');
+const morgan = require('morgan');
+const request = require('request');
+const path = require('path');
+const webpack = require('webpack');
+const devMiddleware = require('webpack-dev-middleware');
+const hotMiddleware = require('webpack-hot-middleware');
+const config = require('./webpack.config');
 
 let app = express();
+const compiler = webpack(config);
+
+app.use(devMiddleware(compiler, {
+  publicPath: config.output.publicPath,
+  historyApiFallback: true
+}));
+
+app.use(hotMiddleware(compiler));
 
 // Logging
 app.use(morgan('combined'));
-
-// Static files
-app.use(express.static(path.resolve(path.resolve('.'), 'dist')));
 
 // Route to get our token
 app.get('/token', (req, res) => {
@@ -44,10 +51,15 @@ app.get('/token', (req, res) => {
 });
 
 // Send everything else to react-router
-app.use('*', (req, res) => {
-  res.sendFile(path.resolve('.', 'dist/index.html'));
+app.get('*', (req, res) => {
+  console.log(path.join(__dirname, 'src/index.html'));
+  res.sendFile(path.join(__dirname, 'src/index.html'));
 });
 
-app.listen(process.env.PORT || 8000, () => {
-  console.log(`Monzoweb server running on port ${process.env.PORT || 8000}`);
+app.listen(process.env.PORT || 8000, (err) => {
+  if (err) {
+    return console.error(err);
+  }
+
+  console.log(`Listening at http://localhost:${process.env.PORT || 8000}/`);
 });
