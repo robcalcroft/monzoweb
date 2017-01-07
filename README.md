@@ -10,7 +10,12 @@ Check your Monzo account from your browser
 
 ### For personal use of the application* OR production
 
-In the repo folder, run `npm run build` then use something like [PM2](https://github.com/Unitech/pm2) (you'll need to convert [`server.js`](https://github.com/robcalcroft/monzoweb/blob/master/server.js) to ES5 - `node_modules/.bin/babel server.js > server.es5.js`) or you can use `NODE_ENV=production npm start`
+```
+NODE_ENV=production npm run build
+NODE_ENV=production npm start
+```
+
+Then recommend using something like [PM2](https://github.com/Unitech/pm2) to run this in the background for you
 
 
 ## Development

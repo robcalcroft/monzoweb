@@ -1,22 +1,32 @@
 require('dotenv').load();
+
 const express = require('express');
 const morgan = require('morgan');
 const request = require('request');
 const path = require('path');
-const webpack = require('webpack');
-const devMiddleware = require('webpack-dev-middleware');
-const hotMiddleware = require('webpack-hot-middleware');
-const config = require('./webpack.config');
+
+const inDevelopment = process.env.NODE_ENV !== 'production';
 
 let app = express();
-const compiler = webpack(config);
 
-app.use(devMiddleware(compiler, {
-  publicPath: config.output.publicPath,
-  historyApiFallback: true
-}));
+if (inDevelopment) {
+  const webpack = require('webpack');
+  const devMiddleware = require('webpack-dev-middleware');
+  const hotMiddleware = require('webpack-hot-middleware');
+  const config = require('./webpack.config');
 
-app.use(hotMiddleware(compiler));
+  const compiler = webpack(config);
+
+  app.use(devMiddleware(compiler, {
+    publicPath: config.output.publicPath,
+    historyApiFallback: true
+  }));
+
+  app.use(hotMiddleware(compiler));
+} else {
+  // Static files
+  app.use(express.static(path.resolve(path.resolve('.'), 'dist')));
+}
 
 // Logging
 app.use(morgan('combined'));
@@ -52,7 +62,7 @@ app.get('/token', (req, res) => {
 
 // Send everything else to react-router
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'src/index.html'));
+  res.sendFile(path.join(__dirname, inDevelopment ? 'src' : 'dist', 'index.html'));
 });
 
 app.listen(process.env.PORT || 8000, (err) => {
@@ -60,5 +70,6 @@ app.listen(process.env.PORT || 8000, (err) => {
     return console.error(err);
   }
 
-  console.log(`Listening at http://localhost:${process.env.PORT || 8000}/`);
+  console.log(`🌐 Listening at http://localhost:${process.env.PORT || 8000}/`);
+  console.log(`${inDevelopment ? '🛠 Development' : '🚀 Production'} mode`);
 });
