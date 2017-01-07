@@ -7,7 +7,6 @@ import { once, ajaxFail, checkStatus, intToAmount } from 'lib/utils';
 import 'whatwg-fetch';
 
 export default class Accounts extends React.Component {
-
   constructor() {
     super();
 
@@ -36,7 +35,6 @@ export default class Accounts extends React.Component {
   }
 
   initialLoad() {
-
     // Retrieve inital data
     this.retrieveAccount().then(() => {
       this.retrieveBalance();
@@ -111,7 +109,7 @@ export default class Accounts extends React.Component {
         localAmount
       };
     });
-    console.log(transactions[0]);
+
     return transactions;
   }
 
@@ -148,10 +146,8 @@ export default class Accounts extends React.Component {
       });
     }
 
-    let transactions = this.state.transactions;
-
     // Search merchant name, address category and notes
-    transactions = transactions.filter(transaction => (
+    const filteredTransactions = this.state.transactions.filter(transaction => (
       (transaction.merchant ? transaction.merchant.name.toLowerCase().includes(search.toLowerCase()) : false) ||
       (transaction.merchant ? transaction.merchant.address.formatted.toLowerCase().includes(search.toLowerCase()) : false) ||
       (transaction.merchant ? transaction.merchant.category.toLowerCase().includes(search.toLowerCase()) : false) ||
@@ -160,7 +156,7 @@ export default class Accounts extends React.Component {
 
     this.setState({
       filterActive: true,
-      filteredTransactions: transactions
+      filteredTransactions
     });
   }
 

@@ -3,7 +3,7 @@ import { intToAmount } from 'lib/utils';
 
 export default class AccountInfo extends React.Component {
   render() {
-    const { props: { balance, spentToday, currency, name } } = this;
+    const { balance, spentToday, currency, name } = this.props;
 
     return (
       <div className="accounts--overview">
