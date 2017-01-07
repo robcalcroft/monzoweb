@@ -55,9 +55,9 @@ export default class Accounts extends React.Component {
     .then(response => response.json())
     .then(account => {
       const { currency, balance, spend_today: spentToday} = account;
-      this.setState(Object.assign({}, this.state, {
+      this.setState({
         balance, spentToday, currency
-      }));
+      });
     })
     .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
   }
@@ -73,10 +73,10 @@ export default class Accounts extends React.Component {
       .then(checkStatus)
       .then(response => response.json())
       .then(response => {
-        this.setState(Object.assign({}, this.state, {
+        this.setState({
           name: response.accounts[0].description,
           id: response.accounts[0].id
-        }));
+        });
         resolve();
       })
       .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
@@ -93,17 +93,17 @@ export default class Accounts extends React.Component {
     .then(checkStatus)
     .then(response => response.json())
     .then(account => {
-      this.setState(Object.assign({}, this.state, {
+      this.setState({
         transactions: account.transactions.reverse()
-      }));
+      });
     })
     .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
   }
 
   transactionSelect(transactionId = 0) {
-    this.setState(Object.assign({}, this.state, {
+    this.setState({
       active: transactionId
-    }));
+    });
   }
 
   transactionSearch(event) {
@@ -111,10 +111,10 @@ export default class Accounts extends React.Component {
     const search = event.target.value;
 
     if (search.length <= 0) {
-      return this.setState(Object.assign({}, this.state, {
+      return this.setState({
         filterActive: false,
         filteredTransactions: []
-      }));
+      });
     }
 
     let transactions = this.state.transactions;
@@ -127,10 +127,10 @@ export default class Accounts extends React.Component {
       (transaction.notes ? transaction.notes.toLowerCase().includes(search.toLowerCase()) : false)
     ));
 
-    this.setState(Object.assign({}, this.state, {
+    this.setState({
       filterActive: true,
       filteredTransactions: transactions
-    }));
+    });
   }
 
   render() {
