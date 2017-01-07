@@ -24,6 +24,7 @@ export default class Transaction extends React.Component {
       transaction,
       transaction: {
         id,
+        title,
         category,
         merchant,
         created,
@@ -33,9 +34,7 @@ export default class Transaction extends React.Component {
       accountCurrency
     } = this.props;
 
-    const title = transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Monzo' : '';
     const amount = intToAmount(transaction.amount, transaction.currency);
-    const counterParty = transaction.counterparty ? transaction.counterparty.name : '';
 
     const localAmount = transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false;
 
@@ -43,9 +42,9 @@ export default class Transaction extends React.Component {
       <a href="#" className={`collection-item avatar row ${active === id ? 'active' : ''}`} onClick={this.handleClick}>
         <div className="col s10">
           <div className="rounded circle">
-            {merchant && merchant.logo ? <img src={merchant.logo} alt={counterParty || title} width="100%" /> : <CategoryIcon category={category} />}
+            {merchant && merchant.logo ? <img src={merchant.logo} alt={title} width="100%" /> : <CategoryIcon category={category} />}
           </div>
-          <span className="title primary-text">{counterParty || title}{localAmount ? ' 🌎' : ''}</span>
+          <span className="title primary-text">{title}{localAmount ? ' 🌎' : ''}</span>
           {decline_reason ? (
             <p>{getDeclineTranslation(decline_reason)}</p>
           ) : (

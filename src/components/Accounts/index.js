@@ -83,6 +83,29 @@ export default class Accounts extends React.Component {
     });
   }
 
+  processTransactionsData(transactions) {
+    transactions = transactions.map(transaction => {
+
+      let title = '';
+
+      if (typeof transaction.counterparty.name !== 'undefined') {
+        console.log('ok', transaction)
+        title = transaction.counterparty.name;
+      } else if (typeof transaction.merchant.name !== 'undefined') {
+        title = transaction.merchant.name;
+      } else if (transaction.is_load) {
+        title = 'Monzo';
+      }
+
+      return {
+        title: title,
+        ...transaction
+      };
+    });
+    console.log(transactions[0]);
+    return transactions;
+  }
+
   // Params is a query string starting with '&'
   retrieveTransactions(params = '') {
     fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${this.state.id}${params}`, {
@@ -93,9 +116,8 @@ export default class Accounts extends React.Component {
     .then(checkStatus)
     .then(response => response.json())
     .then(account => {
-      this.setState({
-        transactions: account.transactions.reverse()
-      });
+      const transactions = this.processTransactionsData(account.transactions).reverse()
+      this.setState({ transactions });
     })
     .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
   }

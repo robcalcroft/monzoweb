@@ -13,6 +13,7 @@ export default class TransactionSummary extends React.Component {
     const {
       transaction,
       transaction: {
+        title,
         category,
         notes,
         merchant,
@@ -22,9 +23,7 @@ export default class TransactionSummary extends React.Component {
       accountCurrency
     } = this.props;
 
-    const title = transaction.merchant ? transaction.merchant.name : transaction.is_load ? 'Monzo' : '';
     const amount = intToAmount(transaction.amount, transaction.currency);
-    const counterParty = transaction.counterparty ? transaction.counterparty.name : '';
 
     const localAmount = transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false;
 
@@ -48,12 +47,12 @@ export default class TransactionSummary extends React.Component {
         <div className="transaction--overview">
           {Map}
           <div className="transaction--overview--logo">
-            {merchant && merchant.logo ? <img src={merchant.logo} alt={counterParty || title} width="100%" /> : <CategoryIcon category={category} />}
+            {merchant && merchant.logo ? <img src={merchant.logo} alt={title} width="100%" /> : <CategoryIcon category={category} />}
           </div>
           <span className={`transaction--amount ${amount.includes('+') ? 'green-text' : 'black-text'}`}>{amount}</span>
         </div>
         <div className="card-content">
-          <h5>{counterParty || title}{localAmount ? ' 🌎' : ''}</h5>
+          <h5>{title}{localAmount ? ' 🌎' : ''}</h5>
           <div className="grey-text text-lighten-1">{moment(created).format('dddd MMMM Do YYYY [at] h:mma')}</div>
           {address && <div><a href={`http://maps.google.com/?ll=${lat},${lon}`} target="_blank">{address.short_formatted}</a></div>}
           {notes && <div className="black-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{notes}</div>}
