@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import CategoryIcon from 'components/CategoryIcon';
-import { getDeclineTranslation, intToAmount } from 'lib/utils';
+import { getDeclineTranslation } from 'lib/utils';
 
 export default class Transaction extends React.Component {
   constructor() {
@@ -28,15 +28,12 @@ export default class Transaction extends React.Component {
         category,
         merchant,
         created,
-        decline_reason
+        decline_reason,
+        amount,
+        localAmount
       },
-      active,
-      accountCurrency
+      active
     } = this.props;
-
-    const amount = intToAmount(transaction.amount, transaction.currency);
-
-    const localAmount = transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false;
 
     return (
       <a href="#" className={`collection-item avatar row ${active === id ? 'active' : ''}`} onClick={this.handleClick}>
@@ -52,7 +49,7 @@ export default class Transaction extends React.Component {
           )}
         </div>
         <div className="col s2">
-          <p className={`secondary-content ${amount.includes('+') ? 'green-text' : 'black-text'}`} style={{fontSize: '1.5em'}}>
+          <p className={`secondary-content ${(amount && amount.includes('+')) ? 'green-text' : 'black-text'}`} style={{fontSize: '1.5em'}}>
             {amount}
           </p>
         </div>

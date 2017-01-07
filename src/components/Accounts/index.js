@@ -3,7 +3,7 @@ import AccountInfo from 'components/AccountInfo';
 import TransactionList from 'components/TransactionList';
 import TransactionSummary from 'components/TransactionSummary';
 import { browserHistory } from 'react-router';
-import { once, ajaxFail, checkStatus } from 'lib/utils';
+import { once, ajaxFail, checkStatus, intToAmount } from 'lib/utils';
 import 'whatwg-fetch';
 
 export default class Accounts extends React.Component {
@@ -88,18 +88,27 @@ export default class Accounts extends React.Component {
 
       let title = '';
 
-      if (typeof transaction.counterparty.name !== 'undefined') {
-        console.log('ok', transaction)
+      if (transaction.counterparty && typeof transaction.counterparty.name !== 'undefined') {
         title = transaction.counterparty.name;
-      } else if (typeof transaction.merchant.name !== 'undefined') {
+      } else if (transaction.merchant && typeof transaction.merchant.name !== 'undefined') {
         title = transaction.merchant.name;
       } else if (transaction.is_load) {
         title = 'Monzo';
       }
 
+      const amount = intToAmount(transaction.amount, transaction.currency);
+
+      let localAmount = false;
+
+      if (transaction.local_currency !== this.state.currency) {
+        localAmount = intToAmount(transaction.local_amount, transaction.local_currency);
+      }
+
       return {
-        title: title,
-        ...transaction
+        ...transaction,
+        title,
+        amount,
+        localAmount
       };
     });
     console.log(transactions[0]);
@@ -164,7 +173,6 @@ export default class Accounts extends React.Component {
       filterActive,
       filteredTransactions,
       balance,
-      currency,
       spentToday
     } = this.state;
 
@@ -202,13 +210,11 @@ export default class Accounts extends React.Component {
             transactionSelect={this.transactionSelect}
             transactions={currentTransactions}
             active={active}
-            accountCurrency={currency}
           />
         </div>
         <div className="col s12 m6 l4">
           <TransactionSummary
             transaction={selectedTransaction}
-            accountCurrency={currency}
             />
         </div>
       </div>

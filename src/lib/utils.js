@@ -7,7 +7,7 @@ export function isEmpty(obj) {
 }
 
 export function intToAmount(amount, currency = 'GBP') {
-  if (amount === undefined || amount === null || amount === false) {
+  if (!amount && typeof amount === 'undefined') {
     return false;
   }
 

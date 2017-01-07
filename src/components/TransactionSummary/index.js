@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import CategoryIcon from 'components/CategoryIcon';
-import { getDeclineTranslation, isEmpty, intToAmount } from 'lib/utils';
+import { getDeclineTranslation, isEmpty } from 'lib/utils';
 import './style.scss';
 
 export default class TransactionSummary extends React.Component {
@@ -17,29 +17,29 @@ export default class TransactionSummary extends React.Component {
         category,
         notes,
         merchant,
+        merchant: {
+          address,
+          address: {
+            latitude,
+            longitude
+          }
+        },
         created,
-        decline_reason
-      },
-      accountCurrency
+        decline_reason,
+        amount,
+        localAmount
+      }
     } = this.props;
-
-    const amount = intToAmount(transaction.amount, transaction.currency);
-
-    const localAmount = transaction.local_currency !== accountCurrency ? intToAmount(transaction.local_amount, transaction.local_currency) : false;
-
-    const address =  merchant && merchant.address;
-    const lat =  merchant && merchant.address.latitude;
-    const lon =  merchant && merchant.address.longitude;
 
     const tags = merchant ? merchant.metadata.suggested_tags ? merchant.metadata.suggested_tags.split(' ').filter(tag => tag !== '') : [] : [];
 
     const DEFAULT_ZOOM = '16';
     const zoom = merchant && merchant.address.zoom_level || DEFAULT_ZOOM;
 
-    const Map = (!merchant || merchant.online || !lat || !lon) ? (
+    const Map = (!merchant || merchant.online || !latitude || !longitude) ? (
       <div className="transaction--overview--map" />
     ) : (
-      <div className="transaction--overview--map" style={{backgroundImage: `url('https://maps.googleapis.com/maps/api/staticmap?size=640x320&zoom=${zoom}&markers=${lat},${lon}&scale=1&key=${GOOGLE_MAPS_API_KEY}')`}} />
+      <div className="transaction--overview--map" style={{backgroundImage: `url('https://maps.googleapis.com/maps/api/staticmap?size=640x320&zoom=${zoom}&markers=${latitude},${longitude}&scale=1&key=${GOOGLE_MAPS_API_KEY}')`}} />
     );
 
     return (
@@ -49,12 +49,12 @@ export default class TransactionSummary extends React.Component {
           <div className="transaction--overview--logo">
             {merchant && merchant.logo ? <img src={merchant.logo} alt={title} width="100%" /> : <CategoryIcon category={category} />}
           </div>
-          <span className={`transaction--amount ${amount.includes('+') ? 'green-text' : 'black-text'}`}>{amount}</span>
+          <span className={`transaction--amount ${(amount && amount.includes('+')) ? 'green-text' : 'black-text'}`}>{amount}</span>
         </div>
         <div className="card-content">
           <h5>{title}{localAmount ? ' 🌎' : ''}</h5>
           <div className="grey-text text-lighten-1">{moment(created).format('dddd MMMM Do YYYY [at] h:mma')}</div>
-          {address && <div><a href={`http://maps.google.com/?ll=${lat},${lon}`} target="_blank">{address.short_formatted}</a></div>}
+          {address && <div><a href={`http://maps.google.com/?ll=${latitude},${longitude}`} target="_blank">{address.short_formatted}</a></div>}
           {notes && <div className="black-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{notes}</div>}
           {decline_reason && <div className="red-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{getDeclineTranslation(decline_reason)}</div>}
           {category && <div className={`category category--${category}`}>{category}</div>}

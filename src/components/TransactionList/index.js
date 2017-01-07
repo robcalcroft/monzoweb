@@ -3,7 +3,7 @@ import Transaction from 'components/Transaction';
 
 export default class TransactionList extends React.Component {
   render() {
-    const { transactions, transactionSelect, active, accountCurrency } = this.props;
+    const { transactions, transactionSelect, active } = this.props;
 
     return (
       <ul className="collection with-header" style={{maxHeight: '70vh', overflowY: 'scroll'}}>
@@ -18,7 +18,6 @@ export default class TransactionList extends React.Component {
                 transaction={transaction}
                 active={active}
                 transactionSelect={transactionSelect}
-                accountCurrency={accountCurrency}
               />
           ))
         )}
