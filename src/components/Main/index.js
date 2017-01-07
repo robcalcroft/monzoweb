@@ -6,7 +6,7 @@ import { browserHistory } from 'react-router';
 import { once, ajaxFail, checkStatus, intToAmount } from 'lib/utils';
 import 'whatwg-fetch';
 
-export default class Accounts extends React.Component {
+export default class Main extends React.Component {
   constructor() {
     super();
 
