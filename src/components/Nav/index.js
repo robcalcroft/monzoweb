@@ -55,13 +55,17 @@ export default class Nav extends React.Component {
             <span className="nav--logo-text">Web</span>
           </Link>
           <ul className="right hide-on-med-and-down">{Links}</ul>
-          <ul id="slide-out" className="side-nav">
-            <img src={require('assets/logo.svg')} className="nav--logo--menu center" alt="Monzo logo" />
-            {Links}
-          </ul>
-          <a href="#" data-activates="slide-out" className="button-collapse right">
-            <span className="nav--mobile-menu">Menu</span>
-          </a>
+          {localStorage.monzo_access_token && (
+            <div>
+              <ul id="slide-out" className="side-nav">
+                <img src={require('assets/logo.svg')} className="nav--logo--menu center" alt="Monzo logo" />
+                {Links}
+              </ul>
+              <a href="#" data-activates="slide-out" className="button-collapse right">
+                <span className="nav--mobile-menu">Menu</span>
+              </a>
+            </div>
+          )}
         </div>
       </nav>
     );
