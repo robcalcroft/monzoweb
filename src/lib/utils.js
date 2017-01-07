@@ -51,22 +51,25 @@ export function ajaxFail(error = {}, callback) {
         localStorage.monzo_access_token = credentials.access_token;
         localStorage.monzo_refresh_token = credentials.refresh_token;
         if (typeof callback === 'function') {
-          return callback(credentials);
+          return callback(null, credentials);
         }
       })
       .catch(error => {
         localStorage.clear();
-        showErrorMessage(err);
+        return callback(errorMessage(err));
       });
-  } else {
-    showErrorMessage(error);
   }
+
+  callback(errorMessage(err));
 }
 
-// Show the sweet alert popup
-export function showErrorMessage(error = {}) {
-  swal('Error', error.response && error.response.json() ? `${error.response.json().message} try logging out and in again` : false
-    || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error');
+// Create error message
+export function errorMessage(error = {}) {
+  if (error.response && error.response.json()) {
+    return `${error.response.json().message} try logging out and in again`;
+  }
+
+  return 'Internal error, check your network connection, contact me in the menu if this keeps happening';
 }
 
 // Check the status of an AJAX query

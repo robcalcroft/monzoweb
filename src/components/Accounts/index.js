@@ -17,9 +17,11 @@ export default class Accounts extends React.Component {
     // Bind property functions
     this.transactionSearch = this.transactionSearch.bind(this);
     this.transactionSelect = this.transactionSelect.bind(this);
+    this.initialLoad = this.initialLoad.bind(this);
 
     // TODO Add Redux
     this.state = {
+      error: '',
       ui: {
         selectedTransaction: 0
       },
@@ -71,7 +73,13 @@ export default class Accounts extends React.Component {
         })
       });
     })
-    .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
+    .catch(error => ajaxFail(error, (error, credentials) => {
+      if (error) {
+        return this.setState({ error });
+      }
+
+      this.initialLoad(credentials);
+    }));
   }
 
   // Updates the state with the account name (only first account supported atm)
@@ -93,7 +101,13 @@ export default class Accounts extends React.Component {
         });
         resolve();
       })
-      .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
+      .catch(error => ajaxFail(error, (error, credentials) => {
+        if (error) {
+          return this.setState({ error });
+        }
+
+        this.initialLoad(credentials);
+      }));
     });
   }
 
@@ -113,7 +127,13 @@ export default class Accounts extends React.Component {
         })
       });
     })
-    .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
+    .catch(error => ajaxFail(error, (error, credentials) => {
+      if (error) {
+        return this.setState({ error });
+      }
+
+      this.initialLoad(credentials);
+    }));
   }
 
   transactionSelect(event) {
@@ -179,7 +199,13 @@ export default class Accounts extends React.Component {
         }
       });
     })
-    .catch(error => ajaxFail(error, this.initialLoad.bind(this)));
+    .catch(error => ajaxFail(error, (error, credentials) => {
+      if (error) {
+        return this.setState({ error });
+      }
+
+      this.initialLoad(credentials);
+    }));
   }
 
   transactionSearch(event) {
@@ -215,7 +241,7 @@ export default class Accounts extends React.Component {
   }
 
   render() {
-    const { account, transactionOverview, ui } = this.state;
+    const { error, account, transactionOverview, ui } = this.state;
 
     if (!localStorage.monzo_access_token) {
       window.location.href = '/';
@@ -224,6 +250,7 @@ export default class Accounts extends React.Component {
 
     return (
       <Container>
+        {error && <Alert message={error} />}
         <div className="row">
           <div className="col s12 m12 l2">
             <Overview
