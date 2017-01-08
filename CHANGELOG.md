@@ -3,6 +3,7 @@ First major point release bump! :two:
 Some bugs squished and improvements made by community members :tada:
 Some fantastic UI improvements and internal refactoring by @zaccolley :sunglasses:
 
+- Add missing environment variables warning message #55 @zaccolley
 - Remove sweetalert and add in new Alert component #51 @zaccolley
 - Improved messages on declined transactions #47 @florx
 - Refactored structure of app (Flattened out directories in components, renamed components, simplified data state) #46 @zaccolley
