@@ -1,6 +1,8 @@
 ###v2.0.0
 First major point release bump! :two:
-Some bugs squished and improvements made by community members :tada:
+
+Bugs squished and improvements made by community members :tada:
+
 Some fantastic UI improvements and internal refactoring by @zaccolley :sunglasses:
 
 - Add missing environment variables warning message #55 @zaccolley
