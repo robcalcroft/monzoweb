@@ -1,10 +1,9 @@
 import React from 'react';
 import { intToAmount } from 'lib/utils';
-import './style.scss';
 
-export default class Overview extends React.Component {
+export default class AccountInfo extends React.Component {
   render() {
-    const { props: { balance, spentToday, currency, name } } = this;
+    const { balance, spentToday, currency, name } = this.props;
 
     return (
       <div className="accounts--overview">

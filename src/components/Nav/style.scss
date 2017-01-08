@@ -1,6 +1,18 @@
-.nav--logo {
+.nav {
+  margin-bottom: 1em;
+}
+
+.nav--logo-image {
+  float: left;
   height: 35px;
   margin: 15px;
+  margin-right: 0.25em;
+}
+
+.nav--logo-text {
+  float: left;
+  font-size: 1.75em;
+  font-weight: lighter;
 }
 
 .nav--logo--menu {
