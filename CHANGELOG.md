@@ -3,18 +3,18 @@ First major point release bump! :two:
 
 Bugs squished and improvements made by community members :tada:
 
-Some fantastic UI improvements and internal refactoring by @zaccolley :sunglasses:
+Some fantastic UI improvements and internal refactoring by [@zaccolley](https://github.com/zaccolley) :sunglasses:
 
-- Add missing environment variables warning message #55 @zaccolley
-- Remove sweetalert and add in new Alert component #51 @zaccolley
-- Improved messages on declined transactions #47 @florx
-- Refactored structure of app (Flattened out directories in components, renamed components, simplified data state) #46 @zaccolley
-- Improve development workflow with hot reloading #46 @zaccolley
-- Add favicon #39 @zaccolley
-- Added SVG category icons for when merchant has no image #38 @zaccolley
-- Add yarn support #36 @zaccolley
-- Updated use of key for Google Maps API #33 @imascarenhas
-- Fixed `=`'s in OAuth2 auth codes breaking the string manipulation #32
+- Add missing environment variables warning message [#55](https://github.com/robcalcroft/monzoweb/issues/55) [@zaccolley](https://github.com/zaccolley)
+- Remove sweetalert and add in new Alert component [#51](https://github.com/robcalcroft/monzoweb/issues/51) [@zaccolley](https://github.com/zaccolley)
+- Improved messages on declined transactions [#47](https://github.com/robcalcroft/monzoweb/issues/47) [@florx](https://github.com/florx)
+- Refactored structure of app (Flattened out directories in components, renamed components, simplified data state) [#46](https://github.com/robcalcroft/monzoweb/issues/46) [@zaccolley](https://github.com/zaccolley)
+- Improve development workflow with hot reloading [#46](https://github.com/robcalcroft/monzoweb/issues/46) [@zaccolley](https://github.com/zaccolley)
+- Add favicon [#39](https://github.com/robcalcroft/monzoweb/issues/39) [@zaccolley](https://github.com/zaccolley)
+- Added SVG category icons for when merchant has no image [#38](https://github.com/robcalcroft/monzoweb/issues/38) [@zaccolley](https://github.com/zaccolley)
+- Add yarn support [#36](https://github.com/robcalcroft/monzoweb/issues/36) [@zaccolley](https://github.com/zaccolley)
+- Updated use of key for Google Maps API [#33](https://github.com/robcalcroft/monzoweb/issues/33) [@imascarenhas](https://github.com/imascarenhas)
+- Fixed `=`'s in OAuth2 auth codes breaking the string manipulation [#32](https://github.com/robcalcroft/monzoweb/issues/32)
 
 ###v1.3.1
 Some new internals and a fresh re-branding
