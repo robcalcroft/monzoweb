@@ -51,7 +51,6 @@ export function ajaxFail(error = {}, callback) {
   }
 
   error.response.json().then(responseJSON => {
-    console.log(responseJSON)
     if (responseJSON.code === 'unauthorized.bad_access_token' && localStorage.monzo_refresh_token) {
       fetch(`/token?refresh_token=${localStorage.monzo_refresh_token}&grant_type=refresh_token`)
         .then(checkStatus)

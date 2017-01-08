@@ -17,19 +17,16 @@ export default class TransactionSummary extends React.Component {
         category,
         notes,
         merchant,
-        merchant: {
-          address,
-          address: {
-            latitude,
-            longitude
-          }
-        },
         created,
         decline_reason,
         amount,
         localAmount
       }
     } = this.props;
+
+    const address = merchant && merchant.address;
+    const latitude = address && address.latitude;
+    const longitude = address && address.longitude;
 
     const tags = merchant ? merchant.metadata.suggested_tags ? merchant.metadata.suggested_tags.split(' ').filter(tag => tag !== '') : [] : [];
 
