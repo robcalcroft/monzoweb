@@ -5,7 +5,7 @@ if (!process.env.MONZO_CLIENT_ID || !process.env.MONZO_CLIENT_SECRET || !process
 }
 
 if (!process.env.GOOGLE_MAPS_API_KEY) {
-  return console.error('✋ Warning: No `GOOGLE_MAPS_API_KEY` environment variable found in the `.env` file. Google Maps will not work across the application.');
+  console.error('✋ Warning: No `GOOGLE_MAPS_API_KEY` environment variable found in the `.env` file. Google Maps will not work across the application.');
 }
 
 const express = require('express');
