@@ -2,8 +2,12 @@
 import currencyCodes from 'lib/currency-codes.json';
 import 'whatwg-fetch';
 
+export function isEmpty(obj) {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
+}
+
 export function intToAmount(amount, currency = 'GBP') {
-  if (amount === undefined || amount === null || amount === false) {
+  if (!amount && typeof amount === 'undefined') {
     return false;
   }
 
@@ -42,25 +46,30 @@ export function once(func) {
 
 // Asks for a reissued token if the current access token has expired
 export function ajaxFail(error = {}, callback) {
-  const responseJSON = error.response.json();
-  if (responseJSON && responseJSON.code === 'unauthorized.bad_access_token' && localStorage.monzo_refresh_token) {
-    fetch(`/token?refresh_token=${localStorage.monzo_refresh_token}&grant_type=refresh_token`)
-      .then(checkStatus)
-      .then(response => response.json())
-      .then(credentials => {
-        localStorage.monzo_access_token = credentials.access_token;
-        localStorage.monzo_refresh_token = credentials.refresh_token;
-        if (typeof callback === 'function') {
-          return callback(null, credentials);
-        }
-      })
-      .catch(error => {
-        localStorage.clear();
-        return callback(errorMessage(err));
-      });
+  if (!error.response) {
+    return console.error(error);
   }
 
-  callback(errorMessage(err));
+  error.response.json().then(responseJSON => {
+    console.log(responseJSON)
+    if (responseJSON.code === 'unauthorized.bad_access_token' && localStorage.monzo_refresh_token) {
+      fetch(`/token?refresh_token=${localStorage.monzo_refresh_token}&grant_type=refresh_token`)
+        .then(checkStatus)
+        .then(response => response.json())
+        .then(credentials => {
+          localStorage.monzo_access_token = credentials.access_token;
+          localStorage.monzo_refresh_token = credentials.refresh_token;
+
+          if (typeof callback === 'function') {
+            return callback(null, credentials);
+          }
+        })
+        .catch(error => {
+          localStorage.clear();
+          return callback(errorMessage(err));
+        });
+    }
+  });
 }
 
 // Create error message

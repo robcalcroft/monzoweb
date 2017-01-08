@@ -1,12 +1,50 @@
 @import 'materialize/materialize.scss';
 
-html {
-  font-family: 'Source Sans Pro', sans-serif;
-  height: 100vh;
-}
-
 * {
   outline: none;
+}
+
+html,
+body,
+#monzoweb,
+.loggedIn,
+.loggedOut {
+  height: 100%;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.loggedOut {
+  background: #14233c;
+  color: white;
+  text-align: center;
+}
+
+.loggedOut p {
+  font-size: 1.25em;
+  line-height: 1.25em;
+  max-width: 18em;
+  margin: 0 auto 2em;
+}
+
+.loggedOut .nav {
+  box-shadow: none;
+  height: 8em;
+  padding: 2em 0;
+  margin-bottom: 3em;
+}
+
+.loggedOut .nav--logo {
+  width: 225px;
+  display: block;
+  margin: 2em auto 0;
+}
+
+.wrapper {
+  max-width: 1330px;
+  margin: 0 auto;
 }
 
 .primary-text {

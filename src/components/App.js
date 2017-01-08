@@ -1,18 +1,22 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
-import Root from 'components/Root';
+import Container from 'components/Container';
 import Callback from 'components/Callback';
-import Accounts from 'components/Accounts';
-import SpendingMap from 'components/SpendingMap';
+import Main from 'components/Main';
+import Login from 'components/Login';
+import NoMatch from 'components/NoMatch';
+import Map from 'components/Map';
 
 export default class App extends React.Component {
   render() {
     return (
       <Router history={browserHistory}>
-        <Route path="/" component={Root}/>
-        <Route path="/callback" component={Callback} />
-        <Route path="/accounts" component={Accounts} />
-        <Route path="/map" component={SpendingMap} />
+        <Route component={Container}>
+          <Route path="/" component={localStorage.monzo_access_token ? Main : Login} default />
+          <Route path="/callback" component={Callback} />
+          <Route path="/map" component={Map} />
+          <Route path="*" component={NoMatch} />
+        </Route>
       </Router>
     );
   }

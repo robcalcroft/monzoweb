@@ -1,14 +1,11 @@
-import path from 'path';
-import webpack from 'webpack';
-import dotenv from 'dotenv';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+require('dotenv').load();
 
-dotenv.load();
+const path = require('path');
+const webpack = require('webpack');
 
-export default {
-  stats: {
-    colors: true
-  },
+const inDevelopment = process.env.NODE_ENV !== 'production';
+
+const config = {
   entry: [
     path.resolve(__dirname, 'src/index.js'),
     'whatwg-fetch'
@@ -48,17 +45,26 @@ export default {
     ]
   },
   plugins: [
-    //new webpack.optimize.DedupePlugin(),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src/index.ejs'),
-      GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY
-    }),
     new webpack.DefinePlugin({
       MONZO_CLIENT_ID: JSON.stringify(process.env.MONZO_CLIENT_ID),
       MONZO_REDIRECT_URI: JSON.stringify(process.env.MONZO_REDIRECT_URI),
-      GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY)
-    })
-  ].concat(process.env.NODE_ENV === 'production' ? [
+      GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ]
+};
+
+if (inDevelopment) {
+  config.devtool = 'cheap-module-source-map';
+  config.stats = { colors: true };
+  config.entry = ['react-hot-loader/patch', 'webpack-hot-middleware/client'].concat(config.entry);
+  config.output.publicPath = '/static/'
+} else {
+  config.plugins = config.plugins.concat([
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: true,
@@ -66,5 +72,7 @@ export default {
       compress: true,
       preamble: '(c) 2016 Rob Calcroft'
     })
-  ] : [])
-};
+  ])
+}
+
+module.exports = config;
