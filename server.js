@@ -1,8 +1,11 @@
 require('dotenv').load();
 
-if (!process.env.MONZO_CLIENT_ID || !process.env.MONZO_CLIENT_SECRET ||
-    !process.env.MONZO_REDIRECT_URI || !process.env.GOOGLE_MAPS_API_KEY) {
-  return console.error('✋ Failed to load in the environment variables. Are they missing from the `.env` file?');
+if (!process.env.MONZO_CLIENT_ID || !process.env.MONZO_CLIENT_SECRET || !process.env.MONZO_REDIRECT_URI) {
+  return console.error('❗ Failed to load in the environment variables. Are they missing from the `.env` file?');
+}
+
+if (!process.env.GOOGLE_MAPS_API_KEY) {
+  return console.error('✋ Warning: No `GOOGLE_MAPS_API_KEY` environment variable found in the `.env` file. Google Maps will not work across the application.');
 }
 
 const express = require('express');
