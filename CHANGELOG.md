@@ -1,3 +1,18 @@
+###v2.0.0
+First major point release bump! :two:
+Some bugs squished and improvements made by community members :tada:
+Some fantastic UI improvements and internal refactoring by @zaccolley :sunglasses:
+
+- Remove sweetalert and add in new Alert component #51 @zaccolley
+- Improved messages on declined transactions #47 @florx
+- Refactored structure of app (Flattened out directories in components, renamed components, simplified data state) #46 @zaccolley
+- Improve development workflow with hot reloading #46 @zaccolley
+- Add favicon #39 @zaccolley
+- Added SVG category icons for when merchant has no image #38 @zaccolley
+- Add yarn support #36 @zaccolley
+- Updated use of key for Google Maps API #33 @imascarenhas
+- Fixed `=`'s in OAuth2 auth codes breaking the string manipulation #32
+
 ###v1.3.1
 Some new internals and a fresh re-branding
 
