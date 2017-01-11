@@ -8,11 +8,16 @@ import './style.scss';
 export default class Map extends React.Component {
 
   componentDidMount() {
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
-    script.onload = this.getAccount();
+    console.log(typeof google === 'undefined')
+    if(typeof google === 'undefined') {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
+      script.onload = this.getAccount.bind(this);
 
-    document.head.appendChild(script);
+      document.head.appendChild(script);
+    } else {
+      this.getAccount();
+    }
   }
 
   createMap() {
