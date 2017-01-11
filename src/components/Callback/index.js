@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from 'components/Container';
+import Alert from 'components/Alert';
 import { checkStatus, showErrorMessage } from 'lib/utils';
 import 'whatwg-fetch';
 
@@ -15,15 +15,11 @@ const COMP_LOADING = (
 );
 
 const COMP_NO_CODE = (
-  <div className="card-panel red lighten-3" style={{marginTop: '5vh'}}>
-    No authorization code found. Make sure the URL has something like 'code=12345678910' in it.
-  </div>
+  <Alert message="No authorization code found. Make sure the URL has something like 'code=12345678910' in it." />
 );
 
 const COMP_AJAX_ERROR = (
-  <div className="card-panel red lighten-3" style={{marginTop: '5vh'}}>
-    Internal error - looks like that authorisation code isn't working. If this keeps happening <a href="https://github.com/robcalcroft/monzoweb/issues">let me know</a>.
-  </div>
+  <Alert message="Internal error - looks like that authorisation code isn't working. If this keeps happening file an issue at https://github.com/robcalcroft/monzoweb/issues" />
 );
 
 export default class Callback extends React.Component {
@@ -56,7 +52,8 @@ export default class Callback extends React.Component {
       .then(body => {
         localStorage.setItem('monzo_access_token', body.access_token);
         localStorage.setItem('monzo_refresh_token', body.refresh_token);
-        window.location.href = '/accounts';
+
+        window.location.href = '/';
       })
       .catch(error => {
         showErrorMessage(error);
@@ -69,9 +66,9 @@ export default class Callback extends React.Component {
 
   render() {
     return (
-      <Container nav={false}>
+      <div>
         {this.state.component}
-      </Container>
+      </div>
     );
   }
 }

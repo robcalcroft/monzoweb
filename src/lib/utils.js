@@ -2,8 +2,12 @@
 import currencyCodes from 'lib/currency-codes.json';
 import 'whatwg-fetch';
 
+export function isEmpty(obj) {
+  return Object.keys(obj).length === 0 && obj.constructor === Object;
+}
+
 export function intToAmount(amount, currency = 'GBP') {
-  if (amount === undefined || amount === null || amount === false) {
+  if (!amount && typeof amount === 'undefined') {
     return false;
   }
 
@@ -42,31 +46,38 @@ export function once(func) {
 
 // Asks for a reissued token if the current access token has expired
 export function ajaxFail(error = {}, callback) {
-  const responseJSON = error.response.json();
-  if (responseJSON && responseJSON.code === 'unauthorized.bad_access_token' && localStorage.monzo_refresh_token) {
-    fetch(`/token?refresh_token=${localStorage.monzo_refresh_token}&grant_type=refresh_token`)
-      .then(checkStatus)
-      .then(response => response.json())
-      .then(credentials => {
-        localStorage.monzo_access_token = credentials.access_token;
-        localStorage.monzo_refresh_token = credentials.refresh_token;
-        if (typeof callback === 'function') {
-          return callback(credentials);
-        }
-      })
-      .catch(error => {
-        localStorage.clear();
-        showErrorMessage(err);
-      });
-  } else {
-    showErrorMessage(error);
+  if (!error.response) {
+    return console.error(error);
   }
+
+  error.response.json().then(responseJSON => {
+    if (responseJSON.code === 'unauthorized.bad_access_token' && localStorage.monzo_refresh_token) {
+      fetch(`/token?refresh_token=${localStorage.monzo_refresh_token}&grant_type=refresh_token`)
+        .then(checkStatus)
+        .then(response => response.json())
+        .then(credentials => {
+          localStorage.monzo_access_token = credentials.access_token;
+          localStorage.monzo_refresh_token = credentials.refresh_token;
+
+          if (typeof callback === 'function') {
+            return callback(null, credentials);
+          }
+        })
+        .catch(error => {
+          localStorage.clear();
+          return callback(errorMessage(err));
+        });
+    }
+  });
 }
 
-// Show the sweet alert popup
-export function showErrorMessage(error = {}) {
-  swal('Error', error.response && error.response.json() ? `${error.response.json().message} try logging out and in again` : false
-    || 'Internal error, check your network connection, contact me in the menu if this keeps happening', 'error');
+// Create error message
+export function errorMessage(error = {}) {
+  if (error.response && error.response.json()) {
+    return `${error.response.json().message} try logging out and in again`;
+  }
+
+  return 'Internal error, check your network connection, contact me in the menu if this keeps happening';
 }
 
 // Check the status of an AJAX query
@@ -77,4 +88,27 @@ export function checkStatus(response) {
   let error = new Error(response.statusText);
   error.response = response;
   throw error;
+}
+
+// Convert a Transaction decline code e.g. INSUFFICIENT_FUNDS into a human readable string.
+export function getDeclineTranslation(declinedCode) {
+
+  if (!declinedCode){
+    return false;
+  }
+
+  switch (declinedCode) {
+    case 'INSUFFICIENT_FUNDS':
+      return 'Declined, you had insufficient funds.';
+    case 'CARD_INACTIVE':
+      return 'Declined, card inactive.';
+    case 'CARD_BLOCKED':
+      return 'Declined, card blocked.';
+    case 'PIN_RETRY_COUNT_EXCEEDED':
+      return 'Declined, PIN retry count exceeded.';
+    case 'INVALID_CVC':
+      return 'Declined, invalid CVC code used';
+    default:
+      return `Declined, unknown code: ${declinedCode}`;
+  }
 }
