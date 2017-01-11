@@ -1,3 +1,12 @@
+###v2.0.1
+With every great release...comes a few bugs to fix :wink:
+
+- Fixed some categories containing not very pretty underscores [#61](https://github.com/robcalcroft/monzoweb/issues/61)
+- Fixed the tab activity background [#60](https://github.com/robcalcroft/monzoweb/issues/60)
+- Fixed the maps view which was broken [#59](https://github.com/robcalcroft/monzoweb/issues/59)
+- Added the local cost back to the summary view [#58](https://github.com/robcalcroft/monzoweb/issues/58)
+- Bumped `node-sass` version which was causing issues on Windows & Linux [#57](https://github.com/robcalcroft/monzoweb/issues/57)
+
 ###v2.0.0
 First major point release bump! :two:
 
