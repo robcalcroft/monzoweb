@@ -56,7 +56,7 @@ export default class TransactionSummary extends React.Component {
           {notes && <div className="black-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{notes}</div>}
           {decline_reason && <div className="red-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{getDeclineTranslation(decline_reason)}</div>}
           {address && <div><a href={`http://maps.google.com/?ll=${latitude},${longitude}`} target="_blank">{address.short_formatted}</a></div>}
-          {category && <div className={`category category--${category}`}>{category}</div>}
+          {category && <div className={`category category--${category}`}>{category.replace(/_/g, ' ')}</div>}
           {tags && (
           <div style={{marginTop:'10px'}}>
             {tags.map((tag, i) => (
