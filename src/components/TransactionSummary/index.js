@@ -46,14 +46,16 @@ export default class TransactionSummary extends React.Component {
           <div className="transaction--overview--logo">
             {merchant && merchant.logo ? <img src={merchant.logo} alt={title} width="100%" /> : <CategoryIcon category={category} />}
           </div>
-          <span className={`transaction--amount ${(amount && amount.includes('+')) ? 'green-text' : 'black-text'}`}>{amount}</span>
+          <span className={`transaction--amount ${(amount && amount.includes('+')) ? 'green-text' : 'black-text'}`}>
+            {amount}{localAmount ? <span className="grey-text text-lighten-1"> / {localAmount}</span> : ''}
+          </span>
         </div>
         <div className="card-content">
           <h5>{title}{localAmount ? ' 🌎' : ''}</h5>
           <div className="grey-text text-lighten-1">{moment(created).format('dddd MMMM Do YYYY [at] h:mma')}</div>
-          {address && <div><a href={`http://maps.google.com/?ll=${latitude},${longitude}`} target="_blank">{address.short_formatted}</a></div>}
           {notes && <div className="black-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{notes}</div>}
           {decline_reason && <div className="red-text" style={{margin: '0.25em 0', fontSize: '1.15em'}}>{getDeclineTranslation(decline_reason)}</div>}
+          {address && <div><a href={`http://maps.google.com/?ll=${latitude},${longitude}`} target="_blank">{address.short_formatted}</a></div>}
           {category && <div className={`category category--${category}`}>{category}</div>}
           {tags && (
           <div style={{marginTop:'10px'}}>
