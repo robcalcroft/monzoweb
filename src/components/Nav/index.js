@@ -8,7 +8,7 @@ const logout = () => {
   window.location.href = '/';
 };
 
-const Links = localStorage.monzo_access_token && (
+const Links = () => localStorage.monzo_access_token ? (
   <div>
     <li className={window.location.pathname === '/' ? 'active' : ''}>
       <Link to="/">Home</Link>
@@ -25,7 +25,7 @@ const Links = localStorage.monzo_access_token && (
       </a>
     </li>
   </div>
-);
+) : null;
 
 export default class Nav extends React.Component {
 
@@ -54,18 +54,18 @@ export default class Nav extends React.Component {
             <img className="nav--logo-image" src={require('assets/logo.svg')} alt="Monzo logo" />
             <span className="nav--logo-text">Web</span>
           </Link>
-          <ul className="right hide-on-med-and-down">{Links}</ul>
-          {localStorage.monzo_access_token && (
+          <ul className="right hide-on-med-and-down"><Links /></ul>
+          {localStorage.monzo_access_token ? (
             <div>
               <ul id="slide-out" className="side-nav">
                 <img src={require('assets/logo.svg')} className="nav--logo--menu center" alt="Monzo logo" />
-                {Links}
+                <Links />
               </ul>
               <a href="#" data-activates="slide-out" className="button-collapse right">
                 <span className="nav--mobile-menu">Menu</span>
               </a>
             </div>
-          )}
+          ) : null}
         </div>
       </nav>
     );
