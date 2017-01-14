@@ -24,6 +24,7 @@ export default class Main extends React.Component {
       transactions: [],
       filterActive: false,
       filteredTransactions: [],
+      fetchingTransactions: false,
       balance: '',
       currency: '',
       spentToday: ''
@@ -127,6 +128,8 @@ export default class Main extends React.Component {
 
   // Params is a query string starting with '&'
   retrieveTransactions(params = '') {
+    this.setState({ fetchingTransactions: true });
+
     fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${this.state.id}${params}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.monzo_access_token}`
@@ -136,9 +139,10 @@ export default class Main extends React.Component {
     .then(response => response.json())
     .then(account => {
       const transactions = this.processTransactionsData(account.transactions).reverse()
-      this.setState({ transactions });
+      this.setState({ transactions, fetchingTransactions: false });
     })
     .catch(error => ajaxFail(error, (error, credentials) => {
+      this.setState({ fetchingTransactions: true });
       if (error) {
         return this.setState({ error });
       }
@@ -187,7 +191,8 @@ export default class Main extends React.Component {
       filterActive,
       filteredTransactions,
       balance,
-      spentToday
+      spentToday,
+      fetchingTransactions
     } = this.state;
 
     if (!localStorage.monzo_access_token) {
@@ -223,6 +228,7 @@ export default class Main extends React.Component {
           <TransactionList
             transactionSelect={this.transactionSelect}
             transactions={currentTransactions}
+            fetching={fetchingTransactions}
             active={active}
           />
         </div>
