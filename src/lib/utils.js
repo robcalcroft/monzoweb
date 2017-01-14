@@ -98,6 +98,8 @@ export function getDeclineTranslation(declinedCode) {
   }
 
   switch (declinedCode) {
+    case 'INVALID_EXPIRY_DATE':
+      return 'Declined, the expiry date was wrong';
     case 'INSUFFICIENT_FUNDS':
       return 'Declined, you had insufficient funds.';
     case 'CARD_INACTIVE':
