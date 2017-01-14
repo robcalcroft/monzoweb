@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import TransactionImage from 'components/TransactionImage';
 import CategoryIcon from 'components/CategoryIcon';
 import { getDeclineTranslation, isEmpty } from 'lib/utils';
 import './style.scss';
@@ -44,7 +45,7 @@ export default class TransactionSummary extends React.Component {
         <div className="transaction--overview">
           {Map}
           <div className="transaction--overview--logo">
-            {merchant && merchant.logo ? <img src={merchant.logo} alt={title} width="100%" /> : <CategoryIcon category={category} />}
+            <TransactionImage transaction={transaction} large={true} />
           </div>
           <span className={`transaction--amount ${(amount && amount.includes('+')) ? 'green-text' : 'black-text'}`}>
             {amount}{localAmount ? <span className="grey-text text-lighten-1"> / {localAmount}</span> : ''}

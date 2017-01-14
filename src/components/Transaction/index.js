@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import TransactionImage from 'components/TransactionImage';
 import CategoryIcon from 'components/CategoryIcon';
 import { getDeclineTranslation } from 'lib/utils';
 
@@ -25,8 +26,6 @@ export default class Transaction extends React.Component {
       transaction: {
         id,
         title,
-        category,
-        merchant,
         created,
         decline_reason,
         amount,
@@ -39,7 +38,7 @@ export default class Transaction extends React.Component {
       <a href="#" className={`collection-item avatar row ${active === id ? 'active' : ''}`} onClick={this.handleClick}>
         <div className="col s10">
           <div className="rounded circle">
-            {merchant && merchant.logo ? <img src={merchant.logo} alt={title} width="100%" /> : <CategoryIcon category={category} />}
+            <TransactionImage transaction={transaction} />
           </div>
           <span className="title primary-text">{title}{localAmount ? ' 🌎' : ''}</span>
           {decline_reason ? (

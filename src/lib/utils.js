@@ -2,6 +2,10 @@
 import currencyCodes from 'lib/currency-codes.json';
 import 'whatwg-fetch';
 
+export function mapRange(value, low1, high1, low2, high2) {
+  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+}
+
 export function isEmpty(obj) {
   return Object.keys(obj).length === 0 && obj.constructor === Object;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss';
 
-export default ({ category = 'general' }) => (
+export default ({ category }) => (
   <img className={`category--${category}-bg`} src={require(`./icons/${category}.svg`)} alt={category} width="100%" />
 );

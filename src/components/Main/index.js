@@ -94,32 +94,61 @@ export default class Main extends React.Component {
     });
   }
 
+  processTransactionCategory(transaction) {
+    if (transaction.category) {
+      if (transaction.category === 'mondo' || transaction.category === 'monzo') {
+        return '';
+      }
+
+      return transaction.category;
+    }
+
+    return 'general';
+  }
+
+  processTransactionTitle(transaction) {
+    if (transaction.counterparty) {
+      if (typeof transaction.counterparty.name !== 'undefined') {
+        return transaction.counterparty.name;
+      }
+
+      if (typeof transaction.counterparty.number !== 'undefined') {
+        return transaction.counterparty.number;
+      }
+    }
+
+    if (transaction.merchant && typeof transaction.merchant.name !== 'undefined') {
+      return transaction.merchant.name;
+    }
+
+    // if is top up
+    if (transaction.is_load) {
+      return 'Top up';
+    }
+
+    return '';
+  }
+
+  processTransactionAmount(transaction) {
+    return intToAmount(transaction.amount, transaction.currency);
+  }
+
+  processTransactionLocalAmount(transaction) {
+    if (transaction.local_currency !== this.state.currency) {
+      return intToAmount(transaction.local_amount, transaction.local_currency);
+    }
+
+    return false;
+  }
+
   processTransactionsData(transactions) {
     transactions = transactions.map(transaction => {
-
-      let title = '';
-
-      if (transaction.counterparty && typeof transaction.counterparty.name !== 'undefined') {
-        title = transaction.counterparty.name;
-      } else if (transaction.merchant && typeof transaction.merchant.name !== 'undefined') {
-        title = transaction.merchant.name;
-      } else if (transaction.is_load) {
-        title = 'Monzo';
-      }
-
-      const amount = intToAmount(transaction.amount, transaction.currency);
-
-      let localAmount = false;
-
-      if (transaction.local_currency !== this.state.currency) {
-        localAmount = intToAmount(transaction.local_amount, transaction.local_currency);
-      }
-
       return {
         ...transaction,
-        title,
-        amount,
-        localAmount
+        category: this.processTransactionCategory(transaction),
+        title: this.processTransactionTitle(transaction),
+        amount: this.processTransactionAmount(transaction),
+        localAmount: this.processTransactionLocalAmount(transaction)
       };
     });
 
