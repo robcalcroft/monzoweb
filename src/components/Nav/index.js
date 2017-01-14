@@ -5,7 +5,7 @@ import './style.scss';
 
 const logout = () => {
   localStorage.clear();
-  window.location.href = '/';
+  window.location.reload();
 };
 
 const Links = () => localStorage.monzo_access_token ? (
