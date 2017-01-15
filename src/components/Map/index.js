@@ -22,7 +22,7 @@ export default class Map extends React.Component {
   createMap() {
     return new google.maps.Map(document.getElementById('spending-map'), {
       center: new google.maps.LatLng(51.360878899999996, -0.6569385999999999),
-      zoom: 6
+      zoom: 5
     });
   }
 
@@ -41,6 +41,7 @@ export default class Map extends React.Component {
   getTransactions(accountId) {
     const map = this.createMap();
     const infoWindow = new google.maps.InfoWindow();
+    var bounds = new google.maps.LatLngBounds();
 
     fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${accountId}`, {
       headers: {
@@ -60,6 +61,10 @@ export default class Map extends React.Component {
           animation: google.maps.Animation.DROP,
           position, map
         });
+
+        // Extend map bounds around transaction markers
+        bounds.extend(marker.position);
+        map.fitBounds(bounds);
 
         // Open set content and open info window
         marker.addListener('click', () => {
