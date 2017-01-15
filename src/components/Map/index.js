@@ -41,7 +41,7 @@ export default class Map extends React.Component {
   getTransactions(accountId) {
     const map = this.createMap();
     const infoWindow = new google.maps.InfoWindow();
-    var bounds = new google.maps.LatLngBounds();
+    const bounds = new google.maps.LatLngBounds();
 
     fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${accountId}`, {
       headers: {
