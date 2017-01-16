@@ -1,6 +1,6 @@
 {
   "name": "monzoweb",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Check your Monzo account from your browser",
   "scripts": {
     "test": "npm run lint",

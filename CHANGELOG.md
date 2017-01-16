@@ -1,3 +1,12 @@
+###v2.0.2
+bugs n' improvements
+
+- Add Top Up and user icons for p2p payments [#69](https://github.com/robcalcroft/monzoweb/issues/69) [@zaccolley](https://github.com/zaccolley)
+- The fix for the broken map view broke something else! So this should put that to rest :wink: [#67](https://github.com/robcalcroft/monzoweb/issues/67)
+- Added some loading context to the transaction list [#66](https://github.com/robcalcroft/monzoweb/issues/66)
+- Added another missing transaction declined case: Invalid expiry date [#65](https://github.com/robcalcroft/monzoweb/issues/65) [@zaccolley](https://github.com/zaccolley)
+- Ensured the map view contains all of your purchases and doesn't begin with a general Europe view [#63](https://github.com/robcalcroft/monzoweb/pull/63) [@imascarenhas](https://github.com/imascarenhas)
+
 ###v2.0.1
 With every great release...comes a few bugs to fix :wink:
 
