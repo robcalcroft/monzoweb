@@ -19,7 +19,7 @@ export default class Main extends React.Component {
 
     this.state = {
       active: 0,
-      id: undefined,
+      id: [],
       name: '',
       transactions: [],
       filterActive: false,
@@ -38,14 +38,14 @@ export default class Main extends React.Component {
   initialLoad() {
     // Retrieve inital data
     this.retrieveAccount().then(() => {
-      this.retrieveBalance();
-      this.retrieveTransactions();
+      this.retrieveBalance(this.state.id[1]);
+      this.state.id.forEach(id => this.retrieveTransactions('', id));
     });
   }
 
   // Updates the state with the latest balance
-  retrieveBalance() {
-    fetch(`https://api.getmondo.co.uk/balance?account_id=${this.state.id}`, {
+  retrieveBalance(id) {
+    fetch(`https://api.getmondo.co.uk/balance?account_id=${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.monzo_access_token}`,
       },
@@ -78,9 +78,10 @@ export default class Main extends React.Component {
         .then(checkStatus)
         .then(response => response.json())
         .then((response) => {
+          console.log(response.accounts.map(account => account.id));
           this.setState({
-            name: response.accounts[0].description,
-            id: response.accounts[0].id,
+            name: response.accounts[1].description,
+            id: response.accounts.map(account => account.id),
           });
           resolve();
         })
@@ -154,10 +155,10 @@ export default class Main extends React.Component {
   }
 
   // Params is a query string starting with '&'
-  retrieveTransactions(params = '') {
+  retrieveTransactions(params = '', id) {
     this.setState({ fetchingTransactions: true });
-
-    fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${this.state.id}${params}`, {
+    console.log(id);
+    fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${id}${params}`, {
       headers: {
         Authorization: `Bearer ${localStorage.monzo_access_token}`,
       },
@@ -166,7 +167,13 @@ export default class Main extends React.Component {
       .then(response => response.json())
       .then((account) => {
         const transactions = this.processTransactionsData(account.transactions).reverse();
-        this.setState({ transactions, fetchingTransactions: false });
+        this.setState({
+          transactions: [
+            ...this.state.transactions,
+            ...transactions,
+          ],
+          fetchingTransactions: false,
+        });
       })
       .catch(error => ajaxFail(error, (ajaxError, credentials) => {
         this.setState({ fetchingTransactions: true });
