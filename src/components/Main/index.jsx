@@ -1,10 +1,10 @@
 import React from 'react';
-import AccountInfo from 'components/AccountInfo';
-import TransactionList from 'components/TransactionList';
-import TransactionSummary from 'components/TransactionSummary';
 import { browserHistory } from 'react-router';
-import { once, ajaxFail, checkStatus, intToAmount } from 'lib/utils';
 import 'whatwg-fetch';
+import AccountInfo from '../../components/AccountInfo';
+import TransactionList from '../../components/TransactionList';
+import TransactionSummary from '../../components/TransactionSummary';
+import { once, ajaxFail, checkStatus, intToAmount } from '../../lib/utils';
 
 export default class Main extends React.Component {
   constructor() {
@@ -27,7 +27,7 @@ export default class Main extends React.Component {
       fetchingTransactions: false,
       balance: '',
       currency: '',
-      spentToday: ''
+      spentToday: '',
     };
   }
 
@@ -47,54 +47,54 @@ export default class Main extends React.Component {
   retrieveBalance() {
     fetch(`https://api.getmondo.co.uk/balance?account_id=${this.state.id}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.monzo_access_token}`
-      }
+        Authorization: `Bearer ${localStorage.monzo_access_token}`,
+      },
     })
-    .then(checkStatus)
-    .then(response => response.json())
-    .then(account => {
-      const { currency, balance, spend_today: spentToday} = account;
-      this.setState({
-        balance, spentToday, currency
-      });
-    })
-    .catch(error => ajaxFail(error, (error, credentials) => {
-      if (error) {
-        return this.setState({ error });
-      }
-
-      this.initialLoad(credentials);
-    }));
-  }
-
-  // Updates the state with the account name (only first account supported atm)
-  retrieveAccount() {
-    return new Promise(resolve => {
-      fetch('https://api.getmondo.co.uk/accounts', {
-        headers: {
-          'Authorization': `Bearer ${localStorage.monzo_access_token}`
-        }
-      })
       .then(checkStatus)
       .then(response => response.json())
-      .then(response => {
+      .then((account) => {
+        const { currency, balance, spend_today: spentToday } = account;
         this.setState({
-          name: response.accounts[0].description,
-          id: response.accounts[0].id
+          balance, spentToday, currency,
         });
-        resolve();
       })
-      .catch(error => ajaxFail(error, (error, credentials) => {
-        if (error) {
-          return this.setState({ error });
+      .catch(error => ajaxFail(error, (ajaxError, credentials) => {
+        if (ajaxError) {
+          // return this.setState({ error: ajaxError });
         }
 
         this.initialLoad(credentials);
       }));
+  }
+
+  // Updates the state with the account name (only first account supported atm)
+  retrieveAccount() {
+    return new Promise((resolve) => {
+      fetch('https://api.getmondo.co.uk/accounts', {
+        headers: {
+          Authorization: `Bearer ${localStorage.monzo_access_token}`,
+        },
+      })
+        .then(checkStatus)
+        .then(response => response.json())
+        .then((response) => {
+          this.setState({
+            name: response.accounts[0].description,
+            id: response.accounts[0].id,
+          });
+          resolve();
+        })
+        .catch(error => ajaxFail(error, (ajaxError, credentials) => {
+          if (error) {
+            // return this.setState({ error });
+          }
+
+          this.initialLoad(credentials);
+        }));
     });
   }
 
-  processTransactionCategory(transaction) {
+  processTransactionCategory(transaction) { // eslint-disable-line class-methods-use-this
     if (transaction.category) {
       if (transaction.category === 'mondo' || transaction.category === 'monzo') {
         return '';
@@ -106,7 +106,7 @@ export default class Main extends React.Component {
     return 'general';
   }
 
-  processTransactionTitle(transaction) {
+  processTransactionTitle(transaction) { // eslint-disable-line class-methods-use-this
     if (transaction.counterparty) {
       if (typeof transaction.counterparty.name !== 'undefined') {
         return transaction.counterparty.name;
@@ -129,7 +129,7 @@ export default class Main extends React.Component {
     return '';
   }
 
-  processTransactionAmount(transaction) {
+  processTransactionAmount(transaction) { // eslint-disable-line class-methods-use-this
     return intToAmount(transaction.amount, transaction.currency);
   }
 
@@ -142,17 +142,15 @@ export default class Main extends React.Component {
   }
 
   processTransactionsData(transactions) {
-    transactions = transactions.map(transaction => {
-      return {
-        ...transaction,
-        category: this.processTransactionCategory(transaction),
-        title: this.processTransactionTitle(transaction),
-        amount: this.processTransactionAmount(transaction),
-        localAmount: this.processTransactionLocalAmount(transaction)
-      };
-    });
+    const mappedTransactions = transactions.map(transaction => ({
+      ...transaction,
+      category: this.processTransactionCategory(transaction),
+      title: this.processTransactionTitle(transaction),
+      amount: this.processTransactionAmount(transaction),
+      localAmount: this.processTransactionLocalAmount(transaction),
+    }));
 
-    return transactions;
+    return mappedTransactions;
   }
 
   // Params is a query string starting with '&'
@@ -161,28 +159,28 @@ export default class Main extends React.Component {
 
     fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${this.state.id}${params}`, {
       headers: {
-        'Authorization': `Bearer ${localStorage.monzo_access_token}`
-      }
+        Authorization: `Bearer ${localStorage.monzo_access_token}`,
+      },
     })
-    .then(checkStatus)
-    .then(response => response.json())
-    .then(account => {
-      const transactions = this.processTransactionsData(account.transactions).reverse()
-      this.setState({ transactions, fetchingTransactions: false });
-    })
-    .catch(error => ajaxFail(error, (error, credentials) => {
-      this.setState({ fetchingTransactions: true });
-      if (error) {
-        return this.setState({ error });
-      }
+      .then(checkStatus)
+      .then(response => response.json())
+      .then((account) => {
+        const transactions = this.processTransactionsData(account.transactions).reverse();
+        this.setState({ transactions, fetchingTransactions: false });
+      })
+      .catch(error => ajaxFail(error, (ajaxError, credentials) => {
+        this.setState({ fetchingTransactions: true });
+        if (error) {
+          // return this.setState({ error });
+        }
 
-      this.initialLoad(credentials);
-    }));
+        this.initialLoad(credentials);
+      }));
   }
 
   transactionSelect(transactionId = 0) {
     this.setState({
-      active: transactionId
+      active: transactionId,
     });
   }
 
@@ -193,35 +191,36 @@ export default class Main extends React.Component {
     if (search.length <= 0) {
       return this.setState({
         filterActive: false,
-        filteredTransactions: []
+        filteredTransactions: [],
       });
     }
 
     // Search merchant name, address category and notes
+    /* eslint-disable max-len */
     const filteredTransactions = this.state.transactions.filter(transaction => (
       (transaction.merchant ? transaction.merchant.name.toLowerCase().includes(search.toLowerCase()) : false) ||
       (transaction.merchant ? transaction.merchant.address.formatted.toLowerCase().includes(search.toLowerCase()) : false) ||
       (transaction.merchant ? transaction.merchant.category.toLowerCase().includes(search.toLowerCase()) : false) ||
       (transaction.notes ? transaction.notes.toLowerCase().includes(search.toLowerCase()) : false)
     ));
+    /* eslint-enable max-len */
 
-    this.setState({
+    return this.setState({
       filterActive: true,
-      filteredTransactions
+      filteredTransactions,
     });
   }
 
   render() {
     const {
       active,
-      id,
       name,
       transactions,
       filterActive,
       filteredTransactions,
       balance,
       spentToday,
-      fetchingTransactions
+      fetchingTransactions,
     } = this.state;
 
     if (!localStorage.monzo_access_token) {
@@ -251,8 +250,12 @@ export default class Main extends React.Component {
         </div>
         <div className="col s12 m6 l6">
           <div className="border-box">
-            <input onKeyUp={this.transactionSearch} placeholder="Search" autoFocus type="text" />
-            <div className="grey-text text-lighten-1">You can search by location, merchant, category or notes</div>
+            <input onKeyUp={this.transactionSearch} placeholder="Search" type="text" />
+            <div
+              className="grey-text text-lighten-1"
+            >
+              You can search by location, merchant, category or notes
+            </div>
           </div>
           <TransactionList
             transactionSelect={this.transactionSelect}
@@ -264,7 +267,7 @@ export default class Main extends React.Component {
         <div className="col s12 m6 l4">
           <TransactionSummary
             transaction={selectedTransaction}
-            />
+          />
         </div>
       </div>
     );

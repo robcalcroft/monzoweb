@@ -1,0 +1,18 @@
+{
+  "extends": "airbnb",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "MONZO_CLIENT_ID": true,
+    "MONZO_CLIENT_SECRET": true,
+    "MONZO_REDIRECT_URI": true,
+    "GOOGLE_MAPS_API_KEY": true,
+    "google": true,
+    "$": true
+  },
+  "rules": {
+    "jsx-a11y/anchor-is-valid": 0
+  }
+}

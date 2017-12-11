@@ -1,5 +1,6 @@
 import React from 'react';
 
+/* eslint-disable max-len */
 export default () => (
   <div>
     <p>Login below to authorise <b>monzoweb</b> to use your Monzo account.</p>

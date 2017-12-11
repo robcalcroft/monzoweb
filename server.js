@@ -1,7 +1,7 @@
 require('dotenv').load();
 
 if (!process.env.MONZO_CLIENT_ID || !process.env.MONZO_CLIENT_SECRET || !process.env.MONZO_REDIRECT_URI) {
-  return console.error('❗ Failed to load in the environment variables. Are they missing from the `.env` file?');
+  // return console.error('❗ Failed to load in the environment variables. Are they missing from the `.env` file?');
 }
 
 if (!process.env.GOOGLE_MAPS_API_KEY) {
@@ -15,7 +15,7 @@ const path = require('path');
 
 const inDevelopment = process.env.NODE_ENV !== 'production';
 
-let app = express();
+const app = express();
 
 if (inDevelopment) {
   const webpack = require('webpack');
@@ -27,7 +27,7 @@ if (inDevelopment) {
 
   app.use(devMiddleware(compiler, {
     publicPath: config.output.publicPath,
-    historyApiFallback: true
+    historyApiFallback: true,
   }));
 
   app.use(hotMiddleware(compiler));
@@ -43,7 +43,7 @@ app.use(morgan('combined'));
 app.get('/token', (req, res) => {
   if (!req.query.code && !req.query.grant_type) {
     return res.status(401).json({
-      message: 'No authorisation code provided'
+      message: 'No authorisation code provided',
     });
   }
 
@@ -55,14 +55,14 @@ app.get('/token', (req, res) => {
       client_secret: process.env.MONZO_CLIENT_SECRET,
       redirect_uri: process.env.MONZO_REDIRECT_URI,
       [req.query.grant_type === 'refresh_token' ? 'refresh_token' : 'code']:
-        req.query.grant_type === 'refresh_token' ? req.query.refresh_token : req.query.code
-    }
+        req.query.grant_type === 'refresh_token' ? req.query.refresh_token : req.query.code,
+    },
   }, (err, response, body) => {
     if (!err && response.statusCode === 200) {
       res.status(200).json(JSON.parse(body));
     } else {
       res.status(response.statusCode).json({
-        message: body
+        message: body,
       });
     }
   });

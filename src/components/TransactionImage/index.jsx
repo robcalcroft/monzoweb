@@ -1,9 +1,10 @@
 import React from 'react';
-import CategoryIcon from 'components/CategoryIcon';
-import { mapRange } from 'lib/utils';
+import PropTypes from 'prop-types';
+import CategoryIcon from '../../components/CategoryIcon';
+import { mapRange } from '../../lib/utils';
 
-export default class TransactionImage extends React.Component {
-  nameToHue(name) {
+class TransactionImage extends React.Component {
+  nameToHue(name) { // eslint-disable-line class-methods-use-this
     const MIN_CHAR_CODE = 65;
     const MAX_CHAR_CODE = 90;
 
@@ -20,9 +21,9 @@ export default class TransactionImage extends React.Component {
         title,
         category,
         counterparty,
-        merchant
+        merchant,
       },
-      large
+      large,
     } = this.props;
 
     if (transaction.is_load) {
@@ -32,7 +33,7 @@ export default class TransactionImage extends React.Component {
         textAlign: 'center',
         paddingTop: '0.05em',
         fontSize: large ? '5.5em' : '2.5em',
-        lineHeight: '100%'
+        lineHeight: '100%',
       };
 
       let background = 'hsl(145, 37%, 50%)';
@@ -53,7 +54,7 @@ export default class TransactionImage extends React.Component {
         }
       }
 
-      styles.background = background
+      styles.background = background;
 
       return <div style={styles}>{symbol}</div>;
     }
@@ -65,3 +66,19 @@ export default class TransactionImage extends React.Component {
     return <CategoryIcon category={category} />;
   }
 }
+
+TransactionImage.propTypes = {
+  transaction: PropTypes.shape({
+    title: PropTypes.string,
+    category: PropTypes.string,
+    counterparty: PropTypes.object,
+    merchant: PropTypes.object,
+  }).isRequired,
+  large: PropTypes.bool,
+};
+
+TransactionImage.defaultProps = {
+  large: false,
+};
+
+export default TransactionImage;

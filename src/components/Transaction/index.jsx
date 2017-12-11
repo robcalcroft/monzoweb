@@ -1,10 +1,10 @@
 import React from 'react';
 import moment from 'moment';
-import TransactionImage from 'components/TransactionImage';
-import CategoryIcon from 'components/CategoryIcon';
-import { getDeclineTranslation } from 'lib/utils';
+import PropTypes from 'prop-types';
+import TransactionImage from '../../components/TransactionImage';
+import { getDeclineTranslation } from '../../lib/utils';
 
-export default class Transaction extends React.Component {
+class Transaction extends React.Component {
   constructor() {
     super();
 
@@ -21,17 +21,16 @@ export default class Transaction extends React.Component {
 
   render() {
     const {
-      transactionSelect,
       transaction,
       transaction: {
         id,
         title,
         created,
-        decline_reason,
+        decline_reason: declineReason,
         amount,
-        localAmount
+        localAmount,
       },
-      active
+      active,
     } = this.props;
 
     return (
@@ -41,14 +40,14 @@ export default class Transaction extends React.Component {
             <TransactionImage transaction={transaction} />
           </div>
           <span className="title primary-text">{title}{localAmount ? ' 🌎' : ''}</span>
-          {decline_reason ? (
-            <p>{getDeclineTranslation(decline_reason)}</p>
+          {declineReason ? (
+            <p>{getDeclineTranslation(declineReason)}</p>
           ) : (
             <p className="grey-text text-lighten-1">{moment(created).fromNow()}</p>
           )}
         </div>
         <div className="col s2">
-          <p className={`secondary-content ${(amount && amount.includes('+')) ? 'green-text' : 'black-text'}`} style={{fontSize: '1.5em'}}>
+          <p className={`secondary-content ${(amount && amount.includes('+')) ? 'green-text' : 'black-text'}`} style={{ fontSize: '1.5em' }}>
             {amount}
           </p>
         </div>
@@ -56,3 +55,16 @@ export default class Transaction extends React.Component {
     );
   }
 }
+
+Transaction.propTypes = {
+  transactionSelect: PropTypes.func.isRequired,
+  transaction: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+  active: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+};
+
+export default Transaction;
