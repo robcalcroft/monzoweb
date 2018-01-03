@@ -24,23 +24,34 @@ export default class Map extends React.Component {
     })
       .then(checkStatus)
       .then(response => response.json())
-      .then(response => this.getTransactions(response.accounts[0].id))
+      .then(response => this.getTransactions(response.accounts))
       .catch(error => ajaxFail(error, this.getAccount.bind(this)));
   }
 
-  getTransactions(accountId) {
+  getTransactions(accounts) {
     const map = this.createMap();
     const infoWindow = new google.maps.InfoWindow();
     const bounds = new google.maps.LatLngBounds();
 
-    fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${accountId}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.monzo_access_token}`,
-      },
-    })
-      .then(checkStatus)
-      .then(response => response.json())
-      .then(account => account.transactions
+    const transactionPromises = accounts.map(({ id }) => new Promise((resolve, reject) => {
+      fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.monzo_access_token}`,
+        },
+      })
+        .then(checkStatus)
+        .then(response => response.json())
+        .then(resolve)
+        .catch(reject);
+    }));
+
+    Promise.all(transactionPromises)
+      .then((accountsResult) => {
+        const result = [];
+        accountsResult.forEach(({ transactions }) => result.push(...transactions));
+        return result;
+      })
+      .then(account => account
         .filter(transaction => !!transaction.merchant && !transaction.merchant.online)
         .map((transaction) => {
           const { merchant } = transaction;

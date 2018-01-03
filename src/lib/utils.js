@@ -30,12 +30,17 @@ export function intToAmount(amount, currency = 'GBP') {
 
   // Format it with decimal places
   let formattedAmount = '0';
-  if (newAmount > 2) {
+
+  if (newAmount.length > 2) {
     formattedAmount = `${newAmount.substr(0, newAmount.length - 2)}.${newAmount.substr(-2)}`;
-  } else if (newAmount === 2) {
+  } else if (newAmount.length === 2) {
     formattedAmount = `0.${newAmount}`;
   } else {
     formattedAmount = `0.0${newAmount}`;
+  }
+
+  if (formattedAmount === '0.00') {
+    return 'n/a';
   }
 
   return `${addition ? '+ ' : ''}${currencySymbol}${formattedAmount}`;
