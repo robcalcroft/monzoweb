@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  font-size: 1.1rem;
+  font-family: system-ui;
+  background-color: #f5f5f5;
+}
+
+nav {
+  background-color: #14233c;
+  padding: 1rem 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

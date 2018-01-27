@@ -1,0 +1,17 @@
+.mp-link {
+  color: white;
+  margin-right: 1rem;
+  text-decoration: none;
+
+  &:hover {
+    color: #e63b5f;
+  }
+
+  &:focus {
+    outline: 0.2rem solid #eb824b;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

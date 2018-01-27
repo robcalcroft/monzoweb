@@ -1,0 +1,37 @@
+.mp-transaction {
+  padding: 0.5rem;
+  border-bottom: 1px solid lightgrey;
+  display: flex;
+  align-items: center;
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.mp-transaction__detail {
+  width: 100%;
+}
+
+.mp-transaction__created {
+  color: grey;
+}
+
+.mp-transaction__amount {
+  width: 6rem;
+  text-align: right;
+}
+
+.mp-transaction__amount-positive {
+  color: #50af78;
+}
+
+.mp-transaction__logo-container {
+  margin-right: 2rem;
+}
+
+.mp-transaction__logo {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 7.5%;
+}

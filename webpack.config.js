@@ -1,79 +1,85 @@
-require('dotenv').load();
-
 const path = require('path');
-const webpack = require('webpack');
+const webpack = require('webpack'); // eslint-disable-line import/no-extraneous-dependencies
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
 
-const inDevelopment = process.env.NODE_ENV !== 'production';
+const isProduction = process.env.NODE_ENV === 'production';
 
-const config = {
-  entry: [
-    path.resolve(__dirname, 'src/index.jsx'),
-    'whatwg-fetch',
-  ],
+module.exports = {
+  entry: './src/App.jsx',
   output: {
+    filename: 'bundle.[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
   },
   resolve: {
-    modulesDirectories: [
-      'node_modules',
-      'src',
-    ],
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.json', '.jsx'],
+    extensions: ['.jsx', '.js'],
   },
   module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-      },
-      {
-        test: /\.s?css$/,
-        loader: 'style!css!sass',
-      },
-      {
-        test: /\.(gif|png|jpg|svg)$/,
-        loaders: [
-          'file-loader',
-          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
+    loaders: [{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+    }, {
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              minimize: process.env.NODE_ENV === 'production',
+            },
+          },
+          'postcss-loader',
         ],
-      },
-      {
-        test: /\.json$/,
-        loader: 'json',
-      },
-    ],
+      }),
+    }, {
+      test: /\.(svg)$/,
+      loader: 'url-loader',
+    }],
   },
+  devtool: isProduction ? '' : 'cheap-eval-source-map',
   plugins: [
-    new webpack.DefinePlugin({
-      MONZO_CLIENT_ID: JSON.stringify(process.env.MONZO_CLIENT_ID),
-      MONZO_REDIRECT_URI: JSON.stringify(process.env.MONZO_REDIRECT_URI),
-      GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      },
+    new webpack.EnvironmentPlugin([
+      'MONZO_CLIENT_ID',
+      'MONZO_REDIRECT_URI',
+    ].concat(isProduction ? ['NODE_ENV'] : [])),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      ...(isProduction ? {
+        minify: {
+          collapseWhitespace: true,
+          collapseInlineTagWhitespace: true,
+          removeComments: true,
+          removeRedundantAttributes: true,
+        },
+      } : {}),
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-  ],
-};
-
-if (inDevelopment) {
-  config.devtool = 'cheap-module-source-map';
-  config.stats = { colors: true };
-  config.entry = ['react-hot-loader/patch', 'webpack-hot-middleware/client'].concat(config.entry);
-  config.output.publicPath = '/static/';
-} else {
-  config.plugins = config.plugins.concat([
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new ExtractTextPlugin('bundle.[chunkhash].css'),
+  ].concat(isProduction ? [
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       mangle: true,
+      compress: {
+        warnings: false,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true,
+      },
       comments: false,
-      compress: true,
-      preamble: '(c) 2016 Rob Calcroft',
     }),
-  ]);
-}
-
-module.exports = config;
+  ] : []),
+  devServer: {
+    contentBase: './dist',
+    historyApiFallback: true,
+    proxy: {
+      '/api': 'http://127.0.0.1:8081',
+    },
+  },
+};

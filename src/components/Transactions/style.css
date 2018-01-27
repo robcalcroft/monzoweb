@@ -1,0 +1,11 @@
+.mp-transactions {
+  margin: 1rem 15rem;
+  background-color: white;
+  border: 1px solid lightgrey;
+}
+
+.mp-transactions__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
