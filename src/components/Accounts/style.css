@@ -1,0 +1,8 @@
+.mp-accounts__heading {
+  background-color: #144673;
+  display: flex;
+  align-items: center;
+  padding: 2rem 15rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}

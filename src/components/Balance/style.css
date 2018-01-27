@@ -1,0 +1,23 @@
+.mp-balance {
+  display: flex;
+  color: white;
+}
+
+.mp-balance__label-container {
+  width: 10rem;
+}
+
+.mp-balance__label-container > .mp-balance__label {
+  margin-bottom: 0.4rem;
+  text-align: right;
+  color: lightgrey;
+}
+
+.mp-balance > .mp-balance__label-container:first-child {
+  margin-right: 2rem;
+}
+
+.mp-balance__value {
+  font-size: 125%;
+  text-align: right;
+}

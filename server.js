@@ -1,53 +1,16 @@
-require('dotenv').load();
-
-if (!process.env.MONZO_CLIENT_ID || !process.env.MONZO_CLIENT_SECRET || !process.env.MONZO_REDIRECT_URI) {
-  // return console.error('❗ Failed to load in the environment variables. Are they missing from the `.env` file?');
-}
-
-if (!process.env.GOOGLE_MAPS_API_KEY) {
-  console.error('✋ Warning: No `GOOGLE_MAPS_API_KEY` environment variable found in the `.env` file. Google Maps will not work across the application.');
-}
-
 const express = require('express');
-const morgan = require('morgan');
 const request = require('request');
-const path = require('path');
-
-const inDevelopment = process.env.NODE_ENV !== 'production';
 
 const app = express();
 
-if (inDevelopment) {
-  const webpack = require('webpack');
-  const devMiddleware = require('webpack-dev-middleware');
-  const hotMiddleware = require('webpack-hot-middleware');
-  const config = require('./webpack.config');
-
-  const compiler = webpack(config);
-
-  app.use(devMiddleware(compiler, {
-    publicPath: config.output.publicPath,
-    historyApiFallback: true,
-  }));
-
-  app.use(hotMiddleware(compiler));
-} else {
-  // Static files
-  app.use(express.static(path.resolve(path.resolve('.'), 'dist')));
-}
-
-// Logging
-app.use(morgan('combined'));
-
-// Route to get our token
-app.get('/token', (req, res) => {
+app.get('/api/token', (req, res) => {
   if (!req.query.code && !req.query.grant_type) {
     return res.status(401).json({
       message: 'No authorisation code provided',
     });
   }
 
-  request.post({
+  return request.post({
     url: 'https://api.getmondo.co.uk/oauth2/token',
     form: {
       grant_type: req.query.grant_type || 'authorization_code',
@@ -68,16 +31,4 @@ app.get('/token', (req, res) => {
   });
 });
 
-// Send everything else to react-router
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, inDevelopment ? 'src' : 'dist', 'index.html'));
-});
-
-app.listen(process.env.PORT || 8000, (err) => {
-  if (err) {
-    return console.error(err);
-  }
-
-  console.log(`🌐 Listening at http://localhost:${process.env.PORT || 8000}/`);
-  console.log(`${inDevelopment ? '🛠 Development' : '🚀 Production'} mode`);
-});
+app.listen(process.env.PORT || 8081, () => console.log('Running'));

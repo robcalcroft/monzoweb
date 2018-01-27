@@ -1,70 +1,86 @@
 import React from 'react';
-import moment from 'moment';
 import PropTypes from 'prop-types';
-import TransactionImage from '../../components/TransactionImage';
-import { getDeclineTranslation } from '../../lib/utils';
+import { getHumanCostFromInteger, timeSince } from '../../helpers';
+import './style.css';
 
-class Transaction extends React.Component {
-  constructor() {
-    super();
-
-    // Bind property functions
-    this.handleClick = this.handleClick.bind(this);
+class Transaction extends React.PureComponent {
+  processTransactionAmount(transaction) {
+    return getHumanCostFromInteger(transaction.amount, transaction.currency);
   }
 
-  handleClick(event) {
-    event.preventDefault();
+  processTransactionLocalAmount(transaction) {
+    if (transaction.local_currency !== transaction.currency) {
+      return getHumanCostFromInteger(transaction.local_amount, transaction.local_currency);
+    }
 
-    const { transactionSelect, transaction: { id } } = this.props;
-    transactionSelect(id);
+    return false;
+  }
+
+  processTransactionCategory(transaction) {
+    if (transaction.category) {
+      if (transaction.category === 'mondo' || transaction.category === 'monzo') {
+        return '';
+      }
+
+      return transaction.category;
+    }
+
+    return 'general';
+  }
+
+  processTransactionTitle(transaction) {
+    if (transaction.counterparty) {
+      if (typeof transaction.counterparty.name !== 'undefined') {
+        return transaction.counterparty.name;
+      }
+
+      if (typeof transaction.counterparty.number !== 'undefined') {
+        return transaction.counterparty.number;
+      }
+    }
+
+    if (transaction.merchant && typeof transaction.merchant.name !== 'undefined') {
+      return transaction.merchant.name;
+    }
+
+    if (transaction.is_load) {
+      return 'Top up';
+    }
+
+    return '';
   }
 
   render() {
-    const {
-      transaction,
-      transaction: {
-        id,
-        title,
-        created,
-        decline_reason: declineReason,
-        amount,
-        localAmount,
-      },
-      active,
-    } = this.props;
+    const { transaction } = this.props;
+    const title = this.processTransactionTitle(transaction);
+    const amount = this.processTransactionAmount(transaction);
+    const created = timeSince(new Date(transaction.created));
 
     return (
-      <a href="#" className={`collection-item avatar row ${active === id ? 'active' : ''}`} onClick={this.handleClick}>
-        <div className="col s10">
-          <div className="rounded circle">
-            <TransactionImage transaction={transaction} />
-          </div>
-          <span className="title primary-text">{title}{localAmount ? ' 🌎' : ''}</span>
-          {declineReason ? (
-            <p>{getDeclineTranslation(declineReason)}</p>
-          ) : (
-            <p className="grey-text text-lighten-1">{moment(created).fromNow()}</p>
+      <li className="mp-transaction" key={transaction.id}>
+        <div className="mp-transaction__logo-container">
+          {transaction.merchant && (
+            <img
+              className="mp-transaction__logo"
+              src={transaction.merchant.logo}
+              alt={`${transaction.merchant.name} logo`}
+            />
           )}
         </div>
-        <div className="col s2">
-          <p className={`secondary-content ${(amount && amount.includes('+')) ? 'green-text' : 'black-text'}`} style={{ fontSize: '1.5em' }}>
-            {amount}
-          </p>
+        <div className="mp-transaction__detail">
+          <div>{title}</div>
+          <div className="mp-transaction__created">{created}</div>
         </div>
-      </a>
+        <div className={`mp-transaction__amount ${amount.includes('+') && 'mp-transaction__amount-positive'}`}>
+          {amount}
+        </div>
+      </li>
     );
   }
 }
 
 Transaction.propTypes = {
-  transactionSelect: PropTypes.func.isRequired,
-  transaction: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  }).isRequired,
-  active: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
+  transaction: PropTypes.object.isRequired, // eslint-disable-line
 };
 
 export default Transaction;
