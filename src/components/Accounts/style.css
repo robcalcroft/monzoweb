@@ -21,6 +21,7 @@
 
 .mzw-accounts__transactions {
   flex: 1;
+  display: flex;
   overflow: scroll;
   padding: 1rem var(--global-gutter);
   width: 100%;
