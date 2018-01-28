@@ -43,6 +43,7 @@ module.exports = {
     new webpack.EnvironmentPlugin([
       'MONZO_CLIENT_ID',
       'MONZO_REDIRECT_URI',
+      'GOOGLE_MAPS_API_KEY',
     ].concat(isProduction ? ['NODE_ENV'] : [])),
     new HtmlWebpackPlugin({
       template: './src/index.html',

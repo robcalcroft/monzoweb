@@ -1,3 +1,4 @@
+import React from 'react';
 import currencyCodes from './assets/currency-codes.json';
 
 export function getHumanCostFromInteger(amount, currency = 'GBP') {
@@ -68,4 +69,62 @@ export function nameToHue(name) {
   const MAX_HUE = 360;
 
   return mapRange(name.charCodeAt(0), MIN_CHAR_CODE, MAX_CHAR_CODE, MIN_HUE, MAX_HUE);
+}
+
+
+export function getDeclineTranslation(declinedCode) {
+  if (!declinedCode) {
+    return false;
+  }
+
+  switch (declinedCode) {
+    case 'INVALID_EXPIRY_DATE':
+      return 'Declined, the expiry date was wrong';
+    case 'INSUFFICIENT_FUNDS':
+      return 'Declined, you had insufficient funds.';
+    case 'CARD_INACTIVE':
+      return 'Declined, card inactive.';
+    case 'CARD_BLOCKED':
+      return 'Declined, card blocked.';
+    case 'PIN_RETRY_COUNT_EXCEEDED':
+      return 'Declined, PIN retry count exceeded.';
+    case 'INVALID_CVC':
+      return 'Declined, invalid CVC code used';
+    default:
+      return `Declined, unknown code: ${declinedCode}`;
+  }
+}
+
+export function processTransactionTitle(transaction) {
+  if (transaction.counterparty) {
+    if (transaction.counterparty.name) {
+      return transaction.counterparty.name;
+    }
+
+    if (transaction.counterparty.number) {
+      return transaction.counterparty.number;
+    }
+  }
+
+  if (transaction.merchant) {
+    const googlePlacesName = (
+      transaction.merchant.metadata && transaction.merchant.metadata.google_places_name
+    );
+    if (transaction.merchant.name) {
+      if (transaction.merchant.atm) {
+        return `${transaction.merchant.name}${googlePlacesName ? ` - ${googlePlacesName}` : ''}`;
+      }
+      return transaction.merchant.name;
+    }
+  }
+
+  if (transaction.is_load) {
+    return 'Top up';
+  }
+
+  if (transaction.notes) {
+    return <i>{transaction.notes}</i>;
+  }
+
+  return '';
 }

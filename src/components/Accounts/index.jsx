@@ -2,6 +2,7 @@ import React from 'react';
 import Transactions from '../Transactions';
 import AccountSelector from '../AccountSelector';
 import Balance from '../Balance';
+import TransactionDetail from '../TransactionDetail';
 import './style.css';
 
 class Accounts extends React.Component {
@@ -9,10 +10,12 @@ class Accounts extends React.Component {
     super();
 
     this.setCurrentAccountId = this.setCurrentAccountId.bind(this);
+    this.setSelectedTransaction = this.setSelectedTransaction.bind(this);
 
     this.state = {
       accounts: [],
       currentAccountId: '',
+      selectedTransaction: {},
     };
   }
 
@@ -23,6 +26,12 @@ class Accounts extends React.Component {
   setCurrentAccountId(event) {
     this.setState({
       currentAccountId: event.target.value,
+    });
+  }
+
+  setSelectedTransaction(transaction) {
+    this.setState({
+      selectedTransaction: transaction,
     });
   }
 
@@ -47,7 +56,7 @@ class Accounts extends React.Component {
   }
 
   render() {
-    const { accounts, currentAccountId } = this.state;
+    const { accounts, currentAccountId, selectedTransaction } = this.state;
 
     return (
       <div className="mzw-accounts">
@@ -62,7 +71,15 @@ class Accounts extends React.Component {
           </div>
         </div>
         <div className="mzw-accounts__transactions">
-          <Transactions currentAccountId={currentAccountId} />
+          <div style={{ flex: 1, marginRight: '0.5rem' }}>
+            <Transactions
+              setSelectedTransaction={this.setSelectedTransaction}
+              currentAccountId={currentAccountId}
+            />
+          </div>
+          <div style={{ flex: 1, marginLeft: '0.5rem' }}>
+            <TransactionDetail transaction={selectedTransaction} />
+          </div>
         </div>
       </div>
     );

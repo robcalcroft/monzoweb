@@ -68,3 +68,7 @@ footer {
 footer > div {
   @apply --container;
 }
+
+a {
+  color: var(--color-blue);
+}

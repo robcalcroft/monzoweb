@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import CategoryIcon from '../CategoryIcon';
-import { getHumanCostFromInteger, timeSince } from '../../helpers';
+import { getHumanCostFromInteger, timeSince, processTransactionTitle } from '../../helpers';
 import './style.css';
 
 class Transaction extends React.PureComponent {
@@ -32,40 +32,6 @@ class Transaction extends React.PureComponent {
     return 'general';
   }
 
-  processTransactionTitle(transaction) {
-    if (transaction.counterparty) {
-      if (transaction.counterparty.name) {
-        return transaction.counterparty.name;
-      }
-
-      if (transaction.counterparty.number) {
-        return transaction.counterparty.number;
-      }
-    }
-
-    if (transaction.merchant) {
-      const googlePlacesName = (
-        transaction.merchant.metadata && transaction.merchant.metadata.google_places_name
-      );
-      if (transaction.merchant.name) {
-        if (transaction.merchant.atm) {
-          return `${transaction.merchant.name}${googlePlacesName ? ` - ${googlePlacesName}` : ''}`;
-        }
-        return transaction.merchant.name;
-      }
-    }
-
-    if (transaction.is_load) {
-      return 'Top up';
-    }
-
-    if (transaction.notes) {
-      return <i>{transaction.notes}</i>;
-    }
-
-    return '';
-  }
-
   processTransactionExtraInfo(transaction) {
     if (transaction.metadata && transaction.metadata.faster_payment) {
       return 'Bank transfer';
@@ -84,8 +50,8 @@ class Transaction extends React.PureComponent {
   }
 
   render() {
-    const { transaction } = this.props;
-    const title = this.processTransactionTitle(transaction);
+    const { transaction, setSelectedTransaction } = this.props;
+    const title = processTransactionTitle(transaction);
     const amount = this.processTransactionAmount(transaction);
     const extraInfo = this.processTransactionExtraInfo(transaction);
     const created = timeSince(new Date(transaction.created));
@@ -124,9 +90,13 @@ class Transaction extends React.PureComponent {
         />
       );
     }
-
+    /* eslint-disable */
     return (
-      <li className="mzw-transaction" key={transaction.id}>
+      <li
+        key={transaction.id}
+        onClick={() => setSelectedTransaction(transaction)}
+        className="mzw-transaction"
+      >
         <div className="mzw-transaction__logo-container">{iconOrLogo}</div>
         <div className="mzw-transaction__detail">
           <div>{title}</div>
@@ -145,11 +115,13 @@ class Transaction extends React.PureComponent {
         </div>
       </li>
     );
+    /* eslint-enable */
   }
 }
 
 Transaction.propTypes = {
   transaction: PropTypes.object.isRequired, // eslint-disable-line
+  setSelectedTransaction: PropTypes.func.isRequired,
 };
 
 export default Transaction;

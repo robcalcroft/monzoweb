@@ -50,13 +50,18 @@ class Transactions extends React.PureComponent {
 
   render() {
     const { transactions, fetching } = this.state;
+    const { setSelectedTransaction } = this.props;
 
     return (
       <div className={`mzw-transactions ${fetching && 'mzw-transactions--loading'}`}>
         {fetching ? <Loader /> : (
           <ul className="mzw-transactions__list">
             {transactions.reverse().map(transaction => (
-              <Transaction key={transaction.id} transaction={transaction} />
+              <Transaction
+                key={transaction.id}
+                setSelectedTransaction={setSelectedTransaction}
+                transaction={transaction}
+              />
             ))}
           </ul>
         )}
@@ -67,6 +72,7 @@ class Transactions extends React.PureComponent {
 
 Transactions.propTypes = {
   currentAccountId: PropTypes.string.isRequired,
+  setSelectedTransaction: PropTypes.func.isRequired,
 };
 
 export default Transactions;
