@@ -1,6 +1,8 @@
-.mp-transaction {
+@import '../../vars.css';
+
+.mzw-transaction {
   padding: 0.5rem;
-  border-bottom: 1px solid lightgrey;
+  border-bottom: 1px solid var(--color-light-grey);
   display: flex;
   align-items: center;
 
@@ -9,28 +11,28 @@
   }
 }
 
-.mp-transaction__detail {
+.mzw-transaction__detail {
   width: 100%;
 }
 
-.mp-transaction__created {
-  color: grey;
+.mzw-transaction__info {
+  color: var(--color-grey);
 }
 
-.mp-transaction__amount {
-  width: 6rem;
+.mzw-transaction__amount {
+  width: 10rem;
   text-align: right;
 }
 
-.mp-transaction__amount-positive {
-  color: #50af78;
+.mzw-transaction__amount-positive {
+  color: var(--color-green);
 }
 
-.mp-transaction__logo-container {
+.mzw-transaction__logo-container {
   margin-right: 2rem;
 }
 
-.mp-transaction__logo {
+.mzw-transaction__logo {
   height: 3rem;
   width: 3rem;
   border-radius: 7.5%;

@@ -1,4 +1,6 @@
-.mp-account-selector__label {
+@import '../../vars.css';
+
+.mzw-account-selector__label {
   margin-bottom: 0.4rem;
-  color: lightgrey;
+  color: var(--color-light-grey);
 }

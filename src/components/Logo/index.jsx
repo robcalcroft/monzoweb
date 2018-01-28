@@ -5,9 +5,9 @@ import './style.css';
 class Logo extends React.PureComponent {
   render() {
     return (
-      <div className="mw-logo">
-        <img src={monzoLogo} alt="The Monzo logo" className="mw-logo__image" />
-        <span className="mw-logo__text">Web</span>
+      <div className="mzw-logo">
+        <img src={monzoLogo} alt="The Monzo logo" className="mzw-logo__image" />
+        <span className="mzw-logo__text">Web</span>
       </div>
     );
   }

@@ -60,16 +60,16 @@ class Balance extends React.PureComponent {
     } = this.state;
 
     return (
-      <div className="mp-balance">
-        <div className="mp-balance__label-container">
-          <div className="mp-balance__label">Balance</div>
-          <div className="mp-balance__value">
+      <div className="mzw-balance">
+        <div className="mzw-balance__label-container">
+          <div className="mzw-balance__label">Balance</div>
+          <div className="mzw-balance__value">
             {fetching ? 'Loading...' : getHumanCostFromInteger(balance, currency).replace('+', '')}
           </div>
         </div>
-        <div className="mp-balance__label-container">
-          <div className="mp-balance__label">Spent Today</div>
-          <div className="mp-balance__value">
+        <div className="mzw-balance__label-container">
+          <div className="mzw-balance__label">Spent Today</div>
+          <div className="mzw-balance__value">
             {fetching ? 'Loading...' : getHumanCostFromInteger(spentToday, currency).replace('+', '')}
           </div>
         </div>

@@ -8,7 +8,7 @@ class AccountSelector extends React.PureComponent {
 
     return (
       <div>
-        <div className="mp-account-selector__label">Select Account</div>
+        <div className="mzw-account-selector__label">Account</div>
         <select
           name="accounts"
           id="accounts"

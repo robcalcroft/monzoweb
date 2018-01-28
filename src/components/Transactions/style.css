@@ -1,10 +1,18 @@
-.mp-transactions {
-  margin: 1rem 15rem;
-  background-color: white;
-  border: 1px solid lightgrey;
+@import '../../vars.css';
+
+.mzw-transactions {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-light-grey);
+  border-radius: 3px;
+  height: 100%;
+  overflow: scroll;
 }
 
-.mp-transactions__list {
+.mzw-transactions--loading {
+  display: flex;
+}
+
+.mzw-transactions__list {
   list-style-type: none;
   margin: 0;
   padding: 0;
