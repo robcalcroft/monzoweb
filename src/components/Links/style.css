@@ -1,14 +1,12 @@
-.mp-link {
-  color: white;
+@import '../../vars.css';
+
+.mzw-link {
+  color: var(--color-white);
   margin-right: 1rem;
   text-decoration: none;
 
   &:hover {
-    color: #e63b5f;
-  }
-
-  &:focus {
-    outline: 0.2rem solid #eb824b;
+    color: var(--color-red);
   }
 
   &:last-child {

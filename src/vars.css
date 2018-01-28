@@ -1,0 +1,17 @@
+:root {
+  --global-gutter: 1rem;
+  --color-dark-blue: #14233c;
+  --color-blue: #144673;
+  --color-off-white: #f5f5f5;
+  --color-white: white;
+  --color-red: #e63b5f;
+  --color-green: #50af78;
+  --color-light-grey: lightgrey;
+  --color-grey: grey;
+  --body-width: 54rem;
+
+  --container: {
+    max-width: var(--body-width);
+    margin: 0 auto;
+  }
+}

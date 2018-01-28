@@ -50,16 +50,18 @@ class Accounts extends React.Component {
     const { accounts, currentAccountId } = this.state;
 
     return (
-      <div className="mp-accounts">
-        <div className="mp-accounts__heading">
-          <AccountSelector
-            currentAccountId={currentAccountId}
-            accounts={accounts}
-            setCurrentAccountId={this.setCurrentAccountId}
-          />
-          <Balance currentAccountId={currentAccountId} />
+      <div className="mzw-accounts">
+        <div className="mzw-accounts__heading">
+          <div>
+            <AccountSelector
+              currentAccountId={currentAccountId}
+              accounts={accounts}
+              setCurrentAccountId={this.setCurrentAccountId}
+            />
+            <Balance currentAccountId={currentAccountId} />
+          </div>
         </div>
-        <div className="mp-accounts__transactions">
+        <div className="mzw-accounts__transactions">
           <Transactions currentAccountId={currentAccountId} />
         </div>
       </div>

@@ -55,3 +55,17 @@ export function timeSince(date) {
   }
   return 'a few seconds ago';
 }
+
+export function mapRange(value, low1, high1, low2, high2) {
+  return (low2 + ((high2 - low2) * (value - low1))) / (high1 - low1);
+}
+
+export function nameToHue(name) {
+  const MIN_CHAR_CODE = 65;
+  const MAX_CHAR_CODE = 90;
+
+  const MIN_HUE = 0;
+  const MAX_HUE = 360;
+
+  return mapRange(name.charCodeAt(0), MIN_CHAR_CODE, MAX_CHAR_CODE, MIN_HUE, MAX_HUE);
+}

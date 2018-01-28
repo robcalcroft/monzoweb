@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Transaction from '../Transaction';
+import Loader from '../Loader';
 import './style.css';
 
 class Transactions extends React.PureComponent {
@@ -51,11 +52,9 @@ class Transactions extends React.PureComponent {
     const { transactions, fetching } = this.state;
 
     return (
-      <div className="mp-transactions">
-        {fetching ? (
-          <h1>Loading</h1>
-        ) : (
-          <ul className="mp-transactions__list">
+      <div className={`mzw-transactions ${fetching && 'mzw-transactions--loading'}`}>
+        {fetching ? <Loader /> : (
+          <ul className="mzw-transactions__list">
             {transactions.reverse().map(transaction => (
               <Transaction key={transaction.id} transaction={transaction} />
             ))}

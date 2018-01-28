@@ -11,8 +11,10 @@ class Root extends React.Component {
     return (
       <Fragment>
         <nav>
-          <Logo />
-          <Links />
+          <div>
+            <Logo />
+            <Links />
+          </div>
         </nav>
         <main>
           <Route
@@ -25,7 +27,7 @@ class Root extends React.Component {
           <Route path="/accounts" component={Accounts} />
         </main>
         <footer>
-          <h3>Footer</h3>
+          <div>Made by Rob Calcroft</div>
         </footer>
       </Fragment>
     );
