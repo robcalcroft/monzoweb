@@ -123,8 +123,51 @@ export function processTransactionTitle(transaction) {
   }
 
   if (transaction.notes) {
-    return <i>{transaction.notes}</i>;
+    return transaction.notes;
   }
 
   return '';
+}
+
+export function checkStatus(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  }
+  const error = new Error(response.statusText);
+  error.response = response;
+  throw error;
+}
+
+export function ajaxFail(error = {}, callback) {
+  if (!error.response) {
+    return console.error(error);
+  }
+
+  return error.response.json().then((responseJSON) => {
+    if (responseJSON.code === 'unauthorized.bad_access_token' && localStorage.monzo_refresh_token) {
+      fetch(`/api/token?refresh_token=${localStorage.monzo_refresh_token}&grant_type=refresh_token`)
+        .then(checkStatus)
+        .then(response => response.json())
+        .then((credentials) => {
+          localStorage.monzo_access_token = credentials.access_token;
+          localStorage.monzo_refresh_token = credentials.refresh_token;
+
+          if (typeof callback === 'function') {
+            return callback(null, credentials);
+          }
+          return true;
+        })
+        .catch((ajaxError) => {
+          localStorage.clear();
+          return callback(ajaxError.message);
+        });
+    }
+  });
+}
+
+export function processTransactionAmount(transaction) {
+  if (transaction.notes === 'Active card check') {
+    return 'Card check';
+  }
+  return getHumanCostFromInteger(transaction.amount, transaction.currency);
 }

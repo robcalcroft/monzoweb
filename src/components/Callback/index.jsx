@@ -1,4 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import Loader from '../Loader';
+import { checkStatus } from '../../helpers';
+import './style.css';
 
 class About extends React.Component {
   constructor() {
@@ -24,17 +27,12 @@ class About extends React.Component {
 
     if (!code || !code.code) {
       return this.setState({
-        error: 'No error code',
+        error: 'No login code present in URL, try logging into Monzo Web again',
       });
     }
 
     return fetch(`/api/token?code=${code.code}`)
-      .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          return response;
-        }
-        throw new Error('Broken server');
-      })
+      .then(checkStatus)
       .then(response => response.json())
       .then((body) => {
         localStorage.setItem('monzo_access_token', body.access_token);
@@ -51,10 +49,10 @@ class About extends React.Component {
 
   render() {
     return (
-      <Fragment>
-        <h1>Loading...</h1>
-        <h3>{this.state.error}</h3>
-      </Fragment>
+      <div className="mzw-callback">
+        <h1 style={{ textAlign: 'center' }}>{this.state.error || 'Logging you in to Monzo...'}</h1>
+        <Loader />
+      </div>
     );
   }
 }

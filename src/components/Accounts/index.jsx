@@ -1,8 +1,9 @@
 import React from 'react';
-import Transactions from '../Transactions';
 import AccountSelector from '../AccountSelector';
 import Balance from '../Balance';
 import TransactionDetail from '../TransactionDetail';
+import Transactions from '../Transactions';
+import { checkStatus, ajaxFail } from '../../helpers';
 import './style.css';
 
 class Accounts extends React.Component {
@@ -20,7 +21,7 @@ class Accounts extends React.Component {
   }
 
   componentDidMount() {
-    this.loadAccounts();
+    this.fetchAccounts();
   }
 
   setCurrentAccountId(event) {
@@ -35,24 +36,23 @@ class Accounts extends React.Component {
     });
   }
 
-  loadAccounts() {
-    fetch('https://api.getmondo.co.uk/accounts', {
+  fetchAccounts(repeat = 0) {
+    if (repeat === 2) {
+      return false;
+    }
+
+    return fetch('https://api.getmondo.co.uk/accounts', {
       headers: {
         authorization: `Bearer ${localStorage.monzo_access_token}`,
       },
     })
-      .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          return response;
-        }
-        throw new Error('Broken server');
-      })
+      .then(checkStatus)
       .then(response => response.json())
       .then(response => this.setState({
         accounts: response.accounts,
-        currentAccountId: response.accounts[1].id,
+        currentAccountId: response.accounts[response.accounts.length - 1].id,
       }))
-      .catch(error => console.log(error));
+      .catch(error => ajaxFail(error, () => this.fetchAccounts(repeat + 1)));
   }
 
   render() {

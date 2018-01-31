@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getHumanCostFromInteger } from '../../helpers';
+import { getHumanCostFromInteger, checkStatus, ajaxFail } from '../../helpers';
 import './style.css';
 
 class Balance extends React.PureComponent {
@@ -16,29 +16,30 @@ class Balance extends React.PureComponent {
   }
 
   componentWillReceiveProps({ currentAccountId }) {
-    if (currentAccountId === '') {
+    if (currentAccountId === '' || currentAccountId === this.props.currentAccountId) {
       return false;
     }
 
     return this.fetchBalance(currentAccountId);
   }
 
-  fetchBalance(accountId) {
+  fetchBalance(accountId, repeat = 0) {
+    if (repeat === 2) {
+      return this.setState({
+        fetching: false,
+      });
+    }
+
     this.setState({
       fetching: true,
     });
 
-    fetch(`https://api.getmondo.co.uk/balance?account_id=${accountId}`, {
+    return fetch(`https://api.getmondo.co.uk/balance?account_id=${accountId}`, {
       headers: {
         Authorization: `Bearer ${localStorage.monzo_access_token}`,
       },
     })
-      .then((response) => {
-        if (response.status >= 200 && response.status < 300) {
-          return response;
-        }
-        throw new Error('Broken server');
-      })
+      .then(checkStatus)
       .then(response => response.json())
       .then(({ currency, balance, spend_today: spentToday }) => {
         this.setState({
@@ -48,7 +49,7 @@ class Balance extends React.PureComponent {
           fetching: false,
         });
       })
-      .catch(error => console.log(error.message));
+      .catch(error => ajaxFail(error, () => this.fetchBalance(accountId, repeat + 1)));
   }
 
   render() {

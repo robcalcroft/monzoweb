@@ -1,17 +1,15 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import CategoryIcon from '../CategoryIcon';
-import { getHumanCostFromInteger, timeSince, processTransactionTitle } from '../../helpers';
+import {
+  getHumanCostFromInteger,
+  timeSince,
+  processTransactionTitle,
+  processTransactionAmount,
+} from '../../helpers';
 import './style.css';
 
 class Transaction extends React.PureComponent {
-  processTransactionAmount(transaction) {
-    if (transaction.notes === 'Active card check') {
-      return 'Card check';
-    }
-    return getHumanCostFromInteger(transaction.amount, transaction.currency);
-  }
-
   processTransactionLocalAmount(transaction) {
     if (transaction.local_currency !== transaction.currency) {
       return getHumanCostFromInteger(transaction.local_amount, transaction.local_currency);
@@ -52,7 +50,7 @@ class Transaction extends React.PureComponent {
   render() {
     const { transaction, setSelectedTransaction } = this.props;
     const title = processTransactionTitle(transaction);
-    const amount = this.processTransactionAmount(transaction);
+    const amount = processTransactionAmount(transaction);
     const extraInfo = this.processTransactionExtraInfo(transaction);
     const created = timeSince(new Date(transaction.created));
     const transactionLogoClassName = 'mzw-transaction__logo';

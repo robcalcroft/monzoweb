@@ -26,9 +26,6 @@ class Root extends React.Component {
           <Route path="/callback" component={Callback} />
           <Route path="/accounts" component={Accounts} />
         </main>
-        <footer>
-          <div>Made by Rob Calcroft</div>
-        </footer>
       </Fragment>
     );
   }

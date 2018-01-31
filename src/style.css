@@ -7,7 +7,8 @@
 
 body {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
+  min-width: 56rem;
   font-family: 'Source Sans Pro', system-ui;
   background-color: var(--color-off-white);
   color: var(--color-dark-blue);
@@ -22,7 +23,7 @@ body {
 
 nav, footer {
   background-color: var(--color-dark-blue);
-  padding: 1rem var(--global-gutter);
+  padding: 0.75rem var(--global-gutter);
 }
 
 nav > div {
