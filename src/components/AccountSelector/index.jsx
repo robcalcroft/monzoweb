@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import './style.css';
 
 class AccountSelector extends React.PureComponent {
+  getAccountType(account) {
+    return account.type.includes('prepaid') ? 'Pre-paid' : 'Current Account';
+  }
+
   render() {
     const { currentAccountId, accounts, setCurrentAccountId } = this.props;
 
@@ -20,7 +24,7 @@ class AccountSelector extends React.PureComponent {
           ) : (
             accounts.map(account => (
               <option key={account.id} value={account.id}>
-                {account.description} ({account.type})
+                {this.getAccountType(account)} &mdash; {account.description}
               </option>
             ))
           )}

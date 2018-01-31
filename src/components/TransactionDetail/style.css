@@ -3,12 +3,13 @@
 .mzw-transaction-detail {
   background-color: var(--color-white);
   border: 1px solid var(--color-light-grey);
+  position: relative;
 }
 
 .mzw-transaction-detail__map {
   width: 100%;
   height: 160px;
-  background-color: var(--color-grey);
+  background-color: var(--color-light-grey);
   background-position: center;
   background-size: 110%;
 }
@@ -19,4 +20,75 @@
 
 .mzw-transaction-detail__item {
   padding: 0.25rem 0;
+}
+
+.mzw-transaction-detail__category {
+  text-transform: capitalize;
+  font-size: 125%;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 0.5em;
+    background: currentColor;
+    border-radius: 50%;
+  }
+}
+
+.mzw-transaction-detail__header {
+  font-weight: bold;
+  font-size: 150%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mzw-transaction-detail__created, .mzw-transaction-detail__description {
+  color: var(--color-grey);
+}
+
+.mzw-transaction-detail__description {
+  font-size: 75%;
+}
+
+.mzw-transaction-detail__logo {
+  position: absolute;
+  height: 5rem;
+  width: 5rem;
+  top: calc(160px - 4.5rem);
+  left: calc(1rem - 0.25rem);
+  border: 0.25rem solid color(white blackness(5%));
+  border-radius: 5px;
+}
+
+.mzw-transaction-detail__category--transport {
+  color: #1E788C;
+}
+.mzw-transaction-detail__category--groceries {
+  color: #F5B946;
+}
+.mzw-transaction-detail__category--eating_out {
+  color: #E64B5F;
+}
+.mzw-transaction-detail__category--cash {
+  color: #9ABBA8;
+}
+.mzw-transaction-detail__category--bills {
+  color: #50B9DC;
+}
+.mzw-transaction-detail__category--entertainment {
+  color: #EB824B;
+}
+.mzw-transaction-detail__category--shopping {
+  color: #F09696;
+}
+.mzw-transaction-detail__category--holidays {
+  color: #B982FF;
+}
+.mzw-transaction-detail__category--general {
+  color: var(--color-grey);
+}
+.mzw-transaction-detail__category--expenses {
+  color: #E1B982;
 }

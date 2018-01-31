@@ -7,8 +7,8 @@
 }
 
 .mzw-accounts__heading {
-  background-color: var(--color-blue);
-  padding: 2rem var(--global-gutter);
+  background: linear-gradient(to bottom, #14233c 10%,#144673 100%);
+  padding: 1rem var(--global-gutter);
 
   & > div {
     justify-content: space-between;
