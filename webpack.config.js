@@ -9,6 +9,7 @@ module.exports = {
   entry: './src/App.jsx',
   output: {
     filename: 'bundle.[chunkhash].js',
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
@@ -77,7 +78,6 @@ module.exports = {
     }),
   ] : []),
   devServer: {
-    contentBase: './dist',
     historyApiFallback: true,
     proxy: {
       '/api': 'http://127.0.0.1:8081',
