@@ -25,7 +25,7 @@
 }
 
 .mzw-balance__value {
-  font-size: 125%;
+  font-size: 1.3rem;
   text-align: right;
 
   @media (--wide) {

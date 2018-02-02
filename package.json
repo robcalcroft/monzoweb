@@ -7,7 +7,7 @@
     "lint:js": "eslint .",
     "lint:css": "stylelint src/**/*.css --fix",
     "build": "rm -rf dist && MONZO_CLIENT_ID=oauthclient_00009SbKwiViyHN7E0aXXV MONZO_REDIRECT_URI=http://localhost:8080/callback NODE_ENV=production webpack",
-    "start": "MONZO_CLIENT_ID=oauthclient_00009SbKwiViyHN7E0aXXV MONZO_REDIRECT_URI=http://localhost:8080/callback webpack-dev-server --open",
+    "start": "MONZO_CLIENT_ID=oauthclient_00009SbKwiViyHN7E0aXXV MONZO_REDIRECT_URI=http://localhost:8080/callback webpack-dev-server --open --hot --inline",
     "start:backend": "MONZO_CLIENT_ID=oauthclient_00009SbKwiViyHN7E0aXXV MONZO_CLIENT_SECRET=qH7Hef+KGttJ1HzdaxCssqZG3F4Xy+lywrGtRxh4MewShd+Vz/p8PLhHQxlXh56rEStb4ORK5UDX/qP9VGkh MONZO_REDIRECT_URI=http://localhost:8080/callback node server.js"
   },
   "dependencies": {

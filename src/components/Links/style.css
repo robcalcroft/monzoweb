@@ -4,9 +4,10 @@
   color: var(--color-white);
   margin-right: 1rem;
   text-decoration: none;
+  font-size: 1.2rem;
 
   &:hover {
-    color: var(--color-red);
+    text-decoration: underline;
   }
 
   &:last-child {

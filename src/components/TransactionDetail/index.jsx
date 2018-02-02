@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CategoryIcon from '../CategoryIcon';
+import Chip from '../Chip';
 import {
   getDeclineTranslation,
   processTransactionTitle,
   processTransactionAmount,
+  getHumanCostFromInteger,
 } from '../../helpers';
 import './style.css';
 
@@ -22,23 +24,26 @@ class TransactionDetail extends React.PureComponent {
     const { transaction } = this.props;
 
     if (Object.keys(this.props.transaction).length === 0) {
-      return <h2 style={{ textAlign: 'center', color: 'lightgrey' }}>Select a transaction</h2>;
+      return <h2 style={{ textAlign: 'center', color: 'grey' }}>Select a transaction</h2>;
     }
 
     const address = merchant && merchant.address;
     const latitude = address && address.latitude;
     const longitude = address && address.longitude;
-    // let tags = [];
+    const isGBP = transaction.local_currency === 'GBP';
+    let tags = [];
 
-    // if (merchant) {
-    //   tags = merchant.metadata.suggested_tags ? merchant.metadata.suggested_tags.split(' ').filter(tag => tag !== '') : [];
-    // }
+    if (merchant) {
+      tags = merchant.metadata.suggested_tags ? merchant.metadata.suggested_tags.split(' ').filter(tag => tag !== '') : [];
+    }
 
     const DEFAULT_ZOOM = '16';
     const zoom = (merchant && merchant.address.zoom_level) || DEFAULT_ZOOM;
+    const hideMap = !merchant || merchant.online || !latitude || !longitude;
+    const logoClassName = `mzw-transaction-detail__logo ${hideMap ? 'mzw-transaction-detail__logo--map-unavailable' : ''}`;
 
-    const map = (!merchant || merchant.online || !latitude || !longitude) ? (
-      <div className="mzw-transaction-detail__map" />
+    const map = hideMap ? (
+      <div className="mzw-transaction-detail__map mzw-transaction-detail__map--unavailable" />
     ) : (
       <div className="mzw-transaction-detail__map" style={{ backgroundImage: `url('https://maps.googleapis.com/maps/api/staticmap?size=640x320&zoom=${zoom}&markers=${latitude},${longitude}&scale=1&key=${process.env.GOOGLE_MAPS_API_KEY}')` }} />
     );
@@ -48,23 +53,31 @@ class TransactionDetail extends React.PureComponent {
         {map}
         {/* eslint-disable no-nested-ternary */}
         {(merchant && merchant.logo) ? (
-          <img className="mzw-transaction-detail__logo" src={merchant.logo} alt="Logo" />
+          <img className={logoClassName} src={merchant.logo} alt="Logo" />
         ) : (counterparty && counterparty.name) ? (
           <CategoryIcon
             character={transaction.counterparty.name.charAt(0)}
-            className="mzw-transaction-detail__logo"
+            className={logoClassName}
           />
         ) : (
           <CategoryIcon
             category={category}
-            className="mzw-transaction-detail__logo"
+            className={logoClassName}
           />
         )}
         {/* eslint-enable no-nested-ternary */}
         <div className="mzw-transaction-detail__summary">
           <div className="mzw-transaction-detail__item mzw-transaction-detail__header">
             <div>{processTransactionTitle(transaction)}</div>
-            <div>{processTransactionAmount(transaction)}</div>
+            <div>
+              {processTransactionAmount(transaction)}
+              {(!isGBP && transaction.notes !== 'Active card check') && (
+                <span className="mzw-transaction-detail__international-currency">
+                  &nbsp;/&nbsp;
+                  {getHumanCostFromInteger(transaction.local_amount, transaction.local_currency)}
+                </span>
+              )}
+            </div>
           </div>
           <div className="mzw-transaction-detail__item mzw-transaction-detail__created">
             {new Date(created).toDateString()}
@@ -83,15 +96,21 @@ class TransactionDetail extends React.PureComponent {
               {getDeclineTranslation(declineReason)}
             </div>
           )}
-          <div className="mzw-transaction-detail__item mzw-transaction-detail__description">{description}</div>
-          {/*
-          {tags && (
-            <div style={{ marginTop: '10px' }}>
-              {tags.map(tag => (
-                <div key={tag} className="chip" style={{ marginRight: '2px' }}>{tag}</div>
-              ))}
+          {tags.map(tag => <Chip key={tag}>{tag}</Chip>)}
+          {(!isGBP && transaction.notes !== 'Active card check') && (
+            <div>
+              Approximate exchange rate&nbsp;
+              <span className="mzw-transaction-detail__approx-rate">
+                {(transaction.local_amount / transaction.amount).toFixed(2)}
+                {transaction.local_currency}
+                &nbsp;to 1GBP
+              </span>
             </div>
-          )} */}
+          )}
+          <br />
+          <div className="mzw-transaction-detail__item mzw-transaction-detail__description">
+            {description}
+          </div>
         </div>
       </div>
     );
@@ -106,6 +125,7 @@ TransactionDetail.propTypes = {
     decline_reason: PropTypes.string,
     category: PropTypes.string,
     description: PropTypes.string,
+    counterparty: PropTypes.object,
   }).isRequired,
 };
 

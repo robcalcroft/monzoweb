@@ -13,7 +13,7 @@ class Root extends React.Component {
         <nav>
           <div>
             <Logo />
-            <Links />
+            <Route path="/accounts" component={Links} />
           </div>
         </nav>
         <main>
