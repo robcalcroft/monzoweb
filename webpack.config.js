@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
   entry: './src/App.jsx',
   output: {
-    filename: 'bundle.[chunkhash].js',
+    filename: 'bundle.[hash].js',
     publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
   },

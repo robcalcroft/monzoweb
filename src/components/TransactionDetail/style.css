@@ -4,18 +4,32 @@
   background-color: var(--color-white);
   border: 1px solid var(--color-light-grey);
   position: relative;
+  box-shadow: var(--global-shadow);
 }
 
 .mzw-transaction-detail__map {
   width: 100%;
-  height: 160px;
+  height: 10rem;
   background-color: var(--color-light-grey);
   background-position: center;
   background-size: 110%;
 }
 
+.mzw-transaction-detail__map--unavailable {
+  height: 5rem;
+  background-color: var(--color-dark-blue);
+}
+
 .mzw-transaction-detail__summary {
   padding: 1rem;
+}
+
+.mzw-transaction-detail__international-currency {
+  color: var(--color-grey);
+}
+
+.mzw-transaction-detail__approx-rate {
+  font-weight: bold;
 }
 
 .mzw-transaction-detail__item {
@@ -60,6 +74,10 @@
   left: calc(1rem - 0.25rem);
   border: 0.25rem solid color(white blackness(5%));
   border-radius: 5px;
+}
+
+.mzw-transaction-detail__logo--map-unavailable {
+  top: calc(80px - 4.5rem);
 }
 
 .mzw-transaction-detail__category--transport {
