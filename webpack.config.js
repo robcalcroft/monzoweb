@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack'); // eslint-disable-line import/no-extraneous-dependencies
+const WebpackAnalyser = require('webpack-bundle-size-analyzer').WebpackBundleSizeAnalyzerPlugin; // eslint-disable-line import/no-extraneous-dependencies
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
 
@@ -39,8 +40,9 @@ module.exports = {
       loader: 'url-loader',
     }],
   },
-  devtool: isProduction ? '' : 'cheap-eval-source-map',
+  devtool: isProduction ? 'cheap-module-source-map' : 'cheap-eval-source-map',
   plugins: [
+    new WebpackAnalyser('./dist/report.txt'),
     new webpack.EnvironmentPlugin([
       'MONZO_CLIENT_ID',
       'MONZO_REDIRECT_URI',

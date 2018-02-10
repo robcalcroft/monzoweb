@@ -74,11 +74,15 @@ a {
   color: var(--color-blue);
 }
 
-a.mzw-button {
+.mzw-button {
   background-color: var(--color-light-blue);
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
   color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: inherit;
+  border: none;
 
   &:hover {
     color: var(--color-light-grey);

@@ -1,0 +1,23 @@
+@import '../../vars.css';
+
+.mzw-transaction-search__container {
+  min-width: 15rem;
+}
+
+.mzw-transaction-search__label {
+  margin-bottom: 0.4rem;
+  color: var(--color-light-grey);
+}
+
+.mzw-transaction-search__input {
+  padding: 0.5rem 1rem;
+  border: 2px solid transparent;
+  line-height: 1.5em;
+  width: 100%;
+  font-size: 75%;
+
+  &:focus {
+    border: 2px solid var(--color-light-blue);
+    outline: none;
+  }
+}

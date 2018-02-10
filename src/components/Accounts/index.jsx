@@ -3,6 +3,7 @@ import AccountSelector from '../AccountSelector';
 import Balance from '../Balance';
 import TransactionDetail from '../TransactionDetail';
 import Transactions from '../Transactions';
+import TransactionSearch from '../TransactionSearch';
 import { checkStatus, ajaxFail } from '../../helpers';
 import './style.css';
 
@@ -24,10 +25,8 @@ class Accounts extends React.Component {
     this.fetchAccounts();
   }
 
-  setCurrentAccountId(event) {
-    this.setState({
-      currentAccountId: event.target.value,
-    });
+  setCurrentAccountId(currentAccountId) {
+    this.setState({ currentAccountId });
   }
 
   setSelectedTransaction(transaction) {
