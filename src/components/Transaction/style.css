@@ -6,9 +6,15 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: background-color .05s linear;
+
+
+  &:hover, &:hover .mzw-transaction__info, &:hover .mzw-transaction__amount-positive {
+    color: white;
+  }
 
   &:hover {
-    background-color: var(--color-light-grey);
+    background-color: var(--color-light-blue);
   }
 
   &:active {

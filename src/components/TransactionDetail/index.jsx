@@ -24,7 +24,7 @@ class TransactionDetail extends React.PureComponent {
     const { transaction } = this.props;
 
     if (Object.keys(this.props.transaction).length === 0) {
-      return <h2 style={{ textAlign: 'center', color: 'grey' }}>Select a transaction</h2>;
+      return <h2 className="mzw-transaction-detail__empty">Select a transaction</h2>;
     }
 
     const address = merchant && merchant.address;

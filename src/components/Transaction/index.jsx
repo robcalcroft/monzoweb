@@ -94,6 +94,7 @@ class Transaction extends React.PureComponent {
         key={transaction.id}
         onClick={() => setSelectedTransaction(transaction)}
         className="mzw-transaction"
+        tabIndex="0"
       >
         <div className="mzw-transaction__logo-container">{iconOrLogo}</div>
         <div className="mzw-transaction__detail">

@@ -1,5 +1,10 @@
 @import '../../vars.css';
 
+.mzw-transaction-detail__empty {
+  text-align: center;
+  color: grey;
+}
+
 .mzw-transaction-detail {
   background-color: var(--color-white);
   border: 1px solid var(--color-light-grey);
