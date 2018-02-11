@@ -1,4 +1,4 @@
-import { checkStatus } from './helpers';
+import { checkStatus, fetchFail } from './helpers';
 
 export const fetchAccounts = () => fetch('https://api.getmondo.co.uk/accounts', {
   headers: {
@@ -6,7 +6,8 @@ export const fetchAccounts = () => fetch('https://api.getmondo.co.uk/accounts', 
   },
 })
   .then(checkStatus)
-  .then(response => response.json());
+  .then(response => response.json())
+  .catch(fetchFail);
 
 export const fetchTransactions = accountId => fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${accountId}`, {
   headers: {
@@ -14,7 +15,8 @@ export const fetchTransactions = accountId => fetch(`https://api.getmondo.co.uk/
   },
 })
   .then(checkStatus)
-  .then(response => response.json());
+  .then(response => response.json())
+  .catch(fetchFail);
 
 export const fetchBalance = accountId => fetch(`https://api.getmondo.co.uk/balance?account_id=${accountId}`, {
   headers: {
@@ -22,4 +24,5 @@ export const fetchBalance = accountId => fetch(`https://api.getmondo.co.uk/balan
   },
 })
   .then(checkStatus)
-  .then(response => response.json());
+  .then(response => response.json())
+  .catch(fetchFail);

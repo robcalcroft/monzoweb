@@ -11,6 +11,8 @@ import {
 } from '../../helpers';
 import './style.css';
 
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions,jsx-a11y/no-noninteractive-tabindex,max-len  */
+
 class Transaction extends React.PureComponent {
   processTransactionLocalAmount(transaction) {
     if (transaction.local_currency !== transaction.currency) {
@@ -90,11 +92,11 @@ class Transaction extends React.PureComponent {
         />
       );
     }
-    /* eslint-disable */
     return (
       <li
         key={transaction.id}
         onClick={() => setActiveTransaction(transaction)}
+        onKeyPress={() => setActiveTransaction(transaction)}
         className="mzw-transaction"
         tabIndex="0"
       >
@@ -116,7 +118,6 @@ class Transaction extends React.PureComponent {
         </div>
       </li>
     );
-    /* eslint-enable */
   }
 }
 

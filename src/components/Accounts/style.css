@@ -27,3 +27,13 @@
   width: 100%;
   @apply --container;
 }
+
+.mzw-accounts__transactions__list {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+.mzw-accounts__transactions__detail {
+  flex: 1;
+  margin-left: 0.5rem;
+}

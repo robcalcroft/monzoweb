@@ -21,6 +21,11 @@
     background-color: var(--color-grey);
   }
 
+  &:focus {
+    background-color: lightgrey;
+    outline: none;
+  }
+
   &:last-child {
     border: none;
   }
