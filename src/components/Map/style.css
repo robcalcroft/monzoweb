@@ -1,0 +1,18 @@
+.mzw-map__container {
+  height: 100%;
+  
+}
+
+.mzw-map__fetching {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.mzw-map {
+  height: 100%;
+}
+
+.mzw-map--fetching {
+  display: none;
+}

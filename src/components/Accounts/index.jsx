@@ -29,10 +29,10 @@ class Accounts extends React.Component {
           path="/accounts"
           render={() => (
             <div className="mzw-accounts__transactions">
-              <div style={{ flex: 1, marginRight: '0.5rem' }}>
+              <div className="mzw-accounts__transactions__list">
                 <Transactions />
               </div>
-              <div style={{ flex: 1, marginLeft: '0.5rem' }}>
+              <div className="mzw-accounts__transactions__detail">
                 <TransactionDetail />
               </div>
             </div>

@@ -137,29 +137,31 @@ export function checkStatus(response) {
   throw error;
 }
 
-export function ajaxFail(error = {}, callback) {
-  if (!error.response) {
-    return console.error(error);
-  }
+export function fetchFail(error = {}) {
+  return new Promise((resolve, reject) => {
+    if (error.response) {
+      error.response.json().then((responseJSON) => {
+        if (responseJSON.code === 'unauthorized.bad_access_token' && localStorage.monzo_refresh_token) {
+          fetch(`/api/token?refresh_token=${localStorage.monzo_refresh_token}&grant_type=refresh_token`)
+            .then(checkStatus)
+            .then(response => response.json())
+            .then((credentials) => {
+              localStorage.monzo_access_token = credentials.access_token;
+              localStorage.monzo_refresh_token = credentials.refresh_token;
 
-  return error.response.json().then((responseJSON) => {
-    if (responseJSON.code === 'unauthorized.bad_access_token' && localStorage.monzo_refresh_token) {
-      fetch(`/api/token?refresh_token=${localStorage.monzo_refresh_token}&grant_type=refresh_token`)
-        .then(checkStatus)
-        .then(response => response.json())
-        .then((credentials) => {
-          localStorage.monzo_access_token = credentials.access_token;
-          localStorage.monzo_refresh_token = credentials.refresh_token;
-
-          if (typeof callback === 'function') {
-            return callback(null, credentials);
-          }
-          return true;
-        })
-        .catch((ajaxError) => {
-          localStorage.clear();
-          return callback(ajaxError.message);
-        });
+              if (typeof callback === 'function') {
+                return resolve(credentials);
+              }
+              return true;
+            })
+            .catch((fetchError) => {
+              localStorage.clear();
+              reject(fetchError);
+            });
+        }
+      });
+    } else {
+      reject(new Error('No error given'));
     }
   });
 }

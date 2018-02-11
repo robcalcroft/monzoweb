@@ -1,18 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { transactionsRequest } from '../../actions';
 import { getHumanCostFromInteger } from '../../helpers';
+import './style.css';
 
+// Move this to use https://tomchentw.github.io/react-google-maps/#introduction
 
 class Map extends React.Component {
   componentDidMount() {
     if (typeof google === 'undefined') {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_API_KEY}`;
-      script.onload = this.buildMap.bind(this);
-
       document.head.appendChild(script);
     } else {
+      this.buildMap();
+    }
+  }
+
+  componentDidUpdate({ activeId: prevActiveId }) {
+    const { activeId, fetchTransactions, transactions } = this.props;
+    if (prevActiveId !== activeId && activeId !== '') {
+      fetchTransactions(activeId);
+    }
+
+    if (transactions.length > 0) {
       this.buildMap();
     }
   }
@@ -30,23 +42,19 @@ class Map extends React.Component {
           merchant.address.latitude,
           merchant.address.longitude,
         );
-
-        // Create the marker for the transaction
         const marker = new google.maps.Marker({
           animation: google.maps.Animation.DROP,
           position,
           map,
         });
 
-        // Extend map bounds around transaction markers
         bounds.extend(marker.position);
         map.fitBounds(bounds);
 
-        // Open set content and open info window
         return marker.addListener('click', () => {
           infoWindow.setContent(`
-          <p className='info-window'><b>${getHumanCostFromInteger(transaction.local_amount).replace('+', 'Refund of ')} at ${merchant.name.substr(0, 40)}</b></p>
-          <p className='info-window'>${new Date(transaction.created)}</p>
+          <p><b>${getHumanCostFromInteger(transaction.local_amount).replace('+', 'Refund of ')} at ${merchant.name.substr(0, 40)}</b></p>
+          <p>${new Date(transaction.created).toLocaleDateString()}</p>
         `);
           infoWindow.open(map, marker);
         });
@@ -54,19 +62,22 @@ class Map extends React.Component {
   }
 
   createMap() {
-    return new google.maps.Map(document.getElementById('spending-map'), {
+    return new google.maps.Map(document.querySelector('.mzw-map'), {
       center: new google.maps.LatLng(51.360878899999996, -0.6569385999999999),
       zoom: 5,
     });
   }
 
   render() {
+    const { fetching } = this.props;
     return (
-      <div>
-        <div id="side-note">
-          Some locations may be from online purchases which have escaped the checks
-        </div>
-        <div id="spending-map" />
+      <div className="mzw-map__container">
+        {fetching && (
+          <div className="mzw-map__fetching">
+            <h1>Loading map...</h1>
+          </div>
+        )}
+        <div className={`mzw-map ${fetching ? 'mzw-map--fetching' : ''}`} />
       </div>
     );
   }
@@ -74,10 +85,19 @@ class Map extends React.Component {
 
 Map.propTypes = {
   transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  activeId: PropTypes.string.isRequired,
+  fetchTransactions: PropTypes.func.isRequired,
+  fetching: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   transactions: state.transactions.list,
+  activeId: state.accounts.activeId,
+  fetching: state.transactions.fetching,
 });
 
-export default connect(mapStateToProps)(Map);
+const mapDispatchToProps = dispatch => ({
+  fetchTransactions: accountId => dispatch(transactionsRequest(accountId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map);
