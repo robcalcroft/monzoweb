@@ -1,4 +1,3 @@
-import React from 'react';
 import currencyCodes from './assets/currency-codes.json';
 
 export function getHumanCostFromInteger(amount, currency = 'GBP') {

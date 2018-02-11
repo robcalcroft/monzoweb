@@ -1,55 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getHumanCostFromInteger, checkStatus, ajaxFail } from '../../helpers';
+import { connect } from 'react-redux';
+import { balanceRequest } from '../../actions';
+import { getHumanCostFromInteger } from '../../helpers';
 import './style.css';
 
 class Balance extends React.PureComponent {
-  constructor() {
-    super();
-
-    this.state = {
-      balance: '0',
-      spentToday: '0',
-      currency: 'GBP',
-      fetching: true,
-    };
-  }
-
-  componentWillReceiveProps({ currentAccountId }) {
-    if (currentAccountId === '' || currentAccountId === this.props.currentAccountId) {
-      return false;
+  componentDidUpdate(prevProps) {
+    if (prevProps.activeId !== this.props.activeId) {
+      this.props.fetchBalance(this.props.activeId);
     }
-
-    return this.fetchBalance(currentAccountId);
-  }
-
-  fetchBalance(accountId, repeat = 0) {
-    if (repeat === 2) {
-      return this.setState({
-        fetching: false,
-      });
-    }
-
-    this.setState({
-      fetching: true,
-    });
-
-    return fetch(`https://api.getmondo.co.uk/balance?account_id=${accountId}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.monzo_access_token}`,
-      },
-    })
-      .then(checkStatus)
-      .then(response => response.json())
-      .then(({ currency, balance, spend_today: spentToday }) => {
-        this.setState({
-          balance,
-          spentToday,
-          currency,
-          fetching: false,
-        });
-      })
-      .catch(error => ajaxFail(error, () => this.fetchBalance(accountId, repeat + 1)));
   }
 
   render() {
@@ -58,15 +18,14 @@ class Balance extends React.PureComponent {
       spentToday,
       currency,
       fetching,
-    } = this.state;
+    } = this.props;
 
     return (
       <div className="mzw-balance">
         <div className="mzw-balance__label-container">
           <div className="mzw-balance__label">Balance</div>
           <div className="mzw-balance__value">
-            Loading...
-            {/* {fetching ? 'Loading...' : getHumanCostFromInteger(balance, currency).replace('+', '')} */}
+            {fetching ? 'Loading...' : getHumanCostFromInteger(balance, currency).replace('+', '')}
           </div>
         </div>
         <div className="mzw-balance__label-container">
@@ -81,7 +40,24 @@ class Balance extends React.PureComponent {
 }
 
 Balance.propTypes = {
-  currentAccountId: PropTypes.string.isRequired,
+  activeId: PropTypes.string.isRequired,
+  balance: PropTypes.string.isRequired,
+  spentToday: PropTypes.string.isRequired,
+  currency: PropTypes.string.isRequired,
+  fetching: PropTypes.bool.isRequired,
+  fetchBalance: PropTypes.func.isRequired,
 };
 
-export default Balance;
+const mapStateToProps = state => ({
+  activeId: state.accounts.activeId,
+  balance: state.balance.total,
+  spentToday: state.balance.spentToday,
+  currency: state.balance.currency,
+  fetching: state.balance.fetching,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchBalance: accountId => dispatch(balanceRequest(accountId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Balance);

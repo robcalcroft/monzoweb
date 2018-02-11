@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import CategoryIcon from '../CategoryIcon';
 import Chip from '../Chip';
 import {
@@ -129,4 +130,8 @@ TransactionDetail.propTypes = {
   }).isRequired,
 };
 
-export default TransactionDetail;
+const mapStateToProps = state => ({
+  transaction: state.transactions.selected,
+});
+
+export default connect(mapStateToProps)(TransactionDetail);
