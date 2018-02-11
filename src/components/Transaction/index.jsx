@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { setActiveTransaction as setActiveTransactionAction } from '../../actions';
 import CategoryIcon from '../CategoryIcon';
 import {
   getHumanCostFromInteger,
@@ -48,7 +50,7 @@ class Transaction extends React.PureComponent {
   }
 
   render() {
-    const { transaction, setSelectedTransaction } = this.props;
+    const { transaction, setActiveTransaction } = this.props;
     const title = processTransactionTitle(transaction);
     const amount = processTransactionAmount(transaction);
     const extraInfo = this.processTransactionExtraInfo(transaction);
@@ -92,7 +94,7 @@ class Transaction extends React.PureComponent {
     return (
       <li
         key={transaction.id}
-        onClick={() => setSelectedTransaction(transaction)}
+        onClick={() => setActiveTransaction(transaction)}
         className="mzw-transaction"
         tabIndex="0"
       >
@@ -120,7 +122,11 @@ class Transaction extends React.PureComponent {
 
 Transaction.propTypes = {
   transaction: PropTypes.object.isRequired, // eslint-disable-line
-  setSelectedTransaction: PropTypes.func.isRequired,
+  setActiveTransaction: PropTypes.func.isRequired,
 };
 
-export default Transaction;
+const mapDispatchToProps = dispatch => ({
+  setActiveTransaction: transaction => dispatch(setActiveTransactionAction(transaction)),
+});
+
+export default connect(null, mapDispatchToProps)(Transaction);

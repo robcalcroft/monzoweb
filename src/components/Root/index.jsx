@@ -24,7 +24,7 @@ class Root extends React.Component {
           />
           <Route path="/login" component={Login} />
           <Route path="/callback" component={Callback} />
-          <Route path="/accounts" fackin="bitch" component={Accounts} />
+          <Route path="/accounts" component={Accounts} />
         </main>
       </Fragment>
     );

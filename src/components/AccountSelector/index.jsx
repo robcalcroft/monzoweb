@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { setActiveAccountId as setActiveAccountIdAction } from '../../actions';
 import './style.css';
 
 class AccountSelector extends React.PureComponent {
@@ -8,7 +10,7 @@ class AccountSelector extends React.PureComponent {
   }
 
   render() {
-    const { currentAccountId, accounts, setCurrentAccountId } = this.props;
+    const { activeId, accounts, setActiveAccountId } = this.props;
 
     return (
       <div>
@@ -21,10 +23,10 @@ class AccountSelector extends React.PureComponent {
               className={`
                 mzw-button
                 mzw-account-selector__button
-                ${currentAccountId === account.id ? 'mzw-account-selector__button--selected' : ''}
+                ${activeId === account.id ? 'mzw-account-selector__button--selected' : ''}
               `}
               key={account.id}
-              onClick={() => setCurrentAccountId(account.id)}
+              onClick={() => setActiveAccountId(account.id)}
             >
               {this.getAccountType(account)}
             </button>
@@ -36,13 +38,22 @@ class AccountSelector extends React.PureComponent {
 }
 
 AccountSelector.propTypes = {
-  currentAccountId: PropTypes.string.isRequired,
+  activeId: PropTypes.string.isRequired,
   accounts: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   })).isRequired,
-  setCurrentAccountId: PropTypes.func.isRequired,
+  setActiveAccountId: PropTypes.func.isRequired,
 };
 
-export default AccountSelector;
+const mapStateToProps = state => ({
+  activeId: state.accounts.activeId,
+  accounts: state.accounts.list,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setActiveAccountId: id => dispatch(setActiveAccountIdAction(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountSelector);

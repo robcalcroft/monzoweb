@@ -11,11 +11,15 @@
     "start:backend": "MONZO_CLIENT_ID=oauthclient_00009SbKwiViyHN7E0aXXV MONZO_CLIENT_SECRET=qH7Hef+KGttJ1HzdaxCssqZG3F4Xy+lywrGtRxh4MewShd+Vz/p8PLhHQxlXh56rEStb4ORK5UDX/qP9VGkh MONZO_REDIRECT_URI=http://localhost:8080/callback node server.js"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "express": "^4.16.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.16.0",
     "request": "^2.83.0"
   },
   "devDependencies": {
