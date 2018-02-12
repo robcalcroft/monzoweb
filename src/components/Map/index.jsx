@@ -12,6 +12,7 @@ class Map extends React.Component {
     if (typeof google === 'undefined') {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_API_KEY}`;
+      script.onload = this.scriptInitialLoad.bind(this);
       document.head.appendChild(script);
     } else {
       this.buildMap();
@@ -26,6 +27,18 @@ class Map extends React.Component {
 
     if (transactions.length > 0) {
       this.buildMap();
+    }
+  }
+
+  scriptInitialLoad() {
+    const {
+      fetching,
+      activeId,
+      fetchTransactions,
+      transactions,
+    } = this.props;
+    if (!fetching && transactions.length !== 0) {
+      fetchTransactions(activeId);
     }
   }
 
