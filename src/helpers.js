@@ -152,7 +152,8 @@ export function fetchFail(error = {}) {
               if (typeof callback === 'function') {
                 return resolve(credentials);
               }
-              return true;
+
+              return window.location.reload();
             })
             .catch((fetchError) => {
               localStorage.clear();

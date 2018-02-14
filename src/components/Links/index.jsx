@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './style.css';
+import Link from '../Link';
+import Button from '../Button';
 
 class Links extends React.PureComponent {
   logout() {
@@ -11,10 +11,10 @@ class Links extends React.PureComponent {
   render() {
     return (
       <div>
-        <Link className="mzw-link" to="/accounts">Accounts</Link>
-        <Link className="mzw-link" to="/accounts/map">Map</Link>
-        <a className="mzw-link" href="https://github.com/robcalcroft/monzoweb" rel="noopener noreferrer" target="_blank">Source Code</a>
-        <a className="mzw-button" href="#" onClick={this.logout}>Logout</a>
+        <Link href="/accounts" onColor padded>Accounts</Link>
+        <Link href="/accounts/map" onColor padded>Map</Link>
+        <Link href="https://github.com/robcalcroft/monzoweb" external onColor padded>Source Code</Link>
+        <Button onClick={this.logout}>Logout</Button>
       </div>
     );
   }
