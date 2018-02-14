@@ -1,0 +1,31 @@
+@import '../../vars.css';
+
+.mzw-button {
+  background-color: var(--color-light-blue);
+  padding: 0.25rem 1rem;
+  margin: 0 0.5rem;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: inherit;
+  border: 2px solid transparent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: var(--color-blue);
+    border: 2px solid var(--color-light-blue);
+  }
+}
+
+.mzw-button--selected {
+  background-color: var(--color-gold);
+
+  &:focus {
+    background-color: var(--color-gold);
+  }
+}

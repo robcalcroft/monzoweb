@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Link from '../Link';
 import CategoryIcon from '../CategoryIcon';
 import Chip from '../Chip';
 import {
@@ -85,7 +86,7 @@ class TransactionDetail extends React.PureComponent {
             &nbsp;at&nbsp;
             {new Date(created).toLocaleTimeString().substr(0, 5)}
           </div>
-          {address && <div className="mzw-transaction-detail__item"><a href={`http://maps.google.com/?ll=${latitude},${longitude}`} target="_blank" rel="noopener noreferrer">{address.short_formatted}</a></div>}
+          {address && <div className="mzw-transaction-detail__item"><Link href={`http://maps.google.com/?ll=${latitude},${longitude}`} external>{address.short_formatted}</Link></div>}
           {category && (
             <div className={`mzw-transaction-detail__item mzw-transaction-detail__category mzw-transaction-detail__category--${category}`}>
               {category.replace(/_/g, ' ')}
