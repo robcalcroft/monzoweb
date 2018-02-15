@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import ProtectedRoute from '../ProtectedRoute';
 import Callback from '../Callback';
 import Accounts from '../Accounts';
 import Login from '../Login';
@@ -13,7 +14,7 @@ class Root extends React.Component {
         <nav>
           <div>
             <Logo />
-            <Route path="/accounts" component={Links} />
+            <ProtectedRoute path="/accounts" component={Links} />
           </div>
         </nav>
         <main>
@@ -24,7 +25,7 @@ class Root extends React.Component {
           />
           <Route path="/login" component={Login} />
           <Route path="/callback" component={Callback} />
-          <Route path="/accounts" component={Accounts} />
+          <ProtectedRoute path="/accounts" component={Accounts} />
         </main>
       </Fragment>
     );

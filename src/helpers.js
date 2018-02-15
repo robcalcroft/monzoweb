@@ -157,8 +157,12 @@ export function fetchFail(error = {}) {
             })
             .catch((fetchError) => {
               localStorage.clear();
+              window.location.reload();
               reject(fetchError);
             });
+        } else {
+          window.location.href = '/login';
+          reject(new Error('Unknown error'));
         }
       });
     } else {
