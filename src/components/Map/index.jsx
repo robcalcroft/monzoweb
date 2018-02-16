@@ -64,11 +64,16 @@ class Map extends React.Component {
         bounds.extend(marker.position);
         map.fitBounds(bounds);
 
+        const localAmount = getHumanCostFromInteger(transaction.local_amount, transaction.local_currency).replace('+', 'Refund of ');
+        const gbpAmount = getHumanCostFromInteger(transaction.amount, transaction.currency).replace('+', '');
+        const isInternational = transaction.local_currency !== transaction.currency;
+        const transactionDate = new Date(transaction.created);
+
         return marker.addListener('click', () => {
           infoWindow.setContent(`
-          <p><b>${getHumanCostFromInteger(transaction.local_amount).replace('+', 'Refund of ')} at ${merchant.name.substr(0, 40)}</b></p>
-          <p>${new Date(transaction.created).toLocaleDateString()}</p>
-        `);
+            <p><b>${localAmount}${isInternational ? ` (${gbpAmount})` : ''} at ${merchant.name.substr(0, 40)}</b></p>
+            <p>${transactionDate.toLocaleDateString()} at ${transactionDate.toLocaleTimeString()}</p>
+          `);
           infoWindow.open(map, marker);
         });
       });
