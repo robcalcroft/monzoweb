@@ -31,4 +31,4 @@ app.get('/api/token', (req, res) => {
   });
 });
 
-app.listen(process.env.PORT || 8081, () => console.log('Running'));
+app.listen(process.env.PORT || 8081, () => console.log('[', new Date(), ']', 'MonzoWeb API server running'));
