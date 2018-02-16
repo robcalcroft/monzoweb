@@ -1,6 +1,8 @@
 # :moneybag: monzoweb
 Check your Monzo account from your browser
 
+![monzoweb screenshot of main interface](https://i.imgur.com/5DHIDO8.png)
+
 ## Getting Started
 1. [Install Node.js & yarn](https://nodejs.org/en/download/package-manager/)
 2. `git clone https://github.com/robcalcroft/monzoweb && cd monzoweb`
