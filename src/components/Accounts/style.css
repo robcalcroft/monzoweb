@@ -6,17 +6,41 @@
   flex-direction: column;
 }
 
-.mzw-accounts__heading {
+.mzw-accounts__heading-container {
   background: linear-gradient(to bottom, #14233c 10%,#144673 100%);
-  padding: 1rem var(--global-gutter);
+  height: 5.75rem;
+  overflow: hidden;
+}
+
+.mzw-accounts__heading {
+  transition: transform .25s ease;
 
   & > div {
+    height: 5.75rem;
     justify-content: space-between;
-    flex-wrap: wrap;
     display: flex;
     align-items: center;
     @apply --container;
   }
+}
+
+.mzw-accounts__heading--search-visible {
+  transform: translateY(-5.75rem);
+}
+
+.mzw-accounts__search__label {
+  margin-bottom: 0.4rem;
+  color: var(--color-light-grey);
+}
+
+.mzw-accounts__search__input {
+  padding: 0.5rem;
+  background-color: var(--color-light-blue);
+  color: white;
+  border: none;
+  outline: none;
+  width: 20rem;
+  font-size: 1.05rem;
 }
 
 .mzw-accounts__transactions {
