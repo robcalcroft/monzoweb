@@ -1,0 +1,28 @@
+@import '../../vars.css';
+
+.mzw-link {
+  color: var(--color-blue);
+  text-decoration: none;
+  border: 1px solid transparent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 0;
+    border: 1px dotted var(--color-white);
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.mzw-link--onColor {
+  color: var(--color-white);
+}
+
+.mzw-link--padded {
+  margin: 0 0.4rem;
+}

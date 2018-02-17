@@ -1,4 +1,9 @@
-###v2.0.2
+### v3.0.0
+- Complete redesign and re-built from the group up
+- Faster load time
+- More Monzo colours!
+
+### v2.0.2
 bugs n' improvements
 
 - Add Top Up and user icons for p2p payments [#69](https://github.com/robcalcroft/monzoweb/issues/69) [@zaccolley](https://github.com/zaccolley)
@@ -7,7 +12,7 @@ bugs n' improvements
 - Added another missing transaction declined case: Invalid expiry date [#65](https://github.com/robcalcroft/monzoweb/issues/65) [@zaccolley](https://github.com/zaccolley)
 - Ensured the map view contains all of your purchases and doesn't begin with a general Europe view [#63](https://github.com/robcalcroft/monzoweb/pull/63) [@imascarenhas](https://github.com/imascarenhas)
 
-###v2.0.1
+### v2.0.1
 With every great release...comes a few bugs to fix :wink:
 
 - Fixed some categories containing not very pretty underscores [#61](https://github.com/robcalcroft/monzoweb/issues/61)
@@ -16,7 +21,7 @@ With every great release...comes a few bugs to fix :wink:
 - Added the local cost back to the summary view [#58](https://github.com/robcalcroft/monzoweb/issues/58)
 - Bumped `node-sass` version which was causing issues on Windows & Linux [#57](https://github.com/robcalcroft/monzoweb/issues/57)
 
-###v2.0.0
+### v2.0.0
 First major point release bump! :two:
 
 Bugs squished and improvements made by community members :tada:
@@ -34,19 +39,19 @@ Some fantastic UI improvements and internal refactoring by [@zaccolley](https://
 - Updated use of key for Google Maps API [#33](https://github.com/robcalcroft/monzoweb/issues/33) [@imascarenhas](https://github.com/imascarenhas)
 - Fixed `=`'s in OAuth2 auth codes breaking the string manipulation [#32](https://github.com/robcalcroft/monzoweb/issues/32)
 
-###v1.3.1
+### v1.3.1
 Some new internals and a fresh re-branding
 
 - Migrated jQuery AJAX to use a Fetch polyfill, native support is [slowly getting there](http://caniuse.com/#search=fetch), jQuery is still loaded in for Materialize to use but I'm planning to try and gut the JS for Materialize [#28](https://github.com/robcalcroft/monzoweb/issues/28)
 - Re-branded the UI and internals after [Mondo's re-branding to Monzo](https://monzo.com/blog/2016/08/25/monzo/) [#31](https://github.com/robcalcroft/monzoweb/issues/31)
 
-###v1.3.0
+### v1.3.0
 The map is here!
 
 - Added interactive map which displays all your physical* transactions. Additional functionality for this feature is actively requested! [#9](https://github.com/robcalcroft/monzoweb/issues/9)
 - Refactored some stuff [#29](https://github.com/robcalcroft/monzoweb/issues/29)
 
-###v1.2.0
+### v1.2.0
 Bug fixes and improvements
 
 - Added peer to peer transfers to to interface - instead of a p2p transaction show as 'Mondo', it will now show the other party's name. [#22](https://github.com/robcalcroft/monzoweb/issues/22)
@@ -62,10 +67,10 @@ Bug fixes and improvements
 - Fixed declined transactions not being handled [#20](https://github.com/robcalcroft/monzoweb/issues/20)
 - Fixed issue where amounts less than £1 would show as £99 instead of £0.99 [#21](https://github.com/robcalcroft/monzoweb/issues/21)
 
-###v1.0.1
+### v1.0.1
 Install instructions improvements
 
-###v1.0.0
+### v1.0.0
 First stable release of mondoweb
 
 - Ability to login to the Mondo API using OAuth2

@@ -1,0 +1,34 @@
+@import '../../vars.css';
+@import '../../breakpoints.css';
+
+.mzw-balance {
+  display: flex;
+  color: var(--color-white);
+}
+
+.mzw-balance__label-container {
+  min-width: 7rem;
+}
+
+.mzw-balance__label-container > .mzw-balance__label {
+  margin-bottom: 0.4rem;
+  text-align: right;
+  color: var(--color-light-grey);
+
+  @media (--wide) {
+    text-align: left;
+  }
+}
+
+.mzw-balance > .mzw-balance__label-container:first-child {
+  margin-right: 2rem;
+}
+
+.mzw-balance__value {
+  font-size: 1.4rem;
+  text-align: right;
+
+  @media (--wide) {
+    text-align: left;
+  }
+}

@@ -1,5 +1,9 @@
 {
-  "sourceMaps": true,
   "presets": ["env", "react"],
-  "plugins": ["react-hot-loader/babel", "transform-object-rest-spread"]
+  "plugins": ["transform-object-rest-spread"],
+  "env": {
+    "production": {
+      "plugins": ["transform-react-remove-prop-types"]
+    }
+  }
 }

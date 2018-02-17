@@ -1,16 +1,5 @@
-# OS Files
-.DS_Store
-.Thumbs_DB
-
-# Logs
-*.log
-
-# Caches
-.npm
 node_modules
-
-# Distribution code
 dist
-
-# Sensitive files
+package-lock.json
+.DS_Store
 .env

@@ -1,0 +1,39 @@
+@import '../../vars.css';
+
+.mzw-accounts {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.mzw-accounts__heading {
+  background: linear-gradient(to bottom, #14233c 10%,#144673 100%);
+  padding: 1rem var(--global-gutter);
+
+  & > div {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    @apply --container;
+  }
+}
+
+.mzw-accounts__transactions {
+  flex: 1;
+  display: flex;
+  overflow: scroll;
+  padding: 1rem var(--global-gutter);
+  width: 100%;
+  @apply --container;
+}
+
+.mzw-accounts__transactions__list {
+  flex: 1;
+  margin-right: 0.5rem;
+}
+
+.mzw-accounts__transactions__detail {
+  flex: 1;
+  margin-left: 0.5rem;
+}

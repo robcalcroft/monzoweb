@@ -1,70 +1,133 @@
-import React from 'react';
-import moment from 'moment';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import TransactionImage from '../../components/TransactionImage';
-import { getDeclineTranslation } from '../../lib/utils';
+import { connect } from 'react-redux';
+import { setActiveTransaction as setActiveTransactionAction } from '../../actions';
+import CategoryIcon from '../CategoryIcon';
+import {
+  getHumanCostFromInteger,
+  timeSince,
+  processTransactionTitle,
+  processTransactionAmount,
+} from '../../helpers';
+import './style.css';
 
-class Transaction extends React.Component {
-  constructor() {
-    super();
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions,jsx-a11y/no-noninteractive-tabindex,max-len  */
 
-    // Bind property functions
-    this.handleClick = this.handleClick.bind(this);
+class Transaction extends React.PureComponent {
+  processTransactionLocalAmount(transaction) {
+    if (transaction.local_currency !== transaction.currency) {
+      return getHumanCostFromInteger(transaction.local_amount, transaction.local_currency);
+    }
+
+    return false;
   }
 
-  handleClick(event) {
-    event.preventDefault();
+  processTransactionCategory(transaction) {
+    if (transaction.category) {
+      if (transaction.category === 'mondo' || transaction.category === 'monzo') {
+        return '';
+      }
 
-    const { transactionSelect, transaction: { id } } = this.props;
-    transactionSelect(id);
+      return transaction.category;
+    }
+
+    return 'general';
+  }
+
+  processTransactionExtraInfo(transaction) {
+    if (transaction.metadata && transaction.metadata.faster_payment) {
+      return 'Bank transfer';
+    }
+
+    if (transaction.merchant) {
+      if (transaction.merchant.online) {
+        return 'Online';
+      }
+      if (transaction.merchant.address && transaction.merchant.address.city) {
+        return transaction.merchant.address.city;
+      }
+    }
+
+    return '';
   }
 
   render() {
-    const {
-      transaction,
-      transaction: {
-        id,
-        title,
-        created,
-        decline_reason: declineReason,
-        amount,
-        localAmount,
-      },
-      active,
-    } = this.props;
+    const { transaction, setActiveTransaction } = this.props;
+    const title = processTransactionTitle(transaction);
+    const amount = processTransactionAmount(transaction);
+    const extraInfo = this.processTransactionExtraInfo(transaction);
+    const created = timeSince(new Date(transaction.created));
+    const transactionLogoClassName = 'mzw-transaction__logo';
+    let iconOrLogo = <CategoryIcon className={transactionLogoClassName} />;
 
+    if (transaction.merchant) {
+      if (transaction.merchant.logo) {
+        iconOrLogo = (
+          <img
+            className={transactionLogoClassName}
+            src={transaction.merchant.logo}
+            alt={`${transaction.merchant.name} logo`}
+          />
+        );
+      } else if (transaction.merchant.category) {
+        iconOrLogo = (
+          <CategoryIcon
+            className={transactionLogoClassName}
+            category={transaction.merchant.category}
+          />
+        );
+      }
+    } else if (transaction.counterparty && transaction.counterparty.name) {
+      iconOrLogo = (
+        <CategoryIcon
+          className={transactionLogoClassName}
+          character={transaction.counterparty.name.charAt(0)}
+        />
+      );
+    } else if (transaction.is_load) {
+      iconOrLogo = (
+        <CategoryIcon
+          className={transactionLogoClassName}
+          character="+"
+        />
+      );
+    }
     return (
-      <a href="#" className={`collection-item avatar row ${active === id ? 'active' : ''}`} onClick={this.handleClick}>
-        <div className="col s10">
-          <div className="rounded circle">
-            <TransactionImage transaction={transaction} />
+      <li
+        key={transaction.id}
+        onClick={() => setActiveTransaction(transaction)}
+        onKeyPress={() => setActiveTransaction(transaction)}
+        className="mzw-transaction"
+        tabIndex="0"
+      >
+        <div className="mzw-transaction__logo-container">{iconOrLogo}</div>
+        <div className="mzw-transaction__detail">
+          <div>{title}</div>
+          <div className="mzw-transaction__info">
+            <span>{created}</span>
+            {extraInfo && (
+              <Fragment>
+                <span>&nbsp;&mdash;&nbsp;</span>
+                <span>{extraInfo}</span>
+              </Fragment>
+            )}
           </div>
-          <span className="title primary-text">{title}{localAmount ? ' 🌎' : ''}</span>
-          {declineReason ? (
-            <p>{getDeclineTranslation(declineReason)}</p>
-          ) : (
-            <p className="grey-text text-lighten-1">{moment(created).fromNow()}</p>
-          )}
         </div>
-        <div className="col s2">
-          <p className={`secondary-content ${(amount && amount.includes('+')) ? 'green-text' : 'black-text'}`} style={{ fontSize: '1.5em' }}>
-            {amount}
-          </p>
+        <div className={`mzw-transaction__amount ${amount.includes('+') && 'mzw-transaction__amount-positive'}`}>
+          {amount}
         </div>
-      </a>
+      </li>
     );
   }
 }
 
 Transaction.propTypes = {
-  transactionSelect: PropTypes.func.isRequired,
-  transaction: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-  }).isRequired,
-  active: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
+  transaction: PropTypes.object.isRequired, // eslint-disable-line
+  setActiveTransaction: PropTypes.func.isRequired,
 };
 
-export default Transaction;
+const mapDispatchToProps = dispatch => ({
+  setActiveTransaction: transaction => dispatch(setActiveTransactionAction(transaction)),
+});
+
+export default connect(null, mapDispatchToProps)(Transaction);

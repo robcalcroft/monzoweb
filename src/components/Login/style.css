@@ -1,0 +1,12 @@
+@import '../../vars.css';
+
+.mzw-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  font-size: 150%;
+  background-color: var(--color-dark-blue);
+  color: white;
+}

@@ -1,0 +1,18 @@
+@import '../../vars.css';
+
+.mzw-logo {
+  display: flex;
+  align-items: flex-start;
+}
+
+.mzw-logo__image {
+  width: 175px;
+  height: auto;
+}
+
+.mzw-logo__text {
+  font-size: 22pt;
+  font-weight: 200;
+  color: var(--color-white);
+  margin-left: 0.25rem;
+}

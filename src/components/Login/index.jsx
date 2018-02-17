@@ -1,10 +1,21 @@
 import React from 'react';
+import './style.css';
 
-/* eslint-disable max-len */
-export default () => (
-  <div>
-    <p>Login below to authorise <b>monzoweb</b> to use your Monzo account.</p>
-    <p>The site uses SSL to ensure your security, so please do check you have the padlock icon shown in the URL bar.</p>
-    <a href={`https://auth.getmondo.co.uk/?client_id=${MONZO_CLIENT_ID}&redirect_uri=${MONZO_REDIRECT_URI}&response_type=code`} className="waves-effect waves-light btn">Login</a>
-  </div>
-);
+class Login extends React.PureComponent {
+  render() {
+    return (
+      <div className="mzw-login">
+        <div>
+          <div className="mzw-login__label">
+            Click Login below to authorize<br />
+            Monzo Web to use your Monzo account.
+          </div>
+          <br />
+          <a className="mzw-button" href={`https://auth.getmondo.co.uk/?client_id=${process.env.MONZO_CLIENT_ID}&redirect_uri=${process.env.MONZO_REDIRECT_URI}&response_type=code`}>Login</a>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Login;

@@ -1,0 +1,59 @@
+@import '../../vars.css';
+
+.mzw-transaction {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--color-light-grey);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color .05s linear;
+
+
+  &:hover, &:hover .mzw-transaction__info, &:hover .mzw-transaction__amount-positive {
+    color: white;
+  }
+
+  &:hover {
+    background-color: var(--color-light-blue);
+  }
+
+  &:active {
+    background-color: var(--color-grey);
+  }
+
+  &:focus {
+    background-color: lightgrey;
+    outline: none;
+  }
+
+  &:last-child {
+    border: none;
+  }
+}
+
+.mzw-transaction__detail {
+  width: 100%;
+}
+
+.mzw-transaction__info {
+  color: var(--color-grey);
+}
+
+.mzw-transaction__amount {
+  width: 10rem;
+  text-align: right;
+}
+
+.mzw-transaction__amount-positive {
+  color: var(--color-green);
+}
+
+.mzw-transaction__logo-container {
+  margin-right: 2rem;
+}
+
+.mzw-transaction__logo {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 7.5%;
+}

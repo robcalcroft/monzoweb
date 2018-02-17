@@ -1,103 +1,121 @@
 import React from 'react';
-import moment from 'moment';
-import { intToAmount, ajaxFail, checkStatus } from '../../lib/utils';
-import './style.scss';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { transactionsRequest } from '../../actions';
+import { getHumanCostFromInteger } from '../../helpers';
+import './style.css';
 
-export default class Map extends React.Component {
+// Move this to use https://tomchentw.github.io/react-google-maps/#introduction
+
+class Map extends React.Component {
   componentDidMount() {
     if (typeof google === 'undefined') {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}`;
-      script.onload = this.getAccount.bind(this);
-
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_MAPS_API_KEY}`;
+      script.onload = this.scriptInitialLoad.bind(this);
       document.head.appendChild(script);
     } else {
-      this.getAccount();
+      this.buildMap();
     }
   }
 
-  getAccount() {
-    fetch('https://api.getmondo.co.uk/accounts', {
-      headers: {
-        Authorization: `Bearer ${localStorage.monzo_access_token}`,
-      },
-    })
-      .then(checkStatus)
-      .then(response => response.json())
-      .then(response => this.getTransactions(response.accounts))
-      .catch(error => ajaxFail(error, this.getAccount.bind(this)));
+  componentDidUpdate({ activeId: prevActiveId }) {
+    const { activeId, fetchTransactions, transactions } = this.props;
+    if (prevActiveId !== activeId && activeId !== '') {
+      fetchTransactions(activeId);
+    }
+
+    if (transactions.length > 0) {
+      this.buildMap();
+    }
   }
 
-  getTransactions(accounts) {
+  scriptInitialLoad() {
+    const {
+      fetching,
+      activeId,
+      fetchTransactions,
+      transactions,
+    } = this.props;
+    if (!fetching && transactions.length !== 0) {
+      fetchTransactions(activeId);
+    }
+  }
+
+  buildMap() {
     const map = this.createMap();
     const infoWindow = new google.maps.InfoWindow();
     const bounds = new google.maps.LatLngBounds();
 
-    const transactionPromises = accounts.map(({ id }) => new Promise((resolve, reject) => {
-      fetch(`https://api.getmondo.co.uk/transactions?expand[]=merchant&account_id=${id}`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.monzo_access_token}`,
-        },
-      })
-        .then(checkStatus)
-        .then(response => response.json())
-        .then(resolve)
-        .catch(reject);
-    }));
+    this.props.transactions
+      .filter(transaction => !!transaction.merchant && !transaction.merchant.online)
+      .map((transaction) => {
+        const { merchant } = transaction;
+        const position = new google.maps.LatLng(
+          merchant.address.latitude,
+          merchant.address.longitude,
+        );
+        const marker = new google.maps.Marker({
+          animation: google.maps.Animation.DROP,
+          position,
+          map,
+        });
 
-    Promise.all(transactionPromises)
-      .then((accountsResult) => {
-        const result = [];
-        accountsResult.forEach(({ transactions }) => result.push(...transactions));
-        return result;
-      })
-      .then(account => account
-        .filter(transaction => !!transaction.merchant && !transaction.merchant.online)
-        .map((transaction) => {
-          const { merchant } = transaction;
-          const position = new google.maps.LatLng(
-            merchant.address.latitude,
-            merchant.address.longitude,
-          );
+        bounds.extend(marker.position);
+        map.fitBounds(bounds);
 
-          // Create the marker for the transaction
-          const marker = new google.maps.Marker({
-            animation: google.maps.Animation.DROP,
-            position,
-            map,
-          });
+        const localAmount = getHumanCostFromInteger(transaction.local_amount, transaction.local_currency).replace('+', 'Refund of ');
+        const gbpAmount = getHumanCostFromInteger(transaction.amount, transaction.currency).replace('+', '');
+        const isInternational = transaction.local_currency !== transaction.currency;
+        const transactionDate = new Date(transaction.created);
 
-          // Extend map bounds around transaction markers
-          bounds.extend(marker.position);
-          map.fitBounds(bounds);
-
-          // Open set content and open info window
-          return marker.addListener('click', () => {
-            infoWindow.setContent(`
-            <p className='info-window'><b>${intToAmount(transaction.local_amount).replace('+', 'Refund of ')} at ${merchant.name.substr(0, 40)}</b></p>
-            <p className='info-window'>${moment(transaction.created).format('dddd MMMM Do YYYY [at] h:mma')}</p>
+        return marker.addListener('click', () => {
+          infoWindow.setContent(`
+            <p><b>${localAmount}${isInternational ? ` (${gbpAmount})` : ''} at ${merchant.name.substr(0, 40)}</b></p>
+            <p>${transactionDate.toLocaleDateString()} at ${transactionDate.toLocaleTimeString()}</p>
           `);
-            infoWindow.open(map, marker);
-          });
-        }))
-      .catch(error => ajaxFail(error, this.getAccount.bind(this)));
+          infoWindow.open(map, marker);
+        });
+      });
   }
 
-  createMap() { // eslint-disable-line class-methods-use-this
-    return new google.maps.Map(document.getElementById('spending-map'), {
+  createMap() {
+    return new google.maps.Map(document.querySelector('.mzw-map'), {
       center: new google.maps.LatLng(51.360878899999996, -0.6569385999999999),
       zoom: 5,
     });
   }
 
   render() {
+    const { fetching } = this.props;
     return (
-      <div>
-        <div id="side-note">
-          Some locations may be from online purchases which have escaped the checks
-        </div>
-        <div id="spending-map" />
+      <div className="mzw-map__container">
+        {fetching && (
+          <div className="mzw-map__fetching">
+            <h1>Loading map...</h1>
+          </div>
+        )}
+        <div className={`mzw-map ${fetching ? 'mzw-map--fetching' : ''}`} />
       </div>
     );
   }
 }
+
+Map.propTypes = {
+  transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  activeId: PropTypes.string.isRequired,
+  fetchTransactions: PropTypes.func.isRequired,
+  fetching: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = state => ({
+  transactions: state.transactions.list,
+  activeId: state.accounts.activeId,
+  fetching: state.transactions.fetching,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchTransactions: accountId => dispatch(transactionsRequest(accountId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map);
