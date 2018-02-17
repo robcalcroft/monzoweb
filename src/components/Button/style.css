@@ -3,7 +3,6 @@
 .mzw-button {
   background-color: var(--color-light-blue);
   padding: 0.25rem 1rem;
-  margin: 0 0.5rem;
   border-radius: 5px;
   color: white;
   text-decoration: none;
@@ -28,4 +27,12 @@
   &:focus {
     background-color: var(--color-gold);
   }
+}
+
+.mzw-button-group--right-align > .mzw-button {
+  margin-left: 1rem;
+}
+
+.mzw-button-group--left-align > .mzw-button {
+  margin-right: 1rem;
 }

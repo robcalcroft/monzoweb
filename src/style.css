@@ -38,34 +38,3 @@ main {
   display: flex;
   flex: 1;
 }
-
-select {
-  border: thin solid var(--color-light-grey);
-  background-color: var(--color-white);
-  -webkit-appearance: none;
-  -webkit-border-radius: 0;
-  padding: 0.5em 3.5em 0.5em 1em;
-  line-height: 1.5em;
-  cursor: pointer;
-  min-width: 12.5rem;
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--color-blue) 50%),
-    linear-gradient(135deg, var(--color-blue) 50%, transparent 50%);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px),
-    100% 0;
-  background-size:
-    5px 5px,
-    5px 5px,
-    2.5em 2.5em;
-  background-repeat: no-repeat;
-}
-
-footer {
-  color: white;
-}
-
-footer > div {
-  @apply --container;
-}

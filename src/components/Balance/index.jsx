@@ -25,7 +25,8 @@ class Balance extends React.PureComponent {
         <div className="mzw-balance__label-container">
           <div className="mzw-balance__label">Balance</div>
           <div className="mzw-balance__value">
-            {fetching ? 'Loading...' : getHumanCostFromInteger(balance, currency).replace('+', '')}
+            Loading...
+            {/* {fetching ? 'Loading...' : getHumanCostFromInteger(balance, currency).replace('+', '')} */}
           </div>
         </div>
         <div className="mzw-balance__label-container">

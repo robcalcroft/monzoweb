@@ -16,19 +16,21 @@ class AccountSelector extends React.PureComponent {
     return (
       <div>
         <div className="mzw-account-selector__label">Account</div>
-        {accounts.length === 0 ? (
-          <Button>Loading...</Button>
-        ) : (
-          accounts.map(account => (
-            <Button
-              key={account.id}
-              onClick={() => setActiveAccountId(account.id)}
-              selected={account.id === activeId}
-            >
-              {this.getAccountType(account)}
-            </Button>
-          ))
-        )}
+        <span className="mzw-button-group--left-align">
+          {accounts.length === 0 ? (
+            <Button>Loading...</Button>
+          ) : (
+            accounts.map(account => (
+              <Button
+                key={account.id}
+                onClick={() => setActiveAccountId(account.id)}
+                selected={account.id === activeId}
+              >
+                {this.getAccountType(account)}
+              </Button>
+            ))
+          )}
+        </span>
       </div>
     );
   }

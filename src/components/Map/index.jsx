@@ -43,11 +43,15 @@ class Map extends React.Component {
   }
 
   buildMap() {
+    if (typeof google === 'undefined') {
+      return false;
+    }
+
     const map = this.createMap();
     const infoWindow = new google.maps.InfoWindow();
     const bounds = new google.maps.LatLngBounds();
 
-    this.props.transactions
+    return this.props.transactions
       .filter(transaction => !!transaction.merchant && !transaction.merchant.online)
       .map((transaction) => {
         const { merchant } = transaction;
