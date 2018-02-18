@@ -32,6 +32,7 @@ class TransactionDetail extends React.PureComponent {
     const address = merchant && merchant.address;
     const latitude = address && address.latitude;
     const longitude = address && address.longitude;
+    const emoji = merchant && merchant.emoji;
     const isGBP = transaction.local_currency === 'GBP';
     let tags = [];
 
@@ -70,7 +71,7 @@ class TransactionDetail extends React.PureComponent {
         {/* eslint-enable no-nested-ternary */}
         <div className="mzw-transaction-detail__summary">
           <div className="mzw-transaction-detail__item mzw-transaction-detail__header">
-            <div>{processTransactionTitle(transaction)}</div>
+            <div>{processTransactionTitle(transaction)} {emoji}</div>
             <div>
               {processTransactionAmount(transaction)}
               {(!isGBP && transaction.notes !== 'Active card check') && (
