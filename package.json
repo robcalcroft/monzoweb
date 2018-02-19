@@ -48,5 +48,15 @@
     "webpack": "^3.10.0",
     "webpack-bundle-size-analyzer": "^2.7.0",
     "webpack-dev-server": "^2.9.7"
-  }
+  },
+  "description": "Check your Monzo account from your browser",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robcalcroft/monzoweb.git"
+  },
+  "author": "Rob Calcroft",
+  "bugs": {
+    "url": "https://github.com/robcalcroft/monzoweb/issues"
+  },
+  "homepage": "https://github.com/robcalcroft/monzoweb#readme"
 }
