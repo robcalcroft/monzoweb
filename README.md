@@ -1,9 +1,11 @@
-# :moneybag: monzoweb
-Check your Monzo account from your browser
+# :moneybag: Monzoweb
+View your Monzo account from your browser and view all your transactions on an interactive map!
 
 ![monzoweb screenshot of main interface](https://i.imgur.com/5DHIDO8.png)
 
 ## Getting Started
+If you're not a developer or have limited technical knowledge, [this longform, simple setup guide](./SIMPLE.md) will help you setup Monzoweb.
+
 1. [Install Node.js](https://nodejs.org/en/download/package-manager/)
 2. `git clone https://github.com/robcalcroft/monzoweb && cd monzoweb`
 3. `npm install` to install dependencies
