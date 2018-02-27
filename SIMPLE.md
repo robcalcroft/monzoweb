@@ -48,4 +48,4 @@ Now that we've installed Monzo web and the tools it runs with we can configure t
 https://developers.google.com/maps/documentation/javascript/get-api-key
 7. Now you're ready to rock!
 
-Checkout the README.md file to learn how to boot the servers (it's just running some more terminal commands :smile:).
+Check out the [README.md](README.md) file to learn how to boot the servers (it's just running some more terminal commands :smile:).
