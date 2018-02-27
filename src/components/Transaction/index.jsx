@@ -102,7 +102,7 @@ class Transaction extends React.PureComponent {
       >
         <div className="mzw-transaction__logo-container">{iconOrLogo}</div>
         <div className="mzw-transaction__detail">
-          <div>{title}</div>
+          <div className={transaction.decline_reason ? 'mzw-transaction__detail-decline' : ''}>{title}</div>
           <div className="mzw-transaction__info">
             <span>{created}</span>
             {extraInfo && (
@@ -113,7 +113,12 @@ class Transaction extends React.PureComponent {
             )}
           </div>
         </div>
-        <div className={`mzw-transaction__amount ${amount.includes('+') && 'mzw-transaction__amount-positive'}`}>
+        <div className={`
+          mzw-transaction__amount
+          ${amount.includes('+') ? 'mzw-transaction__amount-positive' : ''}
+          ${transaction.decline_reason ? 'mzw-transaction__detail-decline' : ''}
+        `}
+        >
           {amount}
         </div>
       </li>

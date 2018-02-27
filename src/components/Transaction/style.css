@@ -57,3 +57,8 @@
   width: 3rem;
   border-radius: 7.5%;
 }
+
+.mzw-transaction__detail-decline {
+  text-decoration: line-through;
+  color: var(--color-red);
+}
