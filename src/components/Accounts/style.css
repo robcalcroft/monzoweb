@@ -2,62 +2,71 @@
 
 .mzw-accounts {
   display: flex;
-  flex: 1;
   flex-direction: column;
 }
 
-.mzw-accounts__heading-container {
-  background: linear-gradient(to bottom, #14233c 10%,#144673 100%);
-  height: 5.75rem;
-  overflow: hidden;
+.mzw-accounts__header-container {
+  background: var(--color-dark-blue);
 }
 
-.mzw-accounts__heading {
-  transition: transform .25s ease;
-
-  & > div {
-    height: 5.75rem;
-    justify-content: space-between;
-    display: flex;
-    align-items: center;
-    @apply --container;
-  }
+.mzw-accounts__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  @apply --container;
 }
 
-.mzw-accounts__heading--search-visible {
-  transform: translateY(-5.75rem);
+.mzw-accounts__search {
+  display: flex;
 }
 
-.mzw-accounts__search__label {
-  margin-bottom: 0.4rem;
-  color: var(--color-light-grey);
+.mzw-accounts__search__text {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
 }
 
 .mzw-accounts__search__input {
-  padding: 0.5rem;
-  background-color: var(--color-light-blue);
-  color: white;
+  width: 100%;
+  padding: 1em;
+  font: inherit;
+  color: var(--color-dark-blue);
+  background-color: var(--color-white);
   border: none;
   outline: none;
-  width: 20rem;
-  font-size: 1.05rem;
 }
 
 .mzw-accounts__transactions {
-  flex: 1;
   display: flex;
-  overflow-y: auto;
-  padding: 1rem var(--global-gutter);
+  padding: 1em 0;
   width: 100%;
   @apply --container;
 }
 
 .mzw-accounts__transactions__list {
-  flex: 1;
-  margin-right: 0.5rem;
+  padding-right: 1em;
 }
 
+.mzw-accounts__transactions__list,
 .mzw-accounts__transactions__detail {
-  flex: 1;
-  margin-left: 0.5rem;
+  width: 50%;
+}
+
+@media (max-width: 800px) {
+  .mzw-accounts__transactions {
+    flex-direction: column;
+  }
+
+  .mzw-accounts__transactions__list,
+  .mzw-accounts__transactions__detail {
+    width: 100%;
+  }
+
+  .mzw-accounts__transactions__list {
+    padding-right: 0;
+    order: 2;
+  }
+
+  .mzw-accounts__transactions__detail {
+    order: 1;
+  }
 }

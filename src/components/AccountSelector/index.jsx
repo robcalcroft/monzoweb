@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import { setActiveAccountId as setActiveAccountIdAction } from '../../actions';
-import Button from '../Button';
 import './style.css';
 
 class AccountSelector extends React.PureComponent {
@@ -12,25 +12,33 @@ class AccountSelector extends React.PureComponent {
 
   render() {
     const { activeId, accounts, setActiveAccountId } = this.props;
+    const loading = accounts.length === 0;
+
+    const accountSelectorClassname = classNames({
+      'mzw-account-selector': true,
+      'mzw-account-selector--loading': loading,
+    });
 
     return (
-      <div>
-        <div className="mzw-account-selector__label">Account</div>
-        <span className="mzw-button-group--left-align">
-          {accounts.length === 0 ? (
-            <Button>Loading...</Button>
-          ) : (
-            accounts.map(account => (
-              <Button
-                key={account.id}
-                onClick={() => setActiveAccountId(account.id)}
-                selected={account.id === activeId}
-              >
-                {this.getAccountType(account)}
-              </Button>
-            ))
-          )}
-        </span>
+      <div className={accountSelectorClassname}>
+        <div className="mzw-account-selector-container">
+          <div className="mzw-account-selector__label">Account</div>
+          <span>
+            {loading ? (
+              <div className="mzw-selector">Loading...</div>
+            ) : (
+              accounts.map(account => (
+                <button
+                  className={`mzw-selector ${(account.id === activeId) ? 'mzw-selector--selected' : ''}`}
+                  key={account.id}
+                  onClick={() => setActiveAccountId(account.id)}
+                >
+                  {this.getAccountType(account)}
+                </button>
+              ))
+            )}
+          </span>
+        </div>
       </div>
     );
   }

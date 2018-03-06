@@ -50,7 +50,7 @@ class About extends React.Component {
   render() {
     return (
       <div className="mzw-callback">
-        <h1 style={{ textAlign: 'center' }}>{this.state.error || 'Logging you in to Monzo...'}</h1>
+        <h1>{this.state.error || 'Logging you in to Monzo Web...'}</h1>
         <Loader />
       </div>
     );

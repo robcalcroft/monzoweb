@@ -1,38 +1,21 @@
 @import '../../vars.css';
 
 .mzw-button {
-  background-color: var(--color-light-blue);
-  padding: 0.25rem 1rem;
-  border-radius: 5px;
-  color: white;
+  padding: 0.5em 0.75em;
+  color: var(--color-white);
+  font-family: inherit;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  font-size: inherit;
-  border: 2px solid transparent;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  &:focus {
-    outline: none;
-    background-color: var(--color-blue);
-    border: 2px solid var(--color-light-blue);
-  }
+  background-color: var(--color-light-blue);
+  border: 0;
+  border-radius: 5px;
 }
 
-.mzw-button--selected {
-  background-color: var(--color-gold);
-
-  &:focus {
-    background-color: var(--color-gold);
-  }
+.mzw-button:hover{
+  background-color: var(--color-blue);
 }
 
-.mzw-button-group--right-align > .mzw-button {
-  margin-left: 1rem;
-}
-
-.mzw-button-group--left-align > .mzw-button {
-  margin-right: 1rem;
+.mzw-button:focus {
+  background-color: var(--color-blue);
 }

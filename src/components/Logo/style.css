@@ -3,16 +3,38 @@
 .mzw-logo {
   display: flex;
   align-items: flex-start;
+  cursor: default;
+  user-select: none;
 }
 
 .mzw-logo__image {
-  width: 175px;
+  width: 120px;
   height: auto;
 }
 
+.mzw-logo--large .mzw-logo__image {
+  width: 200px;
+}
+
 .mzw-logo__text {
-  font-size: 22pt;
-  font-weight: 200;
+  font-size: 18px;
+  font-weight: 400;
   color: var(--color-white);
-  margin-left: 0.25rem;
+  margin-left: 3px;
+}
+
+.mzw-logo--large .mzw-logo__text {
+  font-size: 32px;
+  margin-left: 6px;
+}
+
+@media (max-width: 800px) {
+  .mzw-logo {
+    overflow: hidden;
+    width: 30px;
+  }
+
+  .mzw-logo.mzw-logo--large  {
+    width: 50px;
+  }
 }

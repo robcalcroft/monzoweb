@@ -1,18 +1,41 @@
-.mzw-map__container {
-  height: 86%;
-  
-}
+@import '../../vars.css';
 
-.mzw-map__fetching {
-  display: flex;
-  justify-content: center;
-  margin-top: 2.5rem;
+.mzw-map-container {
+  height: 75vh;
 }
 
 .mzw-map {
   height: 100%;
 }
 
-.mzw-map--fetching {
-  display: none;
+.mzw-map-marker {
+  display: block;
+  margin-top: 5px;
+  min-width: 250px;
+  font-size: 12px;
+  font-family: 'Source Sans Pro', 'HelveticaNeue', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  color: var(--color-dark-blue);
+  text-decoration: none;
+}
+
+.mzw-map-marker__image {
+  float: left;
+  height: 3.5rem;
+  width: 3.5rem;
+  margin-right: 1em;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.mzw-map-marker__info__name {
+  font-size: 1.25em;
+  font-weight: 600;
+}
+
+.mzw-map-marker__info__price {
+  font-size: 1.25em;
+}
+
+.mzw-map-marker__date {
+  color: var(--color-grey)
 }

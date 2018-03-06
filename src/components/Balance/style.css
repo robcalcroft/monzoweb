@@ -1,34 +1,35 @@
 @import '../../vars.css';
-@import '../../breakpoints.css';
 
 .mzw-balance {
   display: flex;
+  padding-bottom: 0.5em;
   color: var(--color-white);
 }
 
 .mzw-balance__label-container {
-  min-width: 7rem;
+  min-width: 8em;
 }
 
 .mzw-balance__label-container > .mzw-balance__label {
-  margin-bottom: 0.4rem;
-  text-align: right;
-  color: var(--color-light-grey);
-
-  @media (--wide) {
-    text-align: left;
-  }
+  margin-top: 0.5em;
+  color: var(--color-lighter-blue);
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 2px;
 }
 
 .mzw-balance > .mzw-balance__label-container:first-child {
-  margin-right: 2rem;
+  margin-right: 2em;
 }
 
 .mzw-balance__value {
-  font-size: 1.4rem;
-  text-align: right;
+  margin-top: 0.25em;
+  line-height: 1em;
+  font-size: 1.5em;
+  font-weight: 600;
+}
 
-  @media (--wide) {
-    text-align: left;
-  }
+.mzw-balance--loading .mzw-balance__value {
+  background: var(--color-dark-blue-placeholder);
+  color: var(--color-dark-blue-placeholder);
 }

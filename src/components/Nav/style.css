@@ -1,0 +1,19 @@
+@import '../../vars.css';
+
+.mzw-nav-container {
+  background-color: var(--color-dark-blue);
+  padding: 1em 0;
+}
+
+.mzw-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  @apply --container;
+}
+
+.mzw-nav .mzw-link {
+  font-size: 1em;
+  font-weight: 600;
+}

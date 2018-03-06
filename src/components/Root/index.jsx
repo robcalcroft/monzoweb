@@ -4,21 +4,15 @@ import ProtectedRoute from '../ProtectedRoute';
 import Callback from '../Callback';
 import Accounts from '../Accounts';
 import Login from '../Login';
-import Links from '../Links';
-import Logo from '../Logo';
+import Nav from '../Nav';
 import NotFound from '../NotFound';
 
 class Root extends React.Component {
   render() {
     return (
       <Fragment>
-        <nav>
-          <div>
-            <Logo />
-            <ProtectedRoute path="/accounts" component={Links} />
-          </div>
-        </nav>
         <main>
+          <ProtectedRoute path="/accounts" component={Nav} />
           <Switch>
             <Route
               path="/"

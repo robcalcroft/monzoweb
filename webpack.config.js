@@ -38,7 +38,7 @@ module.exports = {
         ],
       }),
     }, {
-      test: /\.(svg|woff)$/,
+      test: /\.(png|svg|woff)$/,
       loader: 'url-loader',
     }],
   },

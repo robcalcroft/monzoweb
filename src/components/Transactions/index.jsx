@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { transactionsRequest, searchVisible as searchVisibleAction } from '../../actions';
+import classNames from 'classnames';
+import { transactionsRequest } from '../../actions';
 import Transaction from '../Transaction';
 import Loader from '../Loader';
 import './style.css';
@@ -13,18 +14,19 @@ class Transactions extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    if (this.props.searchVisible === true) {
-      this.props.searchVisibleToggle();
-    }
-  }
-
   render() {
     const { fetching, transactions } = this.props;
 
+    const transactionsClassnames = classNames({
+      'mzw-transactions': true,
+      'mzw-transactions--loading': fetching,
+    });
+
     return (
-      <div className={`mzw-transactions ${fetching && 'mzw-transactions--loading'}`}>
-        {fetching ? <Loader /> : (
+      <div className={transactionsClassnames}>
+        {fetching ? (
+          <Loader />
+        ) : (
           <ul className="mzw-transactions__list">
             {transactions.map(transaction => (
               <Transaction key={transaction.id} transaction={transaction} />
@@ -41,12 +43,10 @@ Transactions.propTypes = {
   fetchTransactions: PropTypes.func.isRequired,
   fetching: PropTypes.bool.isRequired,
   transactions: PropTypes.arrayOf(PropTypes.object).isRequired,
-  searchVisible: PropTypes.bool.isRequired,
-  searchVisibleToggle: PropTypes.func.isRequired,
 };
 
-const filterTransactions = (transactions, filter, visible) => {
-  if (filter === '' || visible === false) {
+const filterTransactions = (transactions, filter) => {
+  if (filter === '') {
     return transactions;
   }
 
@@ -75,15 +75,12 @@ const mapStateToProps = state => ({
   transactions: filterTransactions(
     state.transactions.list,
     state.search.filter,
-    state.search.visible,
   ),
-  searchVisible: state.search.visible,
   fetching: state.transactions.fetching,
 });
 
 const mapDispatchToProps = dispatch => ({
   fetchTransactions: accountId => dispatch(transactionsRequest(accountId)),
-  searchVisibleToggle: () => dispatch(searchVisibleAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Transactions);

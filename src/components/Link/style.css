@@ -4,19 +4,24 @@
   color: var(--color-blue);
   text-decoration: none;
   border: 1px solid transparent;
+  font-family: inherit;
+  font-weight: 600;
+  background: none;
+  padding: 0;
+  border: 0;
+}
 
-  &:hover {
-    text-decoration: underline;
-  }
+.mzw-link:hover {
+  text-decoration: underline;
+}
 
-  &:focus {
-    outline: 0;
-    border: 1px dotted var(--color-white);
-  }
+.mzw-link:focus {
+  outline: 0;
+  border: 1px dotted var(--color-white);
+}
 
-  &:last-child {
-    margin-right: 0;
-  }
+.mzw-link:last-child {
+  margin-right: 0;
 }
 
 .mzw-link--onColor {
@@ -24,5 +29,5 @@
 }
 
 .mzw-link--padded {
-  margin: 0 0.4rem;
+  margin: 0 0.75em;
 }

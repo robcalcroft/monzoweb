@@ -2,11 +2,38 @@
 
 .mzw-login {
   display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+@media (max-width: 800px) {
+  .mzw-login {
+    flex-direction: column;
+  }
+}
+
+.mzw-login__info,
+.mzw-login__form {
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  flex-direction: column;
+  padding: 1em;
+  flex-grow: 1;
   text-align: center;
-  font-size: 150%;
+}
+
+.mzw-login__info {
   background-color: var(--color-dark-blue);
-  color: white;
+  background-image: url('../../assets/monzo-bg.png');
+  background-position: center;
+  color: var(--color-white);
+}
+
+.mzw-login__form {
+  background: var(--color--lighter-grey);
+}
+
+.mzw-login__form > * {
+  margin-bottom: 1em;
 }

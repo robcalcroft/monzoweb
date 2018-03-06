@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { nameToHue } from '../../helpers';
 import './style.css';
 
@@ -19,7 +20,19 @@ class CategoryIcon extends React.PureComponent {
     }
 
     const iconSvg = require(`../../assets/category-icons/${category}.svg`); // eslint-disable-line import/no-dynamic-require, global-require
-    return <img src={iconSvg} alt={category} className={`mzw-category-icon--${category}-bg ${className}`} />;
+
+    const iconClassnames = classNames({
+      [className]: className,
+      [`mzw-category-icon--${category}-bg`]: true,
+    });
+
+    return (
+      <img
+        src={iconSvg}
+        alt={category}
+        className={iconClassnames}
+      />
+    );
   }
 }
 

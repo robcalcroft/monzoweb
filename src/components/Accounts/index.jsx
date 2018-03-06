@@ -7,7 +7,10 @@ import Balance from '../Balance';
 import TransactionDetail from '../TransactionDetail';
 import Transactions from '../Transactions';
 import Map from '../Map';
-import { accountsRequest as fetchAccounts, searchFilter as searchFilterAction } from '../../actions';
+import {
+  accountsRequest as fetchAccounts,
+  searchFilter as searchFilterAction,
+} from '../../actions';
 import './style.css';
 
 class Accounts extends React.Component {
@@ -16,31 +19,16 @@ class Accounts extends React.Component {
   }
 
   render() {
-    const { searchVisible, updateSearchFilter, searchFilter } = this.props;
-    const accountsHeadingClassname = ['mzw-accounts__heading']
-      .concat(searchVisible ? 'mzw-accounts__heading--search-visible' : '')
-      .join(' ');
-
+    const {
+      updateSearchFilter,
+      searchFilter,
+    } = this.props;
     return (
       <div className="mzw-accounts">
-        <div className="mzw-accounts__heading-container">
-          <div className={accountsHeadingClassname}>
-            <div>
-              <AccountSelector />
-              <Balance />
-            </div>
-            <div>
-              <label htmlFor="search">
-                <div className="mzw-accounts__search__label">Search</div>
-                <input
-                  onChange={event => updateSearchFilter(event.target.value)}
-                  id="search"
-                  className="mzw-accounts__search__input"
-                  type="text"
-                  value={searchFilter}
-                />
-              </label>
-            </div>
+        <div className="mzw-accounts__header-container">
+          <div className="mzw-accounts__header">
+            <Balance />
+            <AccountSelector />
           </div>
         </div>
         <Route
@@ -49,6 +37,17 @@ class Accounts extends React.Component {
           render={() => (
             <div className="mzw-accounts__transactions">
               <div className="mzw-accounts__transactions__list">
+                <label htmlFor="search" className="mzw-accounts__search">
+                  <span aria-hidden className="mzw-accounts__search__text">Search</span>
+                  <input
+                    onChange={event => updateSearchFilter(event.target.value)}
+                    id="search"
+                    className="mzw-accounts__search__input"
+                    type="text"
+                    placeholder="Search transactions..."
+                    value={searchFilter}
+                  />
+                </label>
                 <Transactions />
               </div>
               <div className="mzw-accounts__transactions__detail">
@@ -65,13 +64,12 @@ class Accounts extends React.Component {
 
 Accounts.propTypes = {
   fetchAccounts: PropTypes.func.isRequired,
-  searchVisible: PropTypes.bool.isRequired,
   searchFilter: PropTypes.string.isRequired,
   updateSearchFilter: PropTypes.func.isRequired,
 };
 
+
 const mapStateToProps = state => ({
-  searchVisible: state.search.visible,
   searchFilter: state.search.filter,
 });
 
