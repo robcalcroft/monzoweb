@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import { balanceRequest } from '../../actions';
 import { getHumanCostFromInteger } from '../../helpers';
 import './style.css';
@@ -20,8 +21,13 @@ class Balance extends React.PureComponent {
       fetching,
     } = this.props;
 
+    const balanceClassnames = classNames({
+      'mzw-balance': true,
+      'mzw-balance--loading': fetching,
+    });
+
     return (
-      <div className="mzw-balance">
+      <div className={balanceClassnames}>
         <div className="mzw-balance__label-container">
           <div className="mzw-balance__label">Balance</div>
           <div className="mzw-balance__value">

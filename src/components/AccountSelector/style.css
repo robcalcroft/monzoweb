@@ -1,6 +1,44 @@
 @import '../../vars.css';
 
+.mzw-account-selector {
+  display: flex;
+}
+
+@media (max-width: 800px) {
+  .mzw-account-selector {
+    display: none;
+  }
+}
+
 .mzw-account-selector__label {
-  margin-bottom: 0.4rem;
-  color: var(--color-light-grey);
+  color: var(--color-lighter-blue);
+  text-transform: uppercase;
+  font-size: 0.8em;
+  letter-spacing: 2px;
+  text-align: right;
+}
+
+.mzw-selector {
+  padding: 0.5em 1em;
+  margin-top: 0.5em;
+  margin-left: 1em;
+  font-size: 1em;
+  color: white;
+  font-weight: 600;
+  background: none;
+  border: 0;
+  border-top-right-radius: 2px;
+  border-top-left-radius: 2px;
+  cursor: pointer;
+}
+
+.mzw-selector--selected {
+  background: var(--color-lighter-grey);
+  color: var(--color-dark-blue);
+}
+
+.mzw-account-selector--loading .mzw-selector {
+  min-width: 10em;
+  background: var(--color-dark-blue-placeholder);
+  color: var(--color-dark-blue-placeholder);
 }

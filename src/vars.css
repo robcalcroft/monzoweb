@@ -1,20 +1,36 @@
 :root {
-  --global-gutter: 1rem;
   --color-dark-blue: #14233c;
+  --color-dark-blue-placeholder: #1a2f4e;
   --color-blue: #144673;
-  --color-light-blue: #50B9DC;
+  --color-light-blue: #337ab7;
+  --color-lighter-blue: #c3dbff;
+  --color-white: #fff;
   --color-off-white: #f5f5f5;
-  --color-white: white;
-  --color-red: #e63b5f;
-  --color-green: #50af78;
-  --color-light-grey: lightgrey;
-  --color-grey: grey;
-  --color-gold: #f9b548;
-  --body-width: 54rem;
-  --global-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  --color-lighter-grey: #f7f7f7;
+  --color-light-grey: #d3d3d3;
+  --color-grey: #808080;
+  --color-red: #7b315c;
+  --color-green: #317b50;
 
+  --color-category-transport: #1E788C;
+  --color-category-groceries: #F5B946;
+  --color-category-eatingOut: #E64B5F;
+  --color-category-cash: #9ABBA8;
+  --color-category-bills: #50B9DC;
+  --color-category-entertainment: #EB824B;
+  --color-category-shopping: #F09696;
+  --color-category-holidays: #B982FF;
+  --color-category-general: #CCCCCC;
+  --color-category-expenses: #E1B982;
+
+  --mobile-breakpoint: 800px;
+  --body-width: 58rem;
+  --global-gutter: 1rem;
   --container: {
     max-width: var(--body-width);
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--global-gutter);
+    padding-right: var(--global-gutter);
   }
 }

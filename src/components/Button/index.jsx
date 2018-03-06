@@ -4,8 +4,8 @@ import './style.css';
 
 class Button extends React.PureComponent {
   render() {
-    const { children, selected, ...rest } = this.props;
-    const className = `mzw-button ${selected ? 'mzw-button--selected' : ''}`;
+    const { children, ...rest } = this.props;
+    const className = 'mzw-button';
     return <button {...rest} className={className}>{children}</button>;
   }
 }

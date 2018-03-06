@@ -9,32 +9,32 @@
 }
 
 .mzw-category-icon--transport-bg {
-  background-color: #1E788C;
+  background-color: var(--color-category-transport);
 }
 .mzw-category-icon--groceries-bg {
-  background-color: #F5B946;
+  background-color: var(--color-category-groceries);
 }
 .mzw-category-icon--eating_out-bg {
-  background-color: #E64B5F;
+  background-color: var(--color-category-eatingOut);
 }
 .mzw-category-icon--cash-bg {
-  background-color: #9ABBA8;
+  background-color: var(--color-category-cash);
 }
 .mzw-category-icon--bills-bg {
-  background-color: #50B9DC;
+  background-color: var(--color-category-bills);
 }
 .mzw-category-icon--entertainment-bg {
-  background-color: #EB824B;
+  background-color: var(--color-category-entertainment);
 }
 .mzw-category-icon--shopping-bg {
-  background-color: #F09696;
+  background-color: var(--color-category-shopping);
 }
 .mzw-category-icon--holidays-bg {
-  background-color: #B982FF;
+  background-color: var(--color-category-holidays);
 }
 .mzw-category-icon--general-bg {
-  background-color: #CCCCCC;
+  background-color: var(--color-category-general);
 }
 .mzw-category-icon--expenses-bg {
-  background-color: #E1B982;
+  background-color: var(--color-category-expenses);
 }

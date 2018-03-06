@@ -1,40 +1,20 @@
 @import './vars.css';
 
-@font-face {
-  font-family: 'Source Sans Pro';
-  src: url('./assets/source-sans-pro-regular.woff') format('woff');
+*::before, *, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-size: 1.05rem;
-  min-width: 56rem;
-  font-family: 'Source Sans Pro', system-ui;
-  background-color: var(--color-off-white);
+  font-size: 18px;
+  font-family: 'Source Sans Pro', 'HelveticaNeue', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   color: var(--color-dark-blue);
+  background-color: var(--color-off-white);
 }
 
 .mzw {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-nav, footer {
-  background-color: var(--color-dark-blue);
-  padding: 0.75rem var(--global-gutter);
-}
-
-nav > div {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  @apply --container;
-}
-
-main {
-  display: flex;
-  flex: 1;
 }

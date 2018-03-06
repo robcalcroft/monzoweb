@@ -9,7 +9,6 @@ export const SET_ACTIVE_TRANSACTION = 'SET_ACTIVE_TRANSACTION';
 export const BALANCE_REQUEST = 'BALANCE_REQUEST';
 export const BALANCE_REQUEST_SUCCESS = 'BALANCE_REQUEST_SUCCESS';
 export const BALANCE_REQUEST_FAILURE = 'BALANCE_REQUEST_FAILURE';
-export const SEARCH_VISIBLE = 'SEARCH_VISIBLE';
 export const SEARCH_FILTER = 'SEARCH_FILTER';
 
 export function accountsRequest(payload) {
@@ -85,13 +84,6 @@ export function balanceRequestSuccess(payload) {
 export function balanceRequestFailure(payload) {
   return {
     type: BALANCE_REQUEST_FAILURE,
-    payload,
-  };
-}
-
-export function searchVisible(payload) {
-  return {
-    type: SEARCH_VISIBLE,
     payload,
   };
 }
