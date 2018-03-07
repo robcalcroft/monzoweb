@@ -6,6 +6,7 @@
 }
 
 .mzw-accounts__header-container {
+  height: 10vh;
   background: var(--color-dark-blue);
 }
 
