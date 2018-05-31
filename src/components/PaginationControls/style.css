@@ -1,0 +1,12 @@
+.mzw__pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem auto;
+}
+
+@media (min-width: 768px) {
+  .mzw__pagination-controls {
+    width: 40%;
+  }
+}

@@ -1,9 +1,0 @@
-.mzw-callback {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-
-  & > .mzw-loader {
-    flex: 1;
-  }
-}

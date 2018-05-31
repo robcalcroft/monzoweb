@@ -1,9 +1,9 @@
 {
-  "presets": ["env", "react"],
-  "plugins": ["transform-object-rest-spread"],
-  "env": {
-    "production": {
-      "plugins": ["transform-react-remove-prop-types"]
-    }
-  }
+  "presets": [
+    "env",
+    "react"
+  ],
+  "plugins": [
+    ["transform-object-rest-spread", { "useBuiltIns": true }]
+  ]
 }

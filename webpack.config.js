@@ -1,90 +1,55 @@
-require('dotenv').config();
-
 const path = require('path');
-const webpack = require('webpack'); // eslint-disable-line import/no-extraneous-dependencies
-const WebpackAnalyser = require('webpack-bundle-size-analyzer').WebpackBundleSizeAnalyzerPlugin; // eslint-disable-line import/no-extraneous-dependencies
-const HtmlWebpackPlugin = require('html-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
-const ExtractTextPlugin = require('extract-text-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
+const isDevelopment = !isProduction;
 
-module.exports = {
-  entry: './src/App.jsx',
+const config = {
+  mode: isProduction ? 'production' : 'development',
+  entry: {
+    monzoweb: [
+      'abortcontroller-polyfill',
+      'whatwg-fetch',
+      'babel-polyfill',
+      path.resolve('src', 'index.jsx'),
+    ],
+  },
   output: {
-    filename: 'bundle.[hash].js',
+    filename: '[name].[hash].js',
     publicPath: '/',
-    path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['.jsx', '.js'],
+    extensions: ['.js', '.jsx'],
   },
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
       loader: 'babel-loader',
     }, {
       test: /\.css$/,
-      use: ExtractTextPlugin.extract({
-        use: [
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              minimize: process.env.NODE_ENV === 'production',
-            },
-          },
-          'postcss-loader',
-        ],
-      }),
-    }, {
-      test: /\.(svg|woff)$/,
-      loader: 'url-loader',
+      loader: ['style-loader', 'css-loader'],
     }],
   },
-  devtool: isProduction ? 'cheap-module-source-map' : 'cheap-eval-source-map',
   plugins: [
-    new WebpackAnalyser('./dist/report.txt'),
+    new HtmlWebpackPlugin({
+      template: path.resolve('src', 'index.ejs'),
+    }),
     new webpack.EnvironmentPlugin([
       'MONZO_CLIENT_ID',
       'MONZO_REDIRECT_URI',
-      'GOOGLE_MAPS_API_KEY',
-    ].concat(isProduction ? ['NODE_ENV'] : [])),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      ...(isProduction ? {
-        minify: {
-          collapseWhitespace: true,
-          collapseInlineTagWhitespace: true,
-          removeComments: true,
-          removeRedundantAttributes: true,
-        },
-      } : {}),
-    }),
-    new ExtractTextPlugin('bundle.[chunkhash].css'),
-  ].concat(isProduction ? [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.HashedModuleIdsPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: true,
-      compress: {
-        warnings: false,
-        conditionals: true,
-        unused: true,
-        comparisons: true,
-        sequences: true,
-        dead_code: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true,
-      },
-      comments: false,
-    }),
-  ] : []),
+    ]),
+  ],
   devServer: {
     historyApiFallback: true,
+    hot: true,
     proxy: {
-      '/api': 'http://127.0.0.1:8081',
+      '/api/token': 'http://127.0.0.1:8081',
     },
   },
 };
+
+if (isDevelopment) config.plugins.push(new webpack.HotModuleReplacementPlugin());
+
+module.exports = config;

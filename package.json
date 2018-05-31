@@ -1,62 +1,49 @@
 {
   "name": "monzoweb",
-  "version": "3.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "version": "0.0.0",
+  "description": "View your Monzo account in your browser",
   "scripts": {
-    "lint:js": "eslint .",
-    "lint:css": "stylelint src/**/*.css --fix",
+    "start": "run-p start:*",
+    "start:client": "webpack-dev-server",
+    "start:api": "node api.js",
     "build": "rm -rf dist && NODE_ENV=production webpack",
-    "start": "webpack-dev-server --open --hot --inline",
-    "start:backend": "NODE_ENV=production node server.js"
+    "lint:js": "eslint src --ext .js,.jsx"
   },
-  "dependencies": {
-    "babel-polyfill": "^6.26.0",
-    "dotenv": "^5.0.0",
-    "express": "^4.16.2",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.6",
-    "react-router-dom": "^4.2.2",
-    "redux": "^3.7.2",
-    "redux-saga": "^0.16.0",
-    "request": "^2.83.0"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.12",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "css-loader": "^0.28.7",
-    "eslint": "^4.12.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.5.1",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "html-webpack-plugin": "^2.30.1",
-    "postcss": "^6.0.14",
-    "postcss-cssnext": "^3.0.2",
-    "postcss-import": "^11.0.0",
-    "postcss-loader": "^2.0.9",
-    "stylelint": "^8.3.1",
-    "stylelint-config-recommended": "^2.0.0",
-    "url-loader": "^0.6.2",
-    "webpack": "^3.10.0",
-    "webpack-bundle-size-analyzer": "^2.7.0",
-    "webpack-dev-server": "^2.9.7"
-  },
-  "description": "Check your Monzo account from your browser",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/robcalcroft/monzoweb.git"
   },
   "author": "Rob Calcroft",
-  "bugs": {
-    "url": "https://github.com/robcalcroft/monzoweb/issues"
+  "license": "MIT",
+  "homepage": "https://github.com/robcalcroft/monzoweb#readme",
+  "dependencies": {
+    "@reach/router": "^1.0.2",
+    "abortcontroller-polyfill": "^1.1.9",
+    "babel-polyfill": "^6.26.0",
+    "date-fns": "^1.29.0",
+    "express": "^4.16.3",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "request": "^2.87.0",
+    "whatwg-fetch": "^2.0.4"
   },
-  "homepage": "https://github.com/robcalcroft/monzoweb#readme"
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "html-webpack-plugin": "^3.2.0",
+    "npm-run-all": "^4.1.3",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.9.1",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  }
 }

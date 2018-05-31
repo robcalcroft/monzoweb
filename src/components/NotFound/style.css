@@ -1,8 +1,0 @@
-@import '../../vars.css';
-
-.mzw-not-found {
-  @apply --container;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}

@@ -1,14 +1,14 @@
 import React from 'react';
-import Loader from '../Loader';
-import { checkStatus } from '../../helpers';
-import './style.css';
 
-class About extends React.Component {
+class Callback extends React.PureComponent {
   constructor() {
     super();
 
+    this.getToken = this.getToken.bind(this);
+
     this.state = {
-      error: '',
+      error: undefined,
+      fetching: false,
     };
   }
 
@@ -16,45 +16,40 @@ class About extends React.Component {
     this.getToken();
   }
 
-  getToken() {
-    const queryString = window.location.search.replace('?', '').split('&').map((string) => {
-      const query = {};
-      [, query[string.split('=')[0]]] = string.split('=');
-      return query;
+  async getToken() {
+    const parameters = {};
+    window.location.search.replace('?', '').split('&').forEach((string) => {
+      const [key, value] = string.split('=');
+      if (key) parameters[key] = value;
     });
 
-    const code = queryString.find(query => !!query.code);
+    if (!parameters.code) this.setState({ error: 'There doesn\'t seem to be any authorzation to use your account from Monzo, please try clicking the link in your email again' });
 
-    if (!code || !code.code) {
-      return this.setState({
-        error: 'No login code present in URL, try logging into Monzo Web again',
+    this.setState({ fetching: true });
+
+    try {
+      const response = await fetch(`/api/token?code=${parameters.code}`);
+      const { access_token: accessToken, refresh_token: refreshToken } = await response.json();
+
+      if (!accessToken || !refreshToken) throw Error('There was an issue with the response we got from Monzo, please try again');
+
+      localStorage.setItem('monzoAccessToken', accessToken);
+      localStorage.setItem('monzoRefreshToken', refreshToken);
+
+      window.location.href = '/';
+    } catch (error) {
+      this.setState({
+        error: error.message || 'There was an error talking to Monzo, please try logging in again',
       });
+    } finally {
+      this.setState({ fetching: false });
     }
-
-    return fetch(`/api/token?code=${code.code}`)
-      .then(checkStatus)
-      .then(response => response.json())
-      .then((body) => {
-        localStorage.setItem('monzo_access_token', body.access_token);
-        localStorage.setItem('monzo_refresh_token', body.refresh_token);
-
-        window.location.href = '/accounts';
-      })
-      .catch((error) => {
-        this.setState({
-          error: error.message,
-        });
-      });
   }
 
   render() {
-    return (
-      <div className="mzw-callback">
-        <h1 style={{ textAlign: 'center' }}>{this.state.error || 'Logging you in to Monzo...'}</h1>
-        <Loader />
-      </div>
-    );
+    const { error, fetching } = this.state;
+    return <div>Callback - Error: {error} - Fetching: {fetching}</div>;
   }
 }
 
-export default About;
+export default Callback;
