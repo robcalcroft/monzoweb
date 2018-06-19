@@ -7,10 +7,15 @@
 
 .mzw-accounts__header-container {
   height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
   background: var(--color-dark-blue);
 }
 
 .mzw-accounts__header {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -19,6 +24,7 @@
 
 .mzw-accounts__search {
   display: flex;
+  height: 7vh;
 }
 
 .mzw-accounts__search__text {
@@ -38,7 +44,7 @@
 
 .mzw-accounts__transactions {
   display: flex;
-  padding: 1em 0;
+  height: 80vh;
   width: 100%;
   @apply --container;
 }
@@ -49,6 +55,7 @@
 
 .mzw-accounts__transactions__list,
 .mzw-accounts__transactions__detail {
+  margin: 3vh 0;
   width: 50%;
 }
 
