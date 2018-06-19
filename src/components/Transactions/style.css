@@ -3,7 +3,7 @@
 .mzw-transactions {
   background-color: var(--color-white);
   border-top: 1px solid var(--color-lighter-grey);
-  height: 60vh;
+  height: 67vh;
   overflow-y: auto;
 }
 
