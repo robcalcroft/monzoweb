@@ -1,7 +1,7 @@
 # :moneybag: Monzoweb
 View your Monzo account from your browser and view all your transactions on an interactive map!
 
-![monzoweb screenshot of main interface](https://i.imgur.com/5DHIDO8.png)
+![monzoweb screenshot of main interface](screenshot.png)
 
 ## Getting Started
 If you're not a developer or have limited technical knowledge, [this longform, simple setup guide](./SIMPLE.md) will help you setup Monzoweb.
