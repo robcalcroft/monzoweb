@@ -32,6 +32,12 @@
 .mzw-category-icon--holidays-bg {
   background-color: var(--color-category-holidays);
 }
+.mzw-category-icon--family-bg {
+  background-color: var(--color-category-family);
+}
+.mzw-category-icon--personal_care-bg {
+  background-color: var(--color-category-personalCare);
+}
 .mzw-category-icon--general-bg {
   background-color: var(--color-category-general);
 }

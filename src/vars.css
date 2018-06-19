@@ -12,16 +12,19 @@
   --color-red: #7b315c;
   --color-green: #317b50;
 
-  --color-category-transport: #1E788C;
-  --color-category-groceries: #F5B946;
-  --color-category-eatingOut: #E64B5F;
-  --color-category-cash: #9ABBA8;
-  --color-category-bills: #50B9DC;
-  --color-category-entertainment: #EB824B;
-  --color-category-shopping: #F09696;
-  --color-category-holidays: #B982FF;
-  --color-category-general: #CCCCCC;
-  --color-category-expenses: #E1B982;
+  --color-category-transport: #00738c;
+  --color-category-groceries: #f69f00;
+  --color-category-eatingOut: #7cd420;
+  --color-category-cash: #00ba4d;
+  --color-category-bills: #02a3da;
+  --color-category-entertainment: #a660ff;
+  --color-category-shopping: #f40083;
+  --color-category-holidays: #ff794c;
+  --color-category-family: #0040c6;
+  --color-category-personalCare: #f00a0a;
+  --color-category-holidays: #ff794c;
+  --color-category-general: #707070;
+  --color-category-expenses: #952b01;
 
   --mobile-breakpoint: 800px;
   --body-width: 58rem;
