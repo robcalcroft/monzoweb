@@ -14,7 +14,7 @@ class Login extends React.PureComponent {
           <p>
             Authorize Monzo Web to use your Monzo account.
           </p>
-          <a className="mzw-button" href={`https://auth.getmondo.co.uk/?client_id=${process.env.MONZO_CLIENT_ID}&redirect_uri=${process.env.MONZO_REDIRECT_URI}&response_type=code`}>
+          <a className="mzw-button" href={`https://auth.monzo.com/?client_id=${process.env.MONZO_CLIENT_ID}&redirect_uri=${process.env.MONZO_REDIRECT_URI}&response_type=code`}>
             Authorize with Monzo
           </a>
         </div>
