@@ -13,7 +13,7 @@ app.get('/api/token', (req, res) => {
   }
 
   return request.post({
-    url: 'https://api.getmondo.co.uk/oauth2/token',
+    url: 'https://api.monzo.com/oauth2/token',
     form: {
       grant_type: req.query.grant_type || 'authorization_code',
       client_id: process.env.MONZO_CLIENT_ID,
