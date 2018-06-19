@@ -19,8 +19,8 @@ class CategoryIcon extends React.PureComponent {
       );
     }
 
-    const iconSvg = require(`../../assets/category-icons/${category}.svg`); // eslint-disable-line import/no-dynamic-require, global-require
-
+    const imgSrc = require(`../../assets/category-icons/${category}.svg`)
+    
     const iconClassnames = classNames({
       [className]: className,
       [`mzw-category-icon--${category}-bg`]: true,
@@ -28,7 +28,7 @@ class CategoryIcon extends React.PureComponent {
 
     return (
       <img
-        src={iconSvg}
+        src={imgSrc}
         alt={category}
         className={iconClassnames}
       />
