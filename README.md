@@ -4,7 +4,7 @@ View your Monzo account from your browser and view all your transactions on an i
 ![monzoweb screenshot of main interface](screenshot.png)
 
 ## Monzo's Monzoweb
-In [June 2018, Monzo introduced web.monzo.com](https://monzo.com/blog/2018/06/21/how-to-get-online-in-an-emergency/), a project with similar aims to this one, if you're non technical and or just want to view your transactions and balance in a browser, then [web.monzo.com](https://web.monzo.com) if probably for you. Otherwise keep reading :smile:.
+In [June 2018, Monzo introduced web.monzo.com](https://monzo.com/blog/2018/06/21/how-to-get-online-in-an-emergency/), a project with similar aims to this one, if you're non technical and or just want to view your transactions and balance in a browser, then [web.monzo.com](https://web.monzo.com) is probably for you. Otherwise keep reading :smile:.
 
 ## Getting Started
 If you're not a developer or have limited technical knowledge, [this longform, simple setup guide](./SIMPLE.md) will help you setup Monzoweb.
